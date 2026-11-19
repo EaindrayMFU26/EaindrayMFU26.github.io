@@ -23,7 +23,7 @@
   if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)){ d.className+=' rv-ready'; setTimeout(function(){ if(!window.__rv) d.classList.remove('rv-ready'); },4000); }
   try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){d.setAttribute('data-theme',t);}}catch(e){}
   var l=null; try{ l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang'); }catch(e){}
-  if(l==='zh-Hant'||l==='zh-Hans'||l==='nan'||l==='de'){ d.className+=' i18n-pending'; setTimeout(function(){ d.classList.remove('i18n-pending'); },2500); }
+  if(l==='th'||l==='zh-Hant'||l==='zh-Hans'||l==='nan'||l==='de'){ d.className+=' i18n-pending'; setTimeout(function(){ d.classList.remove('i18n-pending'); },2500); }
 })();
 </script>
 <script type="application/ld+json">
@@ -70,6 +70,14 @@
   --f-mono:"Geist Mono","Noto Sans SC","PingFang SC","Microsoft YaHei",ui-monospace,monospace;
 }
 :lang(zh) body, :lang(nan) body{line-height:1.75}
+:root:lang(th){
+  --f-sans:"Geist","Noto Sans Thai","Sukhumvit Set","Leelawadee UI",Tahoma,ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"Geist Mono","Noto Sans Thai","Leelawadee UI",ui-monospace,monospace;
+}
+:lang(th) body{line-height:1.8}
+:lang(th) h2, :lang(th) h3, :lang(th) h4, :lang(th) .role b, :lang(th) .award .what strong, :lang(th) .flow b{line-height:1.45; letter-spacing:0}
+:lang(th) h2 em{font-family:inherit; font-style:normal; font-weight:700; font-size:1em; letter-spacing:0}
+:lang(th) .eyebrow, :lang(th) .label, :lang(th) .metric .k, :lang(th) .tl-badge, :lang(th) .lb-meta .k{letter-spacing:.03em}
 :lang(zh) h2, :lang(nan) h2, :lang(zh) h3, :lang(nan) h3, :lang(zh) .role b, :lang(nan) .role b{letter-spacing:0}
 :lang(zh) h2 em, :lang(nan) h2 em{font-family:inherit; font-style:normal; font-weight:700; font-size:1em; letter-spacing:0}
 :lang(zh) .eyebrow, :lang(nan) .eyebrow{letter-spacing:.06em}
@@ -1164,7 +1172,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
 
 <div class="lang" id="lang">
   <div class="lang-menu" id="lang-menu" role="menu" aria-labelledby="lang-btn" hidden>
-    <div class="lang-head">Language · 語言 · Sprache</div>
+    <div class="lang-head">Language · ภาษา · 语言</div>
   </div>
   <button class="lang-btn" id="lang-btn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu">
     <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
@@ -1224,7 +1232,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   });
 })();
 </script>
-<script src="i18n.js?v=202611192301"></script>
+<script src="i18n.js?v=202611192313"></script>
 <script>
 /* Certificate coverflow + viewer */
 (function(){
