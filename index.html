@@ -326,7 +326,7 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .award .what span{color:var(--ink-2); font-size:.95rem}
 
 /* award photos */
-.moments{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-bottom:36px}
+.moments{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-bottom:36px}
 @media (max-width:760px){ .moments{grid-template-columns:1fr; gap:16px; margin-bottom:28px} }
 .moment{margin:0; display:grid; grid-template-rows:auto 1fr; background:var(--surface); border:1px solid var(--line); border-radius:20px; overflow:hidden; min-width:0;
   transition:transform .35s cubic-bezier(.3,1.4,.5,1), box-shadow .35s, border-color .35s}
@@ -864,6 +864,14 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       </button>
       <figcaption><strong>ADT MediHack 2026</strong><span><time data-ym="2026-02">Feb 2026</time> · ฿1,500 · MFU Medical Center Hospital</span></figcaption>
     </figure>
+    <figure class="moment" style="--c:#12A483">
+      <button class="moment-img" type="button" aria-label="View photo" data-i18n-aria="aw.view">
+        <img src="awards/mfu-wai-khru-2025.jpg" alt="Receiving a certificate on stage at Mae Fah Luang University's Teacher Appreciation Ceremony (Wai Khru), 7 August 2025" width="1600" height="1066" loading="lazy" decoding="async" style="object-position:45% 50%">
+        <span class="moment-rank"><i aria-hidden="true"></i><span data-i18n="aw.p5">Academic Distinction</span></span>
+        <span class="moment-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+      </button>
+      <figcaption><strong data-i18n="aw.d.t">Teacher Appreciation Ceremony (Wai Khru)</strong><span><time data-ym="2025-08">Aug 2025</time> · GPA 4.00 · Mae Fah Luang University</span></figcaption>
+    </figure>
   </div>
 
   <dialog class="lb lb-photo" id="ph" aria-labelledby="ph-title">
@@ -916,6 +924,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     <li data-ym="2026-10" data-img="certificates/dlai-agentic-ai.jpg" data-verify="https://www.deeplearning.ai/certificates/34de6fae-91de-49e7-9334-e8b5fe408401"><strong>Agentic AI</strong><span class="issuer">DeepLearning.AI</span><time data-ym="2026-10">Oct 2026</time></li>
     <li data-ym="2026-10"><strong>AI Fundamentals</strong><span class="issuer">Google</span><time data-ym="2026-10">Oct 2026</time></li>
     <li data-ym="2026-10"><strong>AI Career Readiness Training</strong><span class="issuer">ASEAN Foundation</span><time data-ym="2026-10">Oct 2026</time></li>
+    <li data-ym="2025-08" data-img="certificates/mfu-adt-ai-game-2025.jpg"><strong>Joint International Workshop and Competition 2025 on AI &amp; Game</strong><span class="issuer">School of Applied Digital Technology, MFU</span><time data-ym="2025-08">Aug 2025</time></li>
     <li data-ym="2025-02" data-img="certificates/coursera-google-ux-design.jpg" data-verify="https://www.coursera.org/account/accomplishments/specialization/WFC7J7JTFG2L"><strong>Google UX Design Professional Certificate</strong><span class="issuer">Google · Coursera</span><time data-ym="2025-02">Feb 2025</time></li>
     <li data-ym="2025-02" data-img="certificates/coursera-google-dynamic-ui.jpg" data-verify="https://www.coursera.org/account/accomplishments/verify/FIZ46OYGZH5Z"><strong>Build Dynamic User Interfaces (UI) for Websites</strong><span class="issuer">Google · Coursera</span><time data-ym="2025-02">Feb 2025</time></li>
     <li data-ym="2024-10" data-img="certificates/udemy-arm-cortex-m.jpg" data-verify="https://ude.my/UC-6aa1a3de-980e-455c-a396-7a1cd77528ac"><strong>Embedded Systems Programming on ARM Cortex-M3/M4</strong><span class="issuer">Udemy</span><time data-ym="2024-10">Oct 2024</time></li>
