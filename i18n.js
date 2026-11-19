@@ -104,6 +104,7 @@ window.I18N = (function(){
     'aw.p5':'學業優異獎','aw.d.t':'拜師禮（Wai Khru）',
     'aw.p0':'Fast Track 獎',
     'proj.bot.play':'播放影片：自主移動機器人','proj.bot.watch':'觀看機器人實際運作','proj.bot.yt':'在 YouTube 上觀看',
+    'cm.cert':'查看證書',
     'ft.copy':'© 2026 Eaindray · 泰國清萊'
   };
 
@@ -196,6 +197,7 @@ window.I18N = (function(){
     'aw.p5':'学业优异奖','aw.d.t':'拜师礼（Wai Khru）',
     'aw.p0':'Fast Track 奖',
     'proj.bot.play':'播放视频：自主移动机器人','proj.bot.watch':'观看机器人实际运行','proj.bot.yt':'在 YouTube 上观看',
+    'cm.cert':'查看证书',
     'ft.copy':'© 2026 Eaindray · 泰国清莱'
   };
 
@@ -288,6 +290,7 @@ window.I18N = (function(){
     'aw.p5':'學業優秀獎','aw.d.t':'拜師禮（Wai Khru）',
     'aw.p0':'Fast Track 獎',
     'proj.bot.play':'播影片：自主移動機器人','proj.bot.watch':'看機器人實際咧行','proj.bot.yt':'去 YouTube 看',
+    'cm.cert':'看證書',
     'ft.copy':'© 2026 Eaindray · 泰國清萊'
   };
 
@@ -380,6 +383,7 @@ window.I18N = (function(){
     'aw.p5':'Akademische Auszeichnung','aw.d.t':'Lehrerehrung (Wai Khru)',
     'aw.p0':'Fast Track Award',
     'proj.bot.play':'Video abspielen: Autonomer mobiler Roboter','proj.bot.watch':'Den Roboter in Aktion sehen','proj.bot.yt':'Auf YouTube ansehen',
+    'cm.cert':'Zertifikat ansehen',
     'ft.copy':'© 2026 Eaindray · Chiang Rai, Thailand'
   };
 

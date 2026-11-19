@@ -489,6 +489,11 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .grid-3 .item{display:grid; gap:8px; align-content:start; padding-top:16px; border-top:2px solid var(--accent)}
 .grid-3 .item p{color:var(--ink-2); font-size:.96rem}
 
+.cm-cert{display:inline-flex; align-items:center; gap:6px; width:fit-content; margin-top:2px; padding:5px 13px 5px 10px; border-radius:999px; font-size:.86rem; font-weight:500;
+  color:var(--accent-ink); background:var(--accent-soft); box-shadow:0 2px 0 color-mix(in srgb, var(--accent) 30%, var(--surface)); transition:transform .3s cubic-bezier(.3,1.7,.5,1)}
+.cm-cert:hover{text-decoration:none; transform:translateY(-2px)}
+.cm-cert svg{width:15px; height:15px}
+
 /* contact */
 .contact{margin-top:96px; background:var(--ink); color:var(--bg); border-radius:24px; padding:56px 48px; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:40px; align-items:end}
 @media (max-width:860px){ .contact{grid-template-columns:1fr; padding:36px 22px; gap:28px; margin-top:72px; border-radius:20px} }
@@ -963,6 +968,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     <li data-ym="2026-10"><strong>AI Fundamentals</strong><span class="issuer">Google</span><time data-ym="2026-10">Oct 2026</time></li>
     <li data-ym="2026-10"><strong>AI Career Readiness Training</strong><span class="issuer">ASEAN Foundation</span><time data-ym="2026-10">Oct 2026</time></li>
     <li data-ym="2025-08" data-img="certificates/mfu-adt-ai-game-2025.jpg"><strong>Joint International Workshop and Competition 2025 on AI &amp; Game</strong><span class="issuer">School of Applied Digital Technology, MFU</span><time data-ym="2025-08">Aug 2025</time></li>
+    <li data-ym="2025-02" data-img="certificates/adt-open-space-2025-coach.jpg"><strong>Hackathon Coach, ADT Open Space 2025</strong><span class="issuer">School of Applied Digital Technology, MFU</span><time data-ym="2025-02">Feb 2025</time></li>
     <li data-ym="2025-02" data-img="certificates/coursera-google-ux-design.jpg" data-verify="https://www.coursera.org/account/accomplishments/specialization/WFC7J7JTFG2L"><strong>Google UX Design Professional Certificate</strong><span class="issuer">Google · Coursera</span><time data-ym="2025-02">Feb 2025</time></li>
     <li data-ym="2025-02" data-img="certificates/coursera-google-dynamic-ui.jpg" data-verify="https://www.coursera.org/account/accomplishments/verify/FIZ46OYGZH5Z"><strong>Build Dynamic User Interfaces (UI) for Websites</strong><span class="issuer">Google · Coursera</span><time data-ym="2025-02">Feb 2025</time></li>
     <li data-ym="2024-10" data-img="certificates/udemy-arm-cortex-m.jpg" data-verify="https://ude.my/UC-6aa1a3de-980e-455c-a396-7a1cd77528ac"><strong>Embedded Systems Programming on ARM Cortex-M3/M4</strong><span class="issuer">Udemy</span><time data-ym="2024-10">Oct 2024</time></li>
@@ -1112,7 +1118,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     <h2 id="cm-title" data-i18n="cm.title">Mentoring, organising, volunteering</h2>
   </div>
   <div class="grid-3">
-    <div class="item"><h3 data-i18n="cm.1t">Hackathon coach and mentor</h3><p data-i18n="cm.1d">Coached high-school students at the ADT Open Space 2025 Hackathon, where 60 students from three Chiang Rai schools built AI-based app prototypes, and mentored at MediHack Junior 2026, a two-day AI and UX/UI hackathon.</p></div>
+    <div class="item"><h3 data-i18n="cm.1t">Hackathon coach and mentor</h3><p data-i18n="cm.1d">Coached high-school students at the ADT Open Space 2025 Hackathon, where 60 students from three Chiang Rai schools built AI-based app prototypes, and mentored at MediHack Junior 2026, a two-day AI and UX/UI hackathon.</p><a class="cm-cert" href="#certificates" data-cert="Hackathon Coach, ADT Open Space 2025"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21l4-3 4 3M8 9h8M8 12.5h5"/></svg><span data-i18n="cm.cert">View certificate</span></a></div>
     <div class="item"><h3 data-i18n="cm.2t">Event organiser</h3><p data-i18n="cm.2d">Co-organised the orientation for 60+ new international students from seven countries at Mae Fah Luang University, and organised the 2nd Student Skills Development Program on leadership and growth mindset.</p></div>
     <div class="item"><h3 data-i18n="cm.3t">Disaster relief volunteer</h3><p data-i18n="cm.3d">Distributed food and helped with post-flood cleanup in Chiang Rai in 2024, and sorted donated relief supplies for flood-affected communities in Hat Yai in 2025.</p></div>
   </div>
@@ -1294,6 +1300,13 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     else if(e.key==='ArrowRight'){ fillLb(lbi+1); e.preventDefault(); }
   });
   lb.addEventListener('click',function(e){ if(e.target===lb) lb.close(); });
+  [].forEach.call(document.querySelectorAll('[data-cert]'),function(a){
+    a.addEventListener('click',function(e){
+      var i=-1; items.forEach(function(it,k){ if(i<0 && it.title===a.getAttribute('data-cert')) i=k; });
+      if(i<0 || typeof lb.showModal!=='function') return;
+      e.preventDefault(); go(i); openLb(i);
+    });
+  });
 
   document.addEventListener('langchange',function(){
     layout();
