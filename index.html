@@ -20,6 +20,7 @@
 <script>
 (function(){
   var d=document.documentElement; d.className+=' js';
+  if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)){ d.className+=' rv-ready'; setTimeout(function(){ if(!window.__rv) d.classList.remove('rv-ready'); },4000); }
   try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){d.setAttribute('data-theme',t);}}catch(e){}
   var l=null; try{ l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang'); }catch(e){}
   if(l==='zh-Hant'||l==='zh-Hans'||l==='nan'||l==='de'){ d.className+=' i18n-pending'; setTimeout(function(){ d.classList.remove('i18n-pending'); },2500); }
@@ -530,8 +531,23 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
 .lang-opt .check{width:16px; height:16px; color:var(--accent-ink); visibility:hidden}
 .lang-opt[aria-checked="true"] .check{visibility:visible}
 
+/* scroll reveal: elements start hidden (only when JS can reveal them) and animate in one by one */
+.rv-ready :is(.hero-copy > *, .report, .stat, .sec-head > *, .case, .flow li, .gate, .did > div, .jr-filter, .tl-node, .tl-date, .tl-card, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .candy, .grid-3 .item, .contact):not(.rv-in){opacity:0}
+.rv-ready .rv-in{animation:rv-up .8s cubic-bezier(.16,.84,.3,1) var(--rv-d,0ms) backwards}
+.rv-ready main{overflow-x:clip}
+.rv-ready :is(.report, .tl-card).rv-in{animation-name:rv-right}
+.rv-ready :is(.tl-date, .award).rv-in{animation-name:rv-left}
+.rv-ready :is(.case, .project, .moment, .cf, .jar, .contact).rv-in{animation-name:rv-zoom}
+.rv-ready :is(.tl-node, .candy).rv-in{animation:rv-pop .6s cubic-bezier(.3,1.5,.5,1) var(--rv-d,0ms) backwards}
+@keyframes rv-up{from{opacity:0; transform:translateY(22px)}}
+@keyframes rv-left{from{opacity:0; transform:translateX(-26px)}}
+@keyframes rv-right{from{opacity:0; transform:translateX(26px)}}
+@keyframes rv-zoom{from{opacity:0; transform:translateY(18px) scale(.97)}}
+@keyframes rv-pop{0%{opacity:0; transform:scale(.5)} 70%{opacity:1; transform:scale(1.06)} 100%{opacity:1; transform:none}}
+
 @media print{
   .nav,.cta,.contact-actions,#theme,.lang,.cf-arrow,.cf-dots{display:none !important}
+  .rv-ready *{opacity:1 !important; animation:none !important}
   body{background:#fff}
   section{padding-block:28px 0}
 }
@@ -1368,6 +1384,37 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   new IntersectionObserver(function(es){ es.forEach(function(e){ visible=e.isIntersecting; if(visible) play(); else v.pause(); }); }, { threshold:.35 }).observe(v);
   v.closest('.vid').addEventListener('click', function(){ v.pause(); });
   if(d) d.addEventListener('close', play);
+})();
+</script>
+<script>
+/* Scroll reveal: whatever enters the screen together is revealed one by one, in page order */
+(function(){
+  var root=document.documentElement; window.__rv=1;
+  if(!root.classList.contains('rv-ready')) return;
+  var SEL='.hero-copy > *, .report, .stat, .sec-head > *, .case, .flow li, .gate, .did > div, .jr-filter, .tl-node, .tl-date, .tl-card, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .candy, .grid-3 .item, .contact';
+  var GROUPS='.hero-copy, .sec-head, .stats, .flow-wrap, .did, .tl, .grid-2, .moments, .awards, .jars, .candies, .grid-3';
+  var BASE=[['.report',220],['.stat',350],['.case',150],['.tl-date',60],['.tl-card',110]];
+  var els=[].slice.call(document.querySelectorAll(SEL));
+  function show(el){ el.classList.add('rv-in'); }
+  window.addEventListener('beforeprint', function(){ els.forEach(show); });
+  var io=new IntersectionObserver(function(entries){
+    var batch=entries.filter(function(e){ return e.isIntersecting; }).map(function(e){ return e.target; });
+    batch.sort(function(a,b){ return (a.compareDocumentPosition(b) & 4) ? -1 : 1; });
+    var seen=new Map(), inBatch=new Set(batch);
+    batch.forEach(function(el){
+      io.unobserve(el);
+      var g=el.parentElement.closest(GROUPS) || el.parentElement;
+      var unit=el.closest('.tl-item') || el, list=seen.get(g);
+      if(!list){ list=[]; seen.set(g,list); }
+      var i=list.indexOf(unit); if(i<0){ list.push(unit); i=list.length-1; }
+      var step=g.matches('.candies') ? 40 : (g.matches('.tl') ? 140 : 85);
+      var d=Math.min(i*step, 900);
+      BASE.forEach(function(b){ if(el.matches(b[0])) d+=b[1]; });
+      for(var a=el.parentElement; a; a=a.parentElement){ if(inBatch.has(a)){ d+=(a._rvd||0)+120; break; } }
+      el._rvd=d; el.style.setProperty('--rv-d', d+'ms'); show(el);
+    });
+  }, { rootMargin:'0px 0px -6% 0px', threshold:0.08 });
+  els.forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>
