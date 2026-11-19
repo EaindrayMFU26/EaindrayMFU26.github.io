@@ -100,6 +100,7 @@ window.I18N = (function(){
     'jr.eyebrow':'經歷與學歷','jr.title':'一路走來的<em>軌跡</em>','jr.sub':'工作與學習放在同一條時間軸上，由新到舊。','jr.filter':'篩選時間軸',
     'jr.all':'全部','jr.work':'工作','jr.study':'學習','jr.exchange':'交換','jr.now':'進行中',
     'jr.ex.proj':'專案：<a href="#projects">心電圖心律不整分類</a>','jr.s.sel':'名 MFU 學生入選','jr.s.cit':'引用精確率',
+    'aw.p1':'第一名','aw.p3':'第三名','aw.view':'查看照片',
     'ft.copy':'© 2026 Eaindray · 泰國清萊'
   };
 
@@ -188,6 +189,7 @@ window.I18N = (function(){
     'jr.eyebrow':'经历与教育','jr.title':'一路走来的<em>足迹</em>','jr.sub':'工作和学习放在同一条时间线上，从新到旧。','jr.filter':'筛选时间线',
     'jr.all':'全部','jr.work':'工作','jr.study':'学习','jr.exchange':'交换','jr.now':'进行中',
     'jr.ex.proj':'项目：<a href="#projects">心电图心律失常分类</a>','jr.s.sel':'名 MFU 学生入选','jr.s.cit':'引用精确率',
+    'aw.p1':'第一名','aw.p3':'第三名','aw.view':'查看照片',
     'ft.copy':'© 2026 Eaindray · 泰国清莱'
   };
 
@@ -276,6 +278,7 @@ window.I18N = (function(){
     'jr.eyebrow':'經歷佮學歷','jr.title':'一路行來的<em>跤跡</em>','jr.sub':'工課佮讀冊囥佇仝一條時間線，對新排到舊。','jr.filter':'篩選時間線',
     'jr.all':'全部','jr.work':'工課','jr.study':'讀冊','jr.exchange':'交換','jr.now':'這馬',
     'jr.ex.proj':'專案：<a href="#projects">心電圖心律不整分類</a>','jr.s.sel':'个 MFU 學生入選','jr.s.cit':'引用精確率',
+    'aw.p1':'第一名','aw.p3':'第三名','aw.view':'看相片',
     'ft.copy':'© 2026 Eaindray · 泰國清萊'
   };
 
@@ -364,6 +367,7 @@ window.I18N = (function(){
     'jr.eyebrow':'Erfahrung und Ausbildung','jr.title':'Der Weg <em>bisher</em>','jr.sub':'Arbeit und Studium auf einer Zeitleiste, das Neueste zuerst.','jr.filter':'Zeitleiste filtern',
     'jr.all':'Alle','jr.work':'Arbeit','jr.study':'Studium','jr.exchange':'Austausch','jr.now':'Aktuell',
     'jr.ex.proj':'Projekt: <a href="#projects">EKG-Arrhythmie-Klassifikation</a>','jr.s.sel':'Studierende der MFU ausgewählt','jr.s.cit':'Zitationspräzision',
+    'aw.p1':'1. Preis','aw.p3':'3. Preis','aw.view':'Foto ansehen',
     'ft.copy':'© 2026 Eaindray · Chiang Rai, Thailand'
   };
 

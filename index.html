@@ -323,6 +323,31 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .award .what strong{font-size:1.1rem; font-weight:600; letter-spacing:-.015em; line-height:1.35}
 .award .what span{color:var(--ink-2); font-size:.95rem}
 
+/* award photos */
+.moments{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-bottom:36px}
+@media (max-width:760px){ .moments{grid-template-columns:1fr; gap:16px; margin-bottom:28px} }
+.moment{margin:0; display:grid; grid-template-rows:auto 1fr; background:var(--surface); border:1px solid var(--line); border-radius:20px; overflow:hidden; min-width:0;
+  transition:transform .35s cubic-bezier(.3,1.4,.5,1), box-shadow .35s, border-color .35s}
+.moment:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:color-mix(in srgb, var(--c) 40%, var(--line))}
+.moment-img{position:relative; display:block; width:100%; aspect-ratio:16/10; padding:0; border:0; overflow:hidden; background:var(--surface-2); cursor:zoom-in}
+.moment-img img{display:block; width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.moment:hover .moment-img img{transform:scale(1.04)}
+.moment-rank{position:absolute; left:14px; top:14px; display:inline-flex; align-items:center; gap:8px; padding:5px 14px 5px 6px; border-radius:999px;
+  font:600 .88rem var(--f-sans); color:color-mix(in srgb, var(--c) 40%, #1b1304); background:color-mix(in srgb, var(--c) 28%, #fff); border:1px solid color-mix(in srgb, var(--c) 55%, #fff);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75), 0 3px 0 color-mix(in srgb, var(--c) 60%, #fff), 0 10px 22px -8px rgba(0,0,0,.45)}
+.moment-rank i{width:22px; height:22px; border-radius:50%; border:2px solid #fff; flex:none;
+  background:repeating-conic-gradient(from 8deg, var(--c) 0 22.5deg, color-mix(in srgb, var(--c) 35%, #fff) 22.5deg 45deg)}
+.moment-zoom{position:absolute; right:12px; bottom:12px; width:38px; height:38px; border-radius:50%; display:grid; place-items:center; color:#fff; background:rgba(10,12,11,.55);
+  opacity:0; transform:scale(.9); transition:opacity .25s, transform .25s}
+.moment-zoom svg{width:17px; height:17px}
+.moment:hover .moment-zoom, .moment-img:focus-visible .moment-zoom{opacity:1; transform:none}
+@media (hover:none){ .moment-zoom{opacity:1; transform:none} }
+.moment figcaption{display:grid; gap:4px; align-content:start; padding:16px 20px 18px}
+.moment figcaption strong{font-size:1.08rem; font-weight:600; letter-spacing:-.01em; line-height:1.35}
+.moment figcaption > span{font-family:var(--f-mono); font-size:.78rem; color:var(--ink-3)}
+.lb-photo .ph-media{background:#0b0d0c; display:grid; place-items:center}
+.lb-photo .ph-media img{display:block; max-width:100%; max-height:calc(100dvh - 190px); object-fit:contain}
+
 /* certificates: list (no-JS fallback) */
 .cert-src{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 32px; border-top:1px solid var(--line)}
 @media (max-width:760px){ .cert-src{grid-template-columns:1fr} }
@@ -820,6 +845,31 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     <span class="eyebrow" data-i18n="aw.eyebrow">Awards and recognition</span>
     <h2 id="aw-title" data-i18n="aw.title">Prizes, a startup award and a <em>perfect year</em></h2>
   </div>
+  <div class="moments">
+    <figure class="moment" style="--c:#E0A800">
+      <button class="moment-img" type="button" aria-label="View photo" data-i18n-aria="aw.view">
+        <img src="awards/mfu-se-hackathon-2025.webp" alt="Prize-winning team on stage at the MFU Software Engineering Hackathon 2025, holding the 5,000 baht prize board" width="1280" height="748" loading="lazy" decoding="async" style="object-position:50% 45%">
+        <span class="moment-rank"><i aria-hidden="true"></i><span data-i18n="aw.p1">1st Prize</span></span>
+        <span class="moment-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+      </button>
+      <figcaption><strong>MFU Software Engineering Hackathon 2025</strong><span><time data-ym="2025-08">Aug 2025</time> · ฿5,000 · LINE Developer Thailand</span></figcaption>
+    </figure>
+    <figure class="moment" style="--c:#C8742E">
+      <button class="moment-img" type="button" aria-label="View photo" data-i18n-aria="aw.view">
+        <img src="awards/adt-medihack-2026.webp" alt="Team receiving the 2nd runner-up award, 1,500 baht, at ADT MediHack 2026 in front of the School of Applied Digital Technology sign" width="2000" height="1125" loading="lazy" decoding="async" style="object-position:50% 60%">
+        <span class="moment-rank"><i aria-hidden="true"></i><span data-i18n="aw.p3">3rd Prize</span></span>
+        <span class="moment-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+      </button>
+      <figcaption><strong>ADT MediHack 2026</strong><span><time data-ym="2026-02">Feb 2026</time> · ฿1,500 · MFU Medical Center Hospital</span></figcaption>
+    </figure>
+  </div>
+
+  <dialog class="lb lb-photo" id="ph" aria-labelledby="ph-title">
+    <div class="lb-top"><span id="ph-meta"></span><button class="icon-btn" id="ph-close" type="button" aria-label="Close" data-i18n-aria="cert.close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="ph-media"><img id="ph-img" alt=""></div>
+    <div class="lb-info"><div><h3 id="ph-title"></h3><p class="lb-issuer" id="ph-rank"></p></div></div>
+  </dialog>
+
   <div class="awards">
     <div class="award">
       <div class="when" data-ym="2026-09">Sep 2026</div>
@@ -1218,6 +1268,25 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       if(show){ void it.offsetWidth; it.style.animationDelay=(i++*70)+'ms'; it.classList.add('pop'); }
     });
   }); });
+})();
+</script>
+<script>
+/* Award photo viewer */
+(function(){
+  var d=document.getElementById('ph'); if(!d || typeof d.showModal!=='function') return;
+  var img=document.getElementById('ph-img'), title=document.getElementById('ph-title'), rank=document.getElementById('ph-rank'), meta=document.getElementById('ph-meta');
+  [].forEach.call(document.querySelectorAll('.moment-img'), function(b){
+    b.addEventListener('click', function(){
+      var fig=b.closest('.moment'), src=b.querySelector('img');
+      img.src=src.getAttribute('src'); img.alt=src.alt;
+      title.textContent=fig.querySelector('figcaption strong').textContent;
+      rank.textContent=b.querySelector('.moment-rank').textContent.trim();
+      meta.textContent=fig.querySelector('figcaption > span').textContent;
+      d.showModal();
+    });
+  });
+  document.getElementById('ph-close').addEventListener('click', function(){ d.close(); });
+  d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
 })();
 </script>
 </body>
