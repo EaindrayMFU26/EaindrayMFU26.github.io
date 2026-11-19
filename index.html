@@ -318,8 +318,8 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .grid-2 .project-media{aspect-ratio:16/9; min-height:0}
 .project-video{display:block; padding:0; min-height:0; background:#0b0d0c}
 .vid{position:relative; display:block; width:100%; aspect-ratio:16/9; margin:0; padding:0; border:0; overflow:hidden; background:#0b0d0c; color:#fff; font:inherit; text-align:left; cursor:pointer}
-.vid img{display:block; width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-.vid:hover img{transform:scale(1.04)}
+.vid img, .vid video{display:block; width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.vid:hover img, .vid:hover video{transform:scale(1.04)}
 .vid-shade{position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,9,.8), rgba(8,10,9,.08) 55%, rgba(8,10,9,.18))}
 .vid-play{position:absolute; left:50%; top:45%; width:68px; height:68px; margin:-34px 0 0 -34px; border-radius:50%; display:grid; place-items:center; background:#fff; color:#0D7A63;
   box-shadow:inset 0 -3px 0 rgba(0,0,0,.12), 0 4px 0 rgba(0,0,0,.2), 0 16px 32px -10px rgba(0,0,0,.65); transition:transform .35s cubic-bezier(.3,1.7,.5,1)}
@@ -826,7 +826,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     <article class="project">
       <div class="project-media project-video">
         <button class="vid" type="button" data-yt="Yxf14bPctgU" data-title="Autonomous Mobile Robot" aria-label="Play video: Autonomous Mobile Robot" data-i18n-aria="proj.bot.play">
-          <img src="media/amr-video.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+          <video class="vid-loop" muted loop playsinline preload="none" disablepictureinpicture poster="media/amr-loop.jpg" width="960" height="540" aria-hidden="true"><source src="media/amr-loop.mp4" type="video/mp4"></video>
           <span class="vid-shade" aria-hidden="true"></span>
           <span class="vid-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
           <span class="vid-bar" aria-hidden="true"><span class="vid-label" data-i18n="proj.bot.watch">Watch the robot in action</span><span class="vid-len">4:19</span></span>
@@ -1354,6 +1354,20 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     document.getElementById('vd-close').addEventListener('click', function(){ d.close(); });
     d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
   }
+})();
+</script>
+<script>
+/* Robot loop clip: plays only while on screen; stays a still image for reduced motion or data saver */
+(function(){
+  var v=document.querySelector('.vid-loop'); if(!v) return;
+  var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var save=navigator.connection && navigator.connection.saveData;
+  if(reduce || save || !('IntersectionObserver' in window)) return;
+  var visible=false, d=document.getElementById('vd');
+  function play(){ if(visible && !(d && d.open)){ var p=v.play(); if(p && p.catch) p.catch(function(){}); } }
+  new IntersectionObserver(function(es){ es.forEach(function(e){ visible=e.isIntersecting; if(visible) play(); else v.pause(); }); }, { threshold:.35 }).observe(v);
+  v.closest('.vid').addEventListener('click', function(){ v.pause(); });
+  if(d) d.addEventListener('close', play);
 })();
 </script>
 </body>
