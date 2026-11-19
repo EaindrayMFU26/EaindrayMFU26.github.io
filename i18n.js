@@ -102,6 +102,7 @@ window.I18N = (function(){
     'jr.ex.proj':'專案：<a href="#projects">心電圖心律不整分類</a>','jr.s.sel':'名 MFU 學生入選','jr.s.cit':'引用精確率',
     'aw.p1':'第一名','aw.p3':'第三名','aw.view':'查看照片',
     'aw.p5':'學業優異獎','aw.d.t':'拜師禮（Wai Khru）',
+    'aw.p0':'Fast Track 獎',
     'ft.copy':'© 2026 Eaindray · 泰國清萊'
   };
 
@@ -192,6 +193,7 @@ window.I18N = (function(){
     'jr.ex.proj':'项目：<a href="#projects">心电图心律失常分类</a>','jr.s.sel':'名 MFU 学生入选','jr.s.cit':'引用精确率',
     'aw.p1':'第一名','aw.p3':'第三名','aw.view':'查看照片',
     'aw.p5':'学业优异奖','aw.d.t':'拜师礼（Wai Khru）',
+    'aw.p0':'Fast Track 奖',
     'ft.copy':'© 2026 Eaindray · 泰国清莱'
   };
 
@@ -282,6 +284,7 @@ window.I18N = (function(){
     'jr.ex.proj':'專案：<a href="#projects">心電圖心律不整分類</a>','jr.s.sel':'个 MFU 學生入選','jr.s.cit':'引用精確率',
     'aw.p1':'第一名','aw.p3':'第三名','aw.view':'看相片',
     'aw.p5':'學業優秀獎','aw.d.t':'拜師禮（Wai Khru）',
+    'aw.p0':'Fast Track 獎',
     'ft.copy':'© 2026 Eaindray · 泰國清萊'
   };
 
@@ -372,6 +375,7 @@ window.I18N = (function(){
     'jr.ex.proj':'Projekt: <a href="#projects">EKG-Arrhythmie-Klassifikation</a>','jr.s.sel':'Studierende der MFU ausgewählt','jr.s.cit':'Zitationspräzision',
     'aw.p1':'1. Preis','aw.p3':'3. Preis','aw.view':'Foto ansehen',
     'aw.p5':'Akademische Auszeichnung','aw.d.t':'Lehrerehrung (Wai Khru)',
+    'aw.p0':'Fast Track Award',
     'ft.copy':'© 2026 Eaindray · Chiang Rai, Thailand'
   };
 
