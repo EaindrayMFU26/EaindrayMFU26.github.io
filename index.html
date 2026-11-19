@@ -231,14 +231,64 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .chips{display:flex; flex-wrap:wrap; gap:6px}
 .chip{font-family:var(--f-mono); font-size:.76rem; padding:4px 9px; border:1px solid var(--line); background:var(--surface-2); border-radius:6px; color:var(--ink); white-space:nowrap}
 
-/* experience */
-.xp{display:grid; border-top:1px solid var(--line)}
-.xp-item{display:grid; grid-template-columns:200px minmax(0,1fr); gap:10px 32px; padding:28px 0; border-bottom:1px solid var(--line)}
-@media (max-width:700px){ .xp-item{grid-template-columns:1fr; padding:22px 0} }
-.xp-when{font-family:var(--f-mono); font-size:.82rem; color:var(--ink-3); padding-top:4px; font-variant-numeric:tabular-nums}
-.xp-body{display:grid; gap:10px; min-width:0}
-.xp-body .where{color:var(--ink-2); font-size:.95rem}
-.xp-body .bullets{color:var(--ink-2)}
+/* experience + education timeline */
+.jr-filter{display:flex; flex-wrap:wrap; gap:8px; margin:-14px 0 30px}
+.jr-filter button{display:inline-flex; align-items:center; gap:8px; padding:7px 9px 7px 14px; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink-2);
+  font:500 .9rem var(--f-sans); cursor:pointer; box-shadow:0 2px 0 var(--line); transition:transform .3s cubic-bezier(.3,1.7,.5,1), box-shadow .25s, background .2s, color .2s}
+.jr-filter button:hover{transform:translateY(-2px)}
+.jr-filter button[aria-pressed="true"]{background:color-mix(in srgb, var(--c) 13%, var(--surface)); border-color:color-mix(in srgb, var(--c) 38%, var(--surface));
+  color:color-mix(in srgb, var(--c) 58%, var(--ink)); box-shadow:0 2px 0 color-mix(in srgb, var(--c) 38%, var(--surface))}
+.jr-filter i{width:9px; height:9px; border-radius:50%; background:var(--c); margin-right:-2px}
+.jr-filter .n{font-family:var(--f-mono); font-size:.72rem; min-width:22px; padding:1px 7px; border-radius:999px; text-align:center; background:var(--surface-2); color:var(--ink-2)}
+.jr-filter button[aria-pressed="true"] .n{background:color-mix(in srgb, var(--c) 20%, var(--surface)); color:inherit}
+
+.tl{--dw:180px; --gap:16px; list-style:none; margin:0; padding:0; position:relative}
+.tl::before{content:""; position:absolute; top:12px; bottom:12px; left:calc(var(--dw) + var(--gap) + 15px); width:2px; border-radius:2px;
+  background:linear-gradient(to bottom, color-mix(in srgb, #7C5CFA 55%, transparent), color-mix(in srgb, #2E7BF0 55%, transparent) 55%, color-mix(in srgb, var(--accent) 35%, transparent))}
+.tl-item{display:grid; grid-template-columns:var(--dw) 32px minmax(0,1fr); column-gap:var(--gap); padding-bottom:20px; position:relative}
+.tl-item:last-child{padding-bottom:0}
+.tl-item[hidden]{display:none}
+.tl-item.pop{animation:tl-pop .45s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes tl-pop{from{opacity:0; transform:translateY(10px) scale(.985)}}
+.tl-date{display:grid; gap:7px; justify-items:end; align-content:start; padding-top:20px; text-align:right; font-family:var(--f-mono); font-size:.8rem; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.tl-dur{font-size:.72rem; padding:2px 9px; border-radius:999px; background:color-mix(in srgb, var(--c) 10%, var(--surface)); color:color-mix(in srgb, var(--c) 55%, var(--ink)); border:1px solid color-mix(in srgb, var(--c) 22%, var(--surface))}
+.tl-now{display:inline-flex; align-items:center; gap:6px; background:var(--accent-soft); color:var(--accent-ink); border-color:transparent}
+.tl-now::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--accent); animation:tl-blink 1.6s ease-in-out infinite}
+@keyframes tl-blink{50%{opacity:.35}}
+.tl-node{display:flex; justify-content:center; padding-top:22px}
+.tl-node i{position:relative; width:18px; height:18px; border-radius:50%; background:var(--c); border:3px solid var(--bg); box-shadow:0 0 0 2px color-mix(in srgb, var(--c) 45%, transparent); transition:transform .3s cubic-bezier(.3,1.7,.5,1)}
+.tl-item.now .tl-node i::after{content:""; position:absolute; inset:-7px; border-radius:50%; border:2px solid var(--c); opacity:0; animation:tl-ring 2s ease-out infinite}
+@keyframes tl-ring{0%{opacity:.6; transform:scale(.6)} 100%{opacity:0; transform:scale(1.5)}}
+.tl-card{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:20px 22px; display:grid; gap:12px; min-width:0;
+  transition:transform .3s cubic-bezier(.3,1.4,.5,1), box-shadow .3s, border-color .3s}
+.tl-item:hover .tl-card{transform:translateY(-3px); box-shadow:var(--shadow); border-color:color-mix(in srgb, var(--c) 35%, var(--line))}
+.tl-item:hover .tl-node i{transform:scale(1.25)}
+.tl-top{display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:14px; align-items:start}
+.tl-ico{width:46px; height:46px; border-radius:14px; display:grid; place-items:center; background:color-mix(in srgb, var(--c) 13%, var(--surface));
+  color:color-mix(in srgb, var(--c) 72%, var(--ink)); border:1px solid color-mix(in srgb, var(--c) 24%, var(--surface)); box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.tl-ico svg{width:22px; height:22px}
+.tl-top h3{font-size:1.15rem; line-height:1.3}
+.tl-org{color:var(--ink-2); font-size:.92rem; margin-top:3px}
+.tl-badges{display:flex; gap:6px}
+.tl-badge{font-family:var(--f-mono); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap;
+  background:color-mix(in srgb, var(--c) 12%, var(--surface)); color:color-mix(in srgb, var(--c) 60%, var(--ink))}
+.tl-body{color:var(--ink-2); font-size:.96rem}
+.tl-body li::marker{color:var(--c)}
+.tl-foot{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+.tl-stat{display:inline-flex; align-items:baseline; gap:7px; padding:4px 12px; border-radius:999px; background:color-mix(in srgb, var(--c) 9%, var(--surface)); border:1px dashed color-mix(in srgb, var(--c) 45%, var(--surface))}
+.tl-stat b{font-size:1rem; font-weight:700; letter-spacing:-.02em; color:color-mix(in srgb, var(--c) 66%, var(--ink)); font-variant-numeric:tabular-nums}
+.tl-stat span{font-size:.82rem; color:var(--ink-2)}
+@media (max-width:760px){
+  .tl{--dw:0px; --gap:12px}
+  .tl::before{left:11px}
+  .tl-item{grid-template-columns:24px minmax(0,1fr); padding-bottom:16px}
+  .tl-date{grid-column:2; grid-row:1; display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:0 0 8px; text-align:left; justify-items:start}
+  .tl-node{grid-column:1; grid-row:1 / span 2; padding-top:2px}
+  .tl-card{grid-column:2; padding:16px}
+  .tl-top{grid-template-columns:auto minmax(0,1fr); gap:12px}
+  .tl-badges{grid-column:2}
+  .tl-ico{width:40px; height:40px; border-radius:12px}
+}
 
 /* projects */
 .grid-2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px}
@@ -272,15 +322,6 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .award .what{display:grid; gap:4px; min-width:0}
 .award .what strong{font-size:1.1rem; font-weight:600; letter-spacing:-.015em; line-height:1.35}
 .award .what span{color:var(--ink-2); font-size:.95rem}
-
-/* education */
-.card{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:26px; display:grid; gap:12px; align-content:start; min-width:0}
-.gpa{display:flex; align-items:baseline; gap:8px; margin-top:4px}
-.gpa b{font-family:var(--f-serif); font-weight:400; font-size:3.2rem; line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
-.gpa span{font-family:var(--f-mono); font-size:.82rem; color:var(--ink-2)}
-.kv{display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:.95rem; margin:4px 0 0}
-.kv dt{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); padding-top:4px}
-.kv dd{margin:0}
 
 /* certificates: list (no-JS fallback) */
 .cert-src{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 32px; border-top:1px solid var(--line)}
@@ -456,7 +497,6 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       <a href="#experience" data-i18n="nav.experience">Experience</a>
       <a href="#projects" data-i18n="nav.projects">Projects</a>
       <a href="#awards" data-i18n="nav.awards">Awards</a>
-      <a href="#education" data-i18n="nav.education">Education</a>
       <a href="#certificates" data-i18n="nav.certs">Certificates</a>
       <a href="#skills" data-i18n="nav.skills">Skills</a>
     </nav>
@@ -603,45 +643,101 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   </article>
 </section>
 
-<section id="experience" aria-labelledby="xp-title">
+<section id="experience" aria-labelledby="jr-title">
   <div class="sec-head">
-    <span class="eyebrow" data-i18n="xp.eyebrow">Experience</span>
-    <h2 id="xp-title" data-i18n="xp.title">Where I have worked</h2>
+    <span class="eyebrow" data-i18n="jr.eyebrow">Experience and education</span>
+    <h2 id="jr-title" data-i18n="jr.title">The path <em>so far</em></h2>
+    <p data-i18n="jr.sub">Work and study in one timeline, newest first.</p>
   </div>
-  <div class="xp">
-    <div class="xp-item">
-      <div class="xp-when" data-ym="2026-06|2026-09">Jun 2026 – Sep 2026</div>
-      <div class="xp-body">
-        <h3 data-i18n="xp.1t">Software Engineer Intern</h3>
-        <p class="where" data-i18n="xp.1w">MFU Medical Center Hospital · Chiang Rai, Thailand</p>
-        <ul class="bullets">
+
+  <div class="jr-filter" id="jr-filter" role="group" aria-label="Filter the timeline" data-i18n-aria="jr.filter">
+    <button type="button" aria-pressed="true" data-f="all" style="--c:var(--accent)"><span data-i18n="jr.all">All</span><span class="n">5</span></button>
+    <button type="button" aria-pressed="false" data-f="work" style="--c:#2E7BF0"><i aria-hidden="true"></i><span data-i18n="jr.work">Work</span><span class="n">3</span></button>
+    <button type="button" aria-pressed="false" data-f="study" style="--c:#7C5CFA"><i aria-hidden="true"></i><span data-i18n="jr.study">Study</span><span class="n">2</span></button>
+  </div>
+
+  <ol class="tl" id="tl">
+    <li class="tl-item" data-type="study" style="--c:#7C5CFA">
+      <div class="tl-date"><span data-ym="2026-08|2026-11">Aug 2026 – Nov 2026</span><span class="tl-dur" data-dur="2026-08|2026-11">4 months</span></div>
+      <div class="tl-node" aria-hidden="true"><i></i></div>
+      <article class="tl-card">
+        <div class="tl-top">
+          <span class="tl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span>
+          <div><h3 data-i18n="ed.ext">FACE IT 2026: AI in Healthcare</h3><p class="tl-org" data-i18n="ed.exuni">Universitas Brawijaya, Faculty of Computer Science · Malang, Indonesia</p></div>
+          <span class="tl-badges"><span class="tl-badge" data-i18n="jr.exchange">Exchange</span></span>
+        </div>
+        <ul class="bullets tl-body">
+          <li data-i18n="ed.trackv">Biomedical Signal Processing and Wearable Intelligence, 10 ECTS credits</li>
+          <li data-i18n="jr.ex.proj">Project: <a href="#projects">ECG arrhythmia classification</a></li>
+        </ul>
+        <div class="tl-foot"><span class="tl-stat"><b>17</b><span data-i18n="jr.s.sel">students selected from MFU</span></span><span class="chip">ECG</span><span class="chip">SVM</span><span class="chip">Python</span></div>
+      </article>
+    </li>
+
+    <li class="tl-item" data-type="work" style="--c:#2E7BF0">
+      <div class="tl-date"><span data-ym="2026-06|2026-09">Jun 2026 – Sep 2026</span><span class="tl-dur" data-dur="2026-06|2026-09">4 months</span></div>
+      <div class="tl-node" aria-hidden="true"><i></i></div>
+      <article class="tl-card">
+        <div class="tl-top">
+          <span class="tl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>
+          <div><h3 data-i18n="xp.1t">Software Engineer Intern</h3><p class="tl-org" data-i18n="xp.1w">MFU Medical Center Hospital · Chiang Rai, Thailand</p></div>
+          <span class="tl-badges"><span class="tl-badge" data-i18n="jr.work">Work</span></span>
+        </div>
+        <ul class="bullets tl-body">
           <li data-i18n="xp.1a">Owned model serving, evaluation and AI operations for CareMind, an on-premise generative AI application that drafts nursing notes with source citations (<a href="#work">details above</a>)</li>
         </ul>
-      </div>
-    </div>
-    <div class="xp-item">
-      <div class="xp-when" data-ym="2024-03|2024-07">Mar 2024 – Jul 2024</div>
-      <div class="xp-body">
-        <h3 data-i18n="xp.2t">Junior Software Engineer</h3>
-        <p class="where" data-i18n="xp.2w">ACE Data Systems Ltd · Yangon, Myanmar</p>
-        <ul class="bullets">
+        <div class="tl-foot"><span class="tl-stat"><b>97.7%</b><span data-i18n="jr.s.cit">citation precision</span></span><span class="chip">Ollama</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span></div>
+      </article>
+    </li>
+
+    <li class="tl-item now" data-type="study" style="--c:#7C5CFA">
+      <div class="tl-date"><span data-i18n="ed.degdates">Aug 2024 – May 2027 (expected)</span><span class="tl-dur tl-now" data-i18n="jr.now">Now</span></div>
+      <div class="tl-node" aria-hidden="true"><i></i></div>
+      <article class="tl-card">
+        <div class="tl-top">
+          <span class="tl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5 12 5l10 4.5L12 14z"/><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5M22 9.5V15"/></svg></span>
+          <div><h3 data-i18n="ed.degt">Bachelor of Engineering in Software Engineering</h3><p class="tl-org" data-i18n="ed.uni">Mae Fah Luang University, School of Applied Digital Technology · Chiang Rai, Thailand</p></div>
+          <span class="tl-badges"><span class="tl-badge" data-i18n="jr.study">Study</span></span>
+        </div>
+        <ul class="bullets tl-body">
+          <li data-i18n="ed.honoursv">Academic Distinction, GPA 4.00 in academic year 2024</li>
+        </ul>
+        <div class="tl-foot"><span class="tl-stat"><b>3.92</b><span data-i18n="stat.gpa">GPA out of 4.00</span></span></div>
+      </article>
+    </li>
+
+    <li class="tl-item" data-type="work" style="--c:#2E7BF0">
+      <div class="tl-date"><span data-ym="2024-03|2024-07">Mar 2024 – Jul 2024</span><span class="tl-dur" data-dur="2024-03|2024-07">5 months</span></div>
+      <div class="tl-node" aria-hidden="true"><i></i></div>
+      <article class="tl-card">
+        <div class="tl-top">
+          <span class="tl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18"/></svg></span>
+          <div><h3 data-i18n="xp.2t">Junior Software Engineer</h3><p class="tl-org" data-i18n="xp.2w">ACE Data Systems Ltd · Yangon, Myanmar</p></div>
+          <span class="tl-badges"><span class="tl-badge" data-i18n="jr.work">Work</span></span>
+        </div>
+        <ul class="bullets tl-body">
           <li data-i18n="xp.2a">Developed C#/.NET backend APIs and SQL stored procedures for data processing in the SMEDB banking app</li>
           <li data-i18n="xp.2b">Built Java enterprise apps, documented API endpoints for frontend integration, and worked with QA in Agile sprints</li>
         </ul>
-        <div class="chips"><span class="chip">C#</span><span class="chip">.NET</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">Agile</span></div>
-      </div>
-    </div>
-    <div class="xp-item">
-      <div class="xp-when" data-ym="2016-06|2024-07">Jun 2016 – Jul 2024</div>
-      <div class="xp-body">
-        <h3 data-i18n="xp.3t">Math Tutor</h3>
-        <p class="where" data-i18n="xp.3w">Self-employed</p>
-        <ul class="bullets">
+        <div class="tl-foot"><span class="chip">C#</span><span class="chip">.NET</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">Agile</span></div>
+      </article>
+    </li>
+
+    <li class="tl-item" data-type="work" style="--c:#2E7BF0">
+      <div class="tl-date"><span data-ym="2016-06|2024-07">Jun 2016 – Jul 2024</span><span class="tl-dur" data-dur="2016-06|2024-07">8 years</span></div>
+      <div class="tl-node" aria-hidden="true"><i></i></div>
+      <article class="tl-card">
+        <div class="tl-top">
+          <span class="tl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 5h-11l6 7-6 7h11"/></svg></span>
+          <div><h3 data-i18n="xp.3t">Math Tutor</h3><p class="tl-org" data-i18n="xp.3w">Self-employed</p></div>
+          <span class="tl-badges"><span class="tl-badge" data-i18n="jr.work">Work</span></span>
+        </div>
+        <ul class="bullets tl-body">
           <li data-i18n="xp.3a">Taught mathematics to school students, from algebra to college-level calculus</li>
         </ul>
-      </div>
-    </div>
-  </div>
+      </article>
+    </li>
+  </ol>
 </section>
 
 <section id="projects" aria-labelledby="proj-title">
@@ -749,36 +845,6 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       <div class="when" data-ym="2025-08">Aug 2025</div>
       <div class="medal" aria-hidden="true">4.00</div>
       <div class="what"><strong data-i18n="aw.5t">Academic Distinction · Mae Fah Luang University</strong><span data-i18n="aw.5d">Cumulative GPA of 4.00 in academic year 2024.</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="education" aria-labelledby="ed-title">
-  <div class="sec-head">
-    <span class="eyebrow" data-i18n="ed.eyebrow">Education</span>
-    <h2 id="ed-title" data-i18n="ed.title">Software engineering, with a <em>healthcare AI</em> exchange</h2>
-  </div>
-  <div class="grid-2">
-    <div class="card">
-      <span class="eyebrow" data-i18n="ed.deg">Degree</span>
-      <h3 data-i18n="ed.degt">Bachelor of Engineering in Software Engineering</h3>
-      <p class="muted" data-i18n="ed.uni">Mae Fah Luang University, School of Applied Digital Technology · Chiang Rai, Thailand</p>
-      <p class="gpa"><b>3.92</b><span data-i18n="ed.gpa">/ 4.00 GPA</span></p>
-      <dl class="kv">
-        <dt data-i18n="ed.dates">Dates</dt><dd data-i18n="ed.degdates">Aug 2024 – May 2027 (expected)</dd>
-        <dt data-i18n="ed.honours">Honours</dt><dd data-i18n="ed.honoursv">Academic Distinction, GPA 4.00 in academic year 2024</dd>
-      </dl>
-    </div>
-    <div class="card">
-      <span class="eyebrow" data-i18n="ed.ex">Exchange</span>
-      <h3 data-i18n="ed.ext">FACE IT 2026: AI in Healthcare</h3>
-      <p class="muted" data-i18n="ed.exuni">Universitas Brawijaya, Faculty of Computer Science · Malang, Indonesia</p>
-      <dl class="kv">
-        <dt data-i18n="ed.dates">Dates</dt><dd data-ym="2026-08|2026-11">Aug 2026 – Nov 2026</dd>
-        <dt data-i18n="ed.selected">Selected</dt><dd data-i18n="ed.selectedv">One of 17 students from Mae Fah Luang University</dd>
-        <dt data-i18n="ed.track">Track</dt><dd data-i18n="ed.trackv">Biomedical Signal Processing and Wearable Intelligence, 10 ECTS credits</dd>
-        <dt data-i18n="ed.project">Project</dt><dd><a href="#projects" data-i18n="ed.projectv">ECG arrhythmia classification</a></dd>
-      </dl>
     </div>
   </div>
 </section>
@@ -1136,6 +1202,22 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     if(lb.open) lbDate.textContent=fmt(items[lbi].ym);
   });
   layout();
+})();
+</script>
+<script>
+/* Timeline filter */
+(function(){
+  var f=document.getElementById('jr-filter'); if(!f) return;
+  var btns=[].slice.call(f.querySelectorAll('button')), items=[].slice.call(document.querySelectorAll('#tl .tl-item'));
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    var k=b.getAttribute('data-f'), i=0;
+    btns.forEach(function(x){ x.setAttribute('aria-pressed', x===b ? 'true' : 'false'); });
+    items.forEach(function(it){
+      var show = k==='all' || it.getAttribute('data-type')===k;
+      it.hidden=!show; it.classList.remove('pop');
+      if(show){ void it.offsetWidth; it.style.animationDelay=(i++*70)+'ms'; it.classList.add('pop'); }
+    });
+  }); });
 })();
 </script>
 </body>

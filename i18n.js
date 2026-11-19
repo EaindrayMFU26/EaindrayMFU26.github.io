@@ -19,7 +19,7 @@ window.I18N = (function(){
   T['zh-Hant'] = {
     'meta.title':'Eaindray · AI 工程實習生',
     'skip':'跳到主要內容',
-    'nav.work':'作品','nav.experience':'經歷','nav.projects':'專案','nav.awards':'獎項','nav.education':'學歷','nav.certs':'證書','nav.skills':'技能','nav.contact':'聯絡',
+    'nav.work':'作品','nav.experience':'經歷','nav.projects':'專案','nav.awards':'獎項','nav.certs':'證書','nav.skills':'技能','nav.contact':'聯絡',
     'theme.label':'切換淺色／深色主題',
     'hero.status':'正在尋找 AI 工程實習機會',
     'hero.role':'AI 工程實習生',
@@ -54,7 +54,6 @@ window.I18N = (function(){
     'did.3a':'在 3 小時內進行 3,806 次請求的負載測試，零錯誤、無變慢，突發流量下也不會卡住',
     'did.3b':'建立 GPU 監控：自我修復的監看程式、警報、以實際生成檢查運作狀態、每日準確度抽查與備份',
     'did.3c':'找出 GPU 記憶體鎖死的問題，並將偵測與釋放自動化',
-    'xp.eyebrow':'經歷','xp.title':'工作經歷',
     'xp.1t':'軟體工程實習生','xp.1w':'MFU Medical Center Hospital · 泰國清萊',
     'xp.1a':'負責 CareMind 的模型服務、評估與 AI 維運；CareMind 是地端部署的生成式 AI 應用，能撰寫附來源引用的護理紀錄草稿（<a href="#work">詳見上方</a>）',
     'xp.2t':'初階軟體工程師','xp.2w':'ACE Data Systems Ltd · 緬甸仰光',
@@ -78,12 +77,10 @@ window.I18N = (function(){
     'aw.4t':'第一名 · MFU Software Engineering Hackathon 2025','aw.4d':'由應用數位科技學院與 LINE Developer Thailand 合辦的兩天黑客松。',
     'aw.5t':'學業優異獎 · 皇太后大學','aw.5d':'2024 學年度累計 GPA 4.00。',
     'aw.m1':'第1','aw.m2':'第2','aw.m3':'第3',
-    'ed.eyebrow':'學歷','ed.title':'軟體工程，加上一段<em>醫療 AI</em> 交換',
-    'ed.deg':'學位','ed.degt':'工學學士（軟體工程）','ed.uni':'皇太后大學 應用數位科技學院 · 泰國清萊','ed.gpa':'/ 4.00 GPA',
-    'ed.dates':'期間','ed.degdates':'2024 年 8 月 – 2027 年 5 月（預計）','ed.honours':'榮譽','ed.honoursv':'學業優異獎，2024 學年度 GPA 4.00',
-    'ed.ex':'交換','ed.ext':'FACE IT 2026：醫療 AI','ed.exuni':'Universitas Brawijaya 資訊科學學院 · 印尼瑪琅',
-    'ed.selected':'入選','ed.selectedv':'皇太后大學 17 名入選學生之一','ed.track':'學程','ed.trackv':'生醫訊號處理與穿戴式智慧，10 ECTS 學分',
-    'ed.project':'專案','ed.projectv':'心電圖心律不整分類',
+    'ed.degt':'工學學士（軟體工程）','ed.uni':'皇太后大學 應用數位科技學院 · 泰國清萊',
+    'ed.degdates':'2024 年 8 月 – 2027 年 5 月（預計）','ed.honoursv':'學業優異獎，2024 學年度 GPA 4.00',
+    'ed.ext':'FACE IT 2026：醫療 AI','ed.exuni':'Universitas Brawijaya 資訊科學學院 · 印尼瑪琅',
+    'ed.trackv':'生醫訊號處理與穿戴式智慧，10 ECTS 學分',
     'cert.eyebrow':'證書','cert.title':'持續學習，<em>有據可查</em>',
     'cert.sub':'2026 年取得的 AI 證書，以及較早的 UX 設計與嵌入式系統課程。點選證書即可查看。',
     'cert.prev':'上一張證書','cert.next':'下一張證書','cert.issued':'取得日期','cert.verify':'驗證證書','cert.close':'關閉','cert.hint':'← → 瀏覽 · Esc 關閉',
@@ -100,6 +97,9 @@ window.I18N = (function(){
     'cm.3d':'2024 年在清萊發送食物並協助水災後清理，2025 年在合艾為受災社區整理捐贈的救援物資。',
     'ct.eyebrow':'聯絡','ct.title':'一起<em>聊聊</em>','ct.p':'我正在尋找 AI 工程實習機會。寄電子郵件是最快聯絡到我的方式。',
     'ct.copy':'複製','ct.copied':'已複製','ct.email':'寄信給我','ct.cv':'履歷（PDF）',
+    'jr.eyebrow':'經歷與學歷','jr.title':'一路走來的<em>軌跡</em>','jr.sub':'工作與學習放在同一條時間軸上，由新到舊。','jr.filter':'篩選時間軸',
+    'jr.all':'全部','jr.work':'工作','jr.study':'學習','jr.exchange':'交換','jr.now':'進行中',
+    'jr.ex.proj':'專案：<a href="#projects">心電圖心律不整分類</a>','jr.s.sel':'名 MFU 學生入選','jr.s.cit':'引用精確率',
     'ft.copy':'© 2026 Eaindray · 泰國清萊'
   };
 
@@ -107,7 +107,7 @@ window.I18N = (function(){
   T['zh-Hans'] = {
     'meta.title':'Eaindray · AI 工程实习生',
     'skip':'跳到主要内容',
-    'nav.work':'作品','nav.experience':'经历','nav.projects':'项目','nav.awards':'奖项','nav.education':'教育','nav.certs':'证书','nav.skills':'技能','nav.contact':'联系',
+    'nav.work':'作品','nav.experience':'经历','nav.projects':'项目','nav.awards':'奖项','nav.certs':'证书','nav.skills':'技能','nav.contact':'联系',
     'theme.label':'切换浅色／深色主题',
     'hero.status':'正在寻找 AI 工程实习机会',
     'hero.role':'AI 工程实习生',
@@ -142,7 +142,6 @@ window.I18N = (function(){
     'did.3a':'在 3 小时内完成 3,806 次请求的负载测试，零错误、无变慢，突发负载下也没有卡死',
     'did.3b':'搭建 GPU 监控：自愈看门狗、告警、基于真实生成的可用性检查、每日准确性抽检和备份',
     'did.3c':'排查出 GPU 显存锁死问题，并实现自动检测与释放',
-    'xp.eyebrow':'经历','xp.title':'工作经历',
     'xp.1t':'软件工程实习生','xp.1w':'MFU Medical Center Hospital · 泰国清莱',
     'xp.1a':'负责 CareMind 的模型服务、评估和 AI 运维；CareMind 是一款本地部署的生成式 AI 应用，可起草附带来源引用的护理记录（<a href="#work">详见上文</a>）',
     'xp.2t':'初级软件工程师','xp.2w':'ACE Data Systems Ltd · 缅甸仰光',
@@ -166,12 +165,10 @@ window.I18N = (function(){
     'aw.4t':'第一名 · MFU Software Engineering Hackathon 2025','aw.4d':'由应用数字技术学院与 LINE Developer Thailand 联合举办的两天黑客马拉松。',
     'aw.5t':'学业优异奖 · 皇太后大学','aw.5d':'2024 学年累计 GPA 4.00。',
     'aw.m1':'第1','aw.m2':'第2','aw.m3':'第3',
-    'ed.eyebrow':'教育背景','ed.title':'软件工程，外加一段<em>医疗 AI</em> 交换',
-    'ed.deg':'学位','ed.degt':'工学学士（软件工程）','ed.uni':'皇太后大学 应用数字技术学院 · 泰国清莱','ed.gpa':'/ 4.00 GPA',
-    'ed.dates':'时间','ed.degdates':'2024 年 8 月 – 2027 年 5 月（预计）','ed.honours':'荣誉','ed.honoursv':'学业优异奖，2024 学年 GPA 4.00',
-    'ed.ex':'交换','ed.ext':'FACE IT 2026：医疗 AI','ed.exuni':'Universitas Brawijaya 计算机科学学院 · 印度尼西亚玛琅',
-    'ed.selected':'入选','ed.selectedv':'皇太后大学 17 名入选学生之一','ed.track':'方向','ed.trackv':'生物医学信号处理与可穿戴智能，10 ECTS 学分',
-    'ed.project':'项目','ed.projectv':'心电图心律失常分类',
+    'ed.degt':'工学学士（软件工程）','ed.uni':'皇太后大学 应用数字技术学院 · 泰国清莱',
+    'ed.degdates':'2024 年 8 月 – 2027 年 5 月（预计）','ed.honoursv':'学业优异奖，2024 学年 GPA 4.00',
+    'ed.ext':'FACE IT 2026：医疗 AI','ed.exuni':'Universitas Brawijaya 计算机科学学院 · 印度尼西亚玛琅',
+    'ed.trackv':'生物医学信号处理与可穿戴智能，10 ECTS 学分',
     'cert.eyebrow':'证书','cert.title':'持续学习，<em>有据可查</em>',
     'cert.sub':'2026 年获得的 AI 证书，以及更早的 UX 设计和嵌入式系统课程。点击证书即可查看。',
     'cert.prev':'上一张证书','cert.next':'下一张证书','cert.issued':'获得时间','cert.verify':'验证证书','cert.close':'关闭','cert.hint':'← → 浏览 · Esc 关闭',
@@ -188,6 +185,9 @@ window.I18N = (function(){
     'cm.3d':'2024 年在清莱分发食物并协助洪灾后清理，2025 年在合艾为受灾社区分拣捐赠的救援物资。',
     'ct.eyebrow':'联系','ct.title':'一起<em>聊聊</em>','ct.p':'我正在寻找 AI 工程实习机会。发邮件是联系我最快的方式。',
     'ct.copy':'复制','ct.copied':'已复制','ct.email':'给我发邮件','ct.cv':'简历（PDF）',
+    'jr.eyebrow':'经历与教育','jr.title':'一路走来的<em>足迹</em>','jr.sub':'工作和学习放在同一条时间线上，从新到旧。','jr.filter':'筛选时间线',
+    'jr.all':'全部','jr.work':'工作','jr.study':'学习','jr.exchange':'交换','jr.now':'进行中',
+    'jr.ex.proj':'项目：<a href="#projects">心电图心律失常分类</a>','jr.s.sel':'名 MFU 学生入选','jr.s.cit':'引用精确率',
     'ft.copy':'© 2026 Eaindray · 泰国清莱'
   };
 
@@ -195,7 +195,7 @@ window.I18N = (function(){
   T['nan'] = {
     'meta.title':'Eaindray · AI 工程實習生',
     'skip':'跳到主要內容',
-    'nav.work':'作品','nav.experience':'經歷','nav.projects':'專案','nav.awards':'獎項','nav.education':'學歷','nav.certs':'證書','nav.skills':'技能','nav.contact':'連絡',
+    'nav.work':'作品','nav.experience':'經歷','nav.projects':'專案','nav.awards':'獎項','nav.certs':'證書','nav.skills':'技能','nav.contact':'連絡',
     'theme.label':'切換光的抑是暗的主題',
     'hero.status':'咧揣 AI 工程實習的機會',
     'hero.role':'AI 工程實習生',
@@ -230,7 +230,6 @@ window.I18N = (function(){
     'did.3a':'佇 3 點鐘內底做 3,806 擺請求的負載測試，無半个錯誤、嘛無變慢，請求一時傷濟嘛袂停去',
     'did.3b':'設 GPU 監控：會家己修復的監看程式、警報、用實際生成檢查運作、逐工的準確度抽查佮備份',
     'did.3c':'揣出 GPU 記憶體鎖死的問題，閣予偵測佮釋放攏自動化',
-    'xp.eyebrow':'經歷','xp.title':'我做過的工課',
     'xp.1t':'軟體工程實習生','xp.1w':'MFU Medical Center Hospital · 泰國清萊',
     'xp.1a':'負責 CareMind 的模型服務、評估佮 AI 維運；CareMind 是本地部署的生成式 AI 應用，會寫有標來源的護理紀錄草稿（<a href="#work">詳細看頂懸</a>）',
     'xp.2t':'初級軟體工程師','xp.2w':'ACE Data Systems Ltd · 緬甸仰光',
@@ -254,12 +253,10 @@ window.I18N = (function(){
     'aw.4t':'第一名 · MFU Software Engineering Hackathon 2025','aw.4d':'應用數位科技學院佮 LINE Developer Thailand 做伙辦的兩工黑客松。',
     'aw.5t':'學業優秀獎 · 皇太后大學','aw.5d':'2024 學年度累計 GPA 4.00。',
     'aw.m1':'第1','aw.m2':'第2','aw.m3':'第3',
-    'ed.eyebrow':'學歷','ed.title':'軟體工程，閣有一段<em>醫療 AI</em> 交換',
-    'ed.deg':'學位','ed.degt':'工學學士（軟體工程）','ed.uni':'皇太后大學 應用數位科技學院 · 泰國清萊','ed.gpa':'/ 4.00 GPA',
-    'ed.dates':'時間','ed.degdates':'2024 年 8 月 – 2027 年 5 月（預計）','ed.honours':'榮譽','ed.honoursv':'學業優秀獎，2024 學年度 GPA 4.00',
-    'ed.ex':'交換','ed.ext':'FACE IT 2026：醫療 AI','ed.exuni':'Universitas Brawijaya 資訊科學學院 · 印尼瑪琅',
-    'ed.selected':'入選','ed.selectedv':'皇太后大學 17 个入選學生的其中一个','ed.track':'學程','ed.trackv':'生醫訊號處理佮穿戴式智慧，10 ECTS 學分',
-    'ed.project':'專案','ed.projectv':'心電圖心律不整分類',
+    'ed.degt':'工學學士（軟體工程）','ed.uni':'皇太后大學 應用數位科技學院 · 泰國清萊',
+    'ed.degdates':'2024 年 8 月 – 2027 年 5 月（預計）','ed.honoursv':'學業優秀獎，2024 學年度 GPA 4.00',
+    'ed.ext':'FACE IT 2026：醫療 AI','ed.exuni':'Universitas Brawijaya 資訊科學學院 · 印尼瑪琅',
+    'ed.trackv':'生醫訊號處理佮穿戴式智慧，10 ECTS 學分',
     'cert.eyebrow':'證書','cert.title':'一直學，<em>有證明</em>',
     'cert.sub':'2026 年提著的 AI 證書，閣有較早的 UX 設計佮嵌入式系統課程。揤證書就會當看。',
     'cert.prev':'頂一張證書','cert.next':'後一張證書','cert.issued':'提著的時間','cert.verify':'驗證證書','cert.close':'關','cert.hint':'← → 看別張 · Esc 關',
@@ -276,6 +273,9 @@ window.I18N = (function(){
     'cm.3d':'2024 年佇清萊分食物、鬥清做大水了後的環境，2025 年佇合艾替受災的社區整理捐來的救援物資。',
     'ct.eyebrow':'連絡','ct.title':'來<em>開講</em>','ct.p':'我咧揣 AI 工程的實習機會。寄電子批是上緊揣著我的方法。',
     'ct.copy':'複製','ct.copied':'複製好矣','ct.email':'寄批予我','ct.cv':'履歷（PDF）',
+    'jr.eyebrow':'經歷佮學歷','jr.title':'一路行來的<em>跤跡</em>','jr.sub':'工課佮讀冊囥佇仝一條時間線，對新排到舊。','jr.filter':'篩選時間線',
+    'jr.all':'全部','jr.work':'工課','jr.study':'讀冊','jr.exchange':'交換','jr.now':'這馬',
+    'jr.ex.proj':'專案：<a href="#projects">心電圖心律不整分類</a>','jr.s.sel':'个 MFU 學生入選','jr.s.cit':'引用精確率',
     'ft.copy':'© 2026 Eaindray · 泰國清萊'
   };
 
@@ -283,7 +283,7 @@ window.I18N = (function(){
   T['de'] = {
     'meta.title':'Eaindray · AI Engineer Intern',
     'skip':'Zum Inhalt springen',
-    'nav.work':'Highlight','nav.experience':'Erfahrung','nav.projects':'Projekte','nav.awards':'Preise','nav.education':'Studium','nav.certs':'Zertifikate','nav.skills':'Kenntnisse','nav.contact':'Kontakt',
+    'nav.work':'Highlight','nav.experience':'Erfahrung','nav.projects':'Projekte','nav.awards':'Preise','nav.certs':'Zertifikate','nav.skills':'Kenntnisse','nav.contact':'Kontakt',
     'theme.label':'Zwischen hellem und dunklem Design wechseln',
     'hero.status':'Offen für Praktika im Bereich KI-Engineering',
     'hero.role':'AI Engineer Intern',
@@ -318,7 +318,6 @@ window.I18N = (function(){
     'did.3a':'Lasttest mit 3.806 Anfragen über 3 Stunden – ohne Fehler oder Verlangsamung und ohne Hänger bei Lastspitzen',
     'did.3b':'GPU-Monitoring eingerichtet: selbstheilender Watchdog, Alerts, Uptime-Checks mit echter Generierung, tägliche Stichproben zur Genauigkeit und Backups',
     'did.3c':'Eine Blockade des GPU-Speichers diagnostiziert und deren Erkennung und Freigabe automatisiert',
-    'xp.eyebrow':'Erfahrung','xp.title':'Berufserfahrung',
     'xp.1t':'Software Engineer Intern','xp.1w':'MFU Medical Center Hospital · Chiang Rai, Thailand',
     'xp.1a':'Verantwortlich für Model Serving, Evaluation und KI-Betrieb von CareMind, einer On-Premise-KI-Anwendung, die Pflegeberichte mit Quellenangaben entwirft (<a href="#work">Details oben</a>)',
     'xp.2t':'Junior Software Engineer','xp.2w':'ACE Data Systems Ltd · Yangon, Myanmar',
@@ -342,12 +341,10 @@ window.I18N = (function(){
     'aw.4t':'1. Preis · MFU Software Engineering Hackathon 2025','aw.4d':'Zweitägiger Hackathon der School of Applied Digital Technology mit LINE Developer Thailand.',
     'aw.5t':'Akademische Auszeichnung · Mae Fah Luang University','aw.5d':'Kumulierter GPA von 4,00 im Studienjahr 2024.',
     'aw.m1':'1.','aw.m2':'2.','aw.m3':'3.',
-    'ed.eyebrow':'Studium','ed.title':'Software Engineering, mit einem Austausch zu <em>KI im Gesundheitswesen</em>',
-    'ed.deg':'Abschluss','ed.degt':'Bachelor of Engineering in Software Engineering','ed.uni':'Mae Fah Luang University, School of Applied Digital Technology · Chiang Rai, Thailand','ed.gpa':'/ 4.00 GPA',
-    'ed.dates':'Zeitraum','ed.degdates':'Aug. 2024 – Mai 2027 (voraussichtlich)','ed.honours':'Auszeichnung','ed.honoursv':'Akademische Auszeichnung, GPA 4,00 im Studienjahr 2024',
-    'ed.ex':'Austausch','ed.ext':'FACE IT 2026: KI im Gesundheitswesen','ed.exuni':'Universitas Brawijaya, Fakultät für Informatik · Malang, Indonesien',
-    'ed.selected':'Ausgewählt','ed.selectedv':'Eine von 17 Personen der Mae Fah Luang University','ed.track':'Schwerpunkt','ed.trackv':'Biomedizinische Signalverarbeitung und Wearable Intelligence, 10 ECTS',
-    'ed.project':'Projekt','ed.projectv':'EKG-Arrhythmie-Klassifikation',
+    'ed.degt':'Bachelor of Engineering in Software Engineering','ed.uni':'Mae Fah Luang University, School of Applied Digital Technology · Chiang Rai, Thailand',
+    'ed.degdates':'Aug. 2024 – Mai 2027 (voraussichtlich)','ed.honoursv':'Akademische Auszeichnung, GPA 4,00 im Studienjahr 2024',
+    'ed.ext':'FACE IT 2026: KI im Gesundheitswesen','ed.exuni':'Universitas Brawijaya, Fakultät für Informatik · Malang, Indonesien',
+    'ed.trackv':'Biomedizinische Signalverarbeitung und Wearable Intelligence, 10 ECTS',
     'cert.eyebrow':'Zertifikate','cert.title':'Weiterbildung, <em>belegt</em>',
     'cert.sub':'KI-Zertifikate aus 2026 sowie frühere Kurse zu UX-Design und Embedded Systems. Zum Ansehen ein Zertifikat auswählen.',
     'cert.prev':'Vorheriges Zertifikat','cert.next':'Nächstes Zertifikat','cert.issued':'Ausgestellt','cert.verify':'Nachweis prüfen','cert.close':'Schließen','cert.hint':'← → blättern · Esc schließen',
@@ -364,6 +361,9 @@ window.I18N = (function(){
     'cm.3d':'2024 in Chiang Rai Lebensmittel verteilt und nach der Flut beim Aufräumen geholfen; 2025 gespendete Hilfsgüter für flutbetroffene Gemeinden in Hat Yai sortiert.',
     'ct.eyebrow':'Kontakt','ct.title':'Lassen Sie uns <em>sprechen</em>','ct.p':'Ich suche ein Praktikum im Bereich KI-Engineering. Am schnellsten erreichen Sie mich per E-Mail.',
     'ct.copy':'Kopieren','ct.copied':'Kopiert','ct.email':'E-Mail schreiben','ct.cv':'Lebenslauf (PDF)',
+    'jr.eyebrow':'Erfahrung und Ausbildung','jr.title':'Der Weg <em>bisher</em>','jr.sub':'Arbeit und Studium auf einer Zeitleiste, das Neueste zuerst.','jr.filter':'Zeitleiste filtern',
+    'jr.all':'Alle','jr.work':'Arbeit','jr.study':'Studium','jr.exchange':'Austausch','jr.now':'Aktuell',
+    'jr.ex.proj':'Projekt: <a href="#projects">EKG-Arrhythmie-Klassifikation</a>','jr.s.sel':'Studierende der MFU ausgewählt','jr.s.cit':'Zitationspräzision',
     'ft.copy':'© 2026 Eaindray · Chiang Rai, Thailand'
   };
 
@@ -391,6 +391,15 @@ window.I18N = (function(){
     /* Chinese range patterns switch to "2026/6至2026/9", so join two single dates there instead */
     if(f.formatRange && (lang === 'en' || lang === 'de')){ try{ return f.formatRange(parts[0], parts[1]); }catch(e){} }
     return f.format(parts[0]) + ' – ' + f.format(parts[1]);
+  }
+
+  /* "2026-06|2026-09" → "4 months" / "4 個月" / "4 Monate" (inclusive; 12+ months shown in whole years) */
+  function dur(r){
+    var p = String(r).split('|').map(function(x){ var a = x.split('-'); return { y:+a[0], m:+a[1] }; });
+    var months = (p[1].y - p[0].y) * 12 + (p[1].m - p[0].m) + 1;
+    var unit = months >= 12 ? 'year' : 'month', n = months >= 12 ? Math.floor(months / 12) : months;
+    try{ return new Intl.NumberFormat(LANGS[current].intl, { style:'unit', unit:unit, unitDisplay:'long' }).format(n); }
+    catch(e){ return n + ' ' + unit + (n === 1 ? '' : 's'); }
   }
 
   function loadFont(lang){
@@ -421,6 +430,10 @@ window.I18N = (function(){
       if(el.tagName === 'LI') return;
       if(!origYM.has(el)) origYM.set(el, el.textContent);
       el.textContent = lang === 'en' ? origYM.get(el) : fmt(el.getAttribute('data-ym'));
+    });
+    [].forEach.call(document.querySelectorAll('[data-dur]'), function(el){
+      if(!origYM.has(el)) origYM.set(el, el.textContent);
+      el.textContent = lang === 'en' ? origYM.get(el) : dur(el.getAttribute('data-dur'));
     });
     document.title = lang === 'en' ? origTitle : (T[lang]['meta.title'] || origTitle);
 
