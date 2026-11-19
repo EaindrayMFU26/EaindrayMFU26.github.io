@@ -18,7 +18,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
 <script>
-(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();
+(function(){
+  var d=document.documentElement; d.className+=' js';
+  try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){d.setAttribute('data-theme',t);}}catch(e){}
+  var l=null; try{ l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang'); }catch(e){}
+  if(l==='zh-Hant'||l==='zh-Hans'||l==='nan'||l==='de'){ d.className+=' i18n-pending'; setTimeout(function(){ d.classList.remove('i18n-pending'); },2500); }
+})();
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Eaindray","url":"https://eaindrayiscoding.com/","jobTitle":"AI Engineer Intern","alumniOf":{"@type":"CollegeOrUniversity","name":"Mae Fah Luang University"},"address":{"@type":"PostalAddress","addressLocality":"Chiang Rai","addressCountry":"TH"},"sameAs":["https://www.linkedin.com/in/eaindray-iscoding/","https://github.com/EaindrayMFU26"]}
@@ -28,6 +33,7 @@
   --bg:#F7F7F4; --surface:#FFFFFF; --surface-2:#F0F0EA; --ink:#121413; --ink-2:#545A57; --ink-3:#7E8481;
   --line:#E2E3DC; --line-2:#D2D4CB;
   --accent:#0D7A63; --accent-ink:#0A6553; --accent-soft:#E1F1EB; --on-accent:#FFFFFF;
+  --paper:#F7F8FA;
   --shadow:0 1px 2px rgba(18,20,19,.05), 0 12px 32px -14px rgba(18,20,19,.16);
   --f-sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --f-mono:"Geist Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
@@ -40,6 +46,7 @@
     --bg:#0D100F; --surface:#141817; --surface-2:#1A1F1D; --ink:#ECEEEA; --ink-2:#A6ADA9; --ink-3:#757D79;
     --line:#252B29; --line-2:#333A37;
     --accent:#3CCFA9; --accent-ink:#62DDBD; --accent-soft:#0F2C25; --on-accent:#05211A;
+    --paper:#E9EBEE;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -14px rgba(0,0,0,.7);
     color-scheme:dark;
   }
@@ -48,13 +55,29 @@
   --bg:#0D100F; --surface:#141817; --surface-2:#1A1F1D; --ink:#ECEEEA; --ink-2:#A6ADA9; --ink-3:#757D79;
   --line:#252B29; --line-2:#333A37;
   --accent:#3CCFA9; --accent-ink:#62DDBD; --accent-soft:#0F2C25; --on-accent:#05211A;
+  --paper:#E9EBEE;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -14px rgba(0,0,0,.7);
   color-scheme:dark;
 }
+/* language-specific type */
+:root:lang(zh-Hant), :root:lang(nan){
+  --f-sans:"Geist","Noto Sans TC","PingFang TC","Microsoft JhengHei",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"Geist Mono","Noto Sans TC","PingFang TC","Microsoft JhengHei",ui-monospace,monospace;
+}
+:root:lang(zh-Hans){
+  --f-sans:"Geist","Noto Sans SC","PingFang SC","Microsoft YaHei",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"Geist Mono","Noto Sans SC","PingFang SC","Microsoft YaHei",ui-monospace,monospace;
+}
+:lang(zh) body, :lang(nan) body{line-height:1.75}
+:lang(zh) h2, :lang(nan) h2, :lang(zh) h3, :lang(nan) h3, :lang(zh) .role b, :lang(nan) .role b{letter-spacing:0}
+:lang(zh) h2 em, :lang(nan) h2 em{font-family:inherit; font-style:normal; font-weight:700; font-size:1em; letter-spacing:0}
+:lang(zh) .eyebrow, :lang(nan) .eyebrow{letter-spacing:.06em}
+:lang(de) h2, :lang(de) h3, :lang(de) p, :lang(de) li, :lang(de) dd{hyphens:auto; overflow-wrap:break-word}
+.i18n-pending main, .i18n-pending .nav{visibility:hidden}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth; scroll-padding-top:80px; -webkit-text-size-adjust:100%}
-@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important} }
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important; animation:none !important} }
 body{
   margin:0; color:var(--ink); background-color:var(--bg);
   background-image:radial-gradient(900px 480px at 88% -8%, var(--accent-soft), transparent 70%);
@@ -66,12 +89,11 @@ a:hover{text-decoration:underline; text-underline-offset:3px}
 :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:6px}
 h1,h2,h3,h4{margin:0; text-wrap:balance; line-height:1.12}
 h2{font-size:clamp(1.75rem,3.4vw,2.5rem); font-weight:600; letter-spacing:-.03em}
-h2 em, .h-em{font-family:var(--f-serif); font-style:italic; font-weight:400; letter-spacing:-.01em; font-size:1.1em; color:var(--accent-ink)}
+h2 em{font-family:var(--f-serif); font-style:italic; font-weight:400; letter-spacing:-.01em; font-size:1.1em; color:var(--accent-ink)}
 h3{font-size:1.25rem; font-weight:600; letter-spacing:-.015em}
 h4{font-size:1rem; font-weight:600; letter-spacing:-.01em}
 p{margin:0}
 ul{margin:0}
-.mono{font-family:var(--f-mono)}
 .muted{color:var(--ink-2)}
 .skip{position:absolute; left:-9999px; top:8px; z-index:100; background:var(--surface); padding:8px 12px; border-radius:8px; border:1px solid var(--line)}
 .skip:focus{left:16px}
@@ -82,18 +104,18 @@ ul{margin:0}
 /* nav */
 .nav{position:sticky; top:0; z-index:40; background:color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter:saturate(1.4) blur(12px); -webkit-backdrop-filter:saturate(1.4) blur(12px); border-bottom:1px solid transparent; transition:border-color .2s}
 .nav.scrolled{border-bottom-color:var(--line)}
-.nav-in{display:flex; align-items:center; gap:20px; height:64px}
+.nav-in{display:flex; align-items:center; gap:16px; height:64px}
 .brand{font-family:var(--f-mono); font-weight:500; font-size:.98rem; color:var(--ink); white-space:nowrap; letter-spacing:-.01em}
 .brand span{color:var(--accent-ink)}
 .brand:hover{text-decoration:none}
-.links{display:flex; gap:4px; margin-left:auto}
-.links a{color:var(--ink-2); font-size:.92rem; font-weight:500; padding:6px 10px; border-radius:8px}
+.links{display:flex; gap:2px; margin-left:auto}
+.links a{color:var(--ink-2); font-size:.9rem; font-weight:500; padding:6px 9px; border-radius:8px; white-space:nowrap}
 .links a:hover{color:var(--ink); background:var(--surface-2); text-decoration:none}
 .links a.active{color:var(--ink); background:var(--surface-2)}
 .nav-actions{display:flex; align-items:center; gap:8px}
-@media (max-width:880px){ .links{display:none} .nav-actions{margin-left:auto} }
+@media (max-width:1040px){ .links{display:none} .nav-actions{margin-left:auto} }
 
-.icon-btn{width:38px; height:38px; border:1px solid var(--line); background:var(--surface); border-radius:10px; display:inline-flex; align-items:center; justify-content:center; color:var(--ink); cursor:pointer}
+.icon-btn{width:38px; height:38px; border:1px solid var(--line); background:var(--surface); border-radius:10px; display:inline-flex; align-items:center; justify-content:center; color:var(--ink); cursor:pointer; padding:0; flex:none}
 .icon-btn:hover{border-color:var(--line-2); text-decoration:none}
 .icon-btn svg{width:17px; height:17px}
 .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 16px; border-radius:10px; font-weight:500; font-size:.94rem; border:1px solid transparent; cursor:pointer; white-space:nowrap; font-family:inherit; line-height:1.2}
@@ -120,7 +142,7 @@ section{padding-block:96px 0}
 @media (max-width:940px){ .hero-grid{grid-template-columns:1fr; gap:44px} }
 .hero-copy{display:grid; gap:22px; min-width:0}
 .status{display:inline-flex; align-items:center; gap:9px; width:fit-content; font-size:.86rem; font-weight:500; color:var(--ink-2); padding:6px 12px 6px 10px; border:1px solid var(--line); background:var(--surface); border-radius:999px}
-.status i{position:relative; width:8px; height:8px; border-radius:50%; background:var(--accent)}
+.status i{position:relative; width:8px; height:8px; border-radius:50%; background:var(--accent); flex:none}
 .status i::after{content:""; position:absolute; inset:-4px; border-radius:50%; border:2px solid var(--accent); opacity:.35}
 h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25rem); line-height:.9; letter-spacing:-.025em; margin-top:2px}
 .role{display:grid; gap:6px}
@@ -145,6 +167,7 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .metric .k{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3)}
 .metric .v{font-size:1.5rem; font-weight:600; letter-spacing:-.025em; line-height:1.15; font-variant-numeric:tabular-nums}
 .metric .v small{font-size:.86rem; font-weight:400; color:var(--ink-2); letter-spacing:0; margin-left:6px}
+.metric .v.sm{font-size:1.15rem}
 .metric .d{font-size:.88rem; color:var(--ink-2)}
 .bar{height:6px; border-radius:6px; background:var(--surface-2); overflow:hidden; margin-top:2px}
 .bar i{display:block; height:100%; width:97.7%; background:var(--accent); border-radius:6px}
@@ -158,7 +181,7 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 
 /* stats */
 .stats{margin-top:64px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border:1px solid var(--line); border-radius:16px; background:var(--surface); overflow:hidden}
-.stat{padding:20px 22px; display:grid; gap:2px}
+.stat{padding:20px 22px; display:grid; gap:2px; align-content:start}
 .stat + .stat{border-left:1px solid var(--line)}
 .stat b{font-size:2rem; font-weight:600; letter-spacing:-.035em; line-height:1.1; font-variant-numeric:tabular-nums}
 .stat span{font-size:.88rem; color:var(--ink-2)}
@@ -174,11 +197,10 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .case-top{display:grid; gap:14px; max-width:72ch}
 .case-meta{display:flex; flex-wrap:wrap; gap:8px 10px; align-items:center}
 .tag{display:inline-flex; align-items:center; gap:6px; font-family:var(--f-mono); font-size:.76rem; padding:5px 10px; border-radius:999px; border:1px solid var(--line); color:var(--ink-2); background:var(--surface)}
-.tag svg{width:13px; height:13px}
+.tag svg{width:13px; height:13px; flex:none}
 .tag-accent{background:var(--accent-soft); border-color:transparent; color:var(--accent-ink)}
 .case-top p{font-size:1.06rem; color:var(--ink-2)}
 .case-top p strong{color:var(--ink); font-weight:600}
-
 .flow-wrap{display:grid; gap:12px}
 .label{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
 .flow{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:14px}
@@ -199,7 +221,6 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .gate .label{margin-right:4px}
 .gate span:not(.label){display:inline-flex; align-items:center; gap:6px; font-size:.86rem; font-weight:500}
 .gate svg{width:15px; height:15px; color:var(--accent)}
-
 .did{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px}
 @media (max-width:900px){ .did{grid-template-columns:1fr; gap:22px} }
 .did > div{display:grid; gap:10px; align-content:start; padding-top:16px; border-top:1px solid var(--line)}
@@ -224,7 +245,7 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 @media (max-width:860px){ .grid-2{grid-template-columns:1fr} }
 .project{background:var(--surface); border:1px solid var(--line); border-radius:18px; overflow:hidden; display:grid; grid-template-rows:auto 1fr; min-width:0}
 .project-media{background:var(--surface-2); border-bottom:1px solid var(--line); padding:22px; display:flex; align-items:center; justify-content:center; gap:16px; min-height:220px}
-.project-media svg{display:block; height:auto; max-width:100%}
+.project-media svg{display:block; height:auto; max-width:100%; min-width:0}
 .project-body{padding:24px; display:grid; gap:14px; align-content:start}
 .project-body .meta{font-family:var(--f-mono); font-size:.76rem; color:var(--ink-3)}
 .project-body .bullets{color:var(--ink-2); font-size:.96rem}
@@ -243,10 +264,10 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 
 /* awards */
 .awards{display:grid; border-top:1px solid var(--line)}
-.award{display:grid; grid-template-columns:110px 56px minmax(0,1fr); gap:6px 18px; padding:22px 0; border-bottom:1px solid var(--line); align-items:start}
+.award{display:grid; grid-template-columns:120px 56px minmax(0,1fr); gap:6px 18px; padding:22px 0; border-bottom:1px solid var(--line); align-items:start}
 @media (max-width:700px){ .award{grid-template-columns:48px minmax(0,1fr); padding:18px 0} .award .when{grid-column:2; grid-row:1} .award .medal{grid-row:1 / span 2} .award .what{grid-column:2} }
 .award .when{font-family:var(--f-mono); font-size:.82rem; color:var(--ink-3); padding-top:4px; font-variant-numeric:tabular-nums}
-.medal{width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent-ink); font-family:var(--f-mono); font-size:.8rem; font-weight:500}
+.medal{width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent-ink); font-family:var(--f-mono); font-size:.8rem; font-weight:500; white-space:nowrap}
 .medal svg{width:20px; height:20px}
 .award .what{display:grid; gap:4px; min-width:0}
 .award .what strong{font-size:1.1rem; font-weight:600; letter-spacing:-.015em; line-height:1.35}
@@ -260,13 +281,81 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .kv{display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:.95rem; margin:4px 0 0}
 .kv dt{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); padding-top:4px}
 .kv dd{margin:0}
-.certs-head{margin:48px 0 16px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap}
-.certs{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 32px; border-top:1px solid var(--line)}
-@media (max-width:760px){ .certs{grid-template-columns:1fr} }
-.cert{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 16px; padding:15px 0; border-bottom:1px solid var(--line); align-items:center}
-.cert strong{font-weight:600; font-size:.98rem; letter-spacing:-.01em}
-.cert .meta{font-family:var(--f-mono); font-size:.76rem; color:var(--ink-3); margin-top:2px}
-.cert a{font-size:.86rem; font-weight:500; white-space:nowrap}
+
+/* certificates: list (no-JS fallback) */
+.cert-src{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 32px; border-top:1px solid var(--line)}
+@media (max-width:760px){ .cert-src{grid-template-columns:1fr} }
+.cert-src li{display:grid; gap:2px; padding:15px 0; border-bottom:1px solid var(--line)}
+.cert-src strong{font-weight:600}
+.cert-src .issuer, .cert-src time{font-family:var(--f-mono); font-size:.76rem; color:var(--ink-3)}
+.js .cert-src{display:none}
+.cf, .cf-caption, .cf-dots{display:none}
+.js .cf{display:block} .js .cf-caption{display:grid} .js .cf-dots{display:flex}
+
+/* certificates: coverflow */
+.cf{position:relative; --cw:min(560px, 78vw)}
+@media (min-width:700px){ .cf{--cw:min(480px, 46vw)} }
+.cf-stage{position:relative; height:calc(var(--cw) * .75 + 44px); overflow:hidden; touch-action:pan-y; outline:none}
+.cf-card{position:absolute; left:50%; top:22px; width:var(--cw); aspect-ratio:4/3; margin:0; padding:0; border:1px solid var(--line); border-radius:14px; background:var(--surface); overflow:hidden; cursor:pointer; font:inherit; color:inherit; container-type:inline-size;
+  transform:translateX(-50%) translateX(var(--tx,0%)) scale(var(--sc,1)); opacity:var(--op,1); z-index:var(--z,1);
+  transition:transform .55s cubic-bezier(.2,.75,.2,1), opacity .45s, box-shadow .45s, filter .45s; box-shadow:var(--shadow)}
+.cf-card[data-pos="0"]{box-shadow:0 30px 60px -24px rgba(0,0,0,.45), 0 0 0 1px var(--line-2); cursor:zoom-in}
+.cf-card:not([data-pos="0"]){filter:saturate(.55) brightness(.9)}
+.cf-card[data-pos="far"]{pointer-events:none}
+.cf-card img{display:block; width:100%; height:100%; object-fit:contain; background:var(--paper)}
+.cf-arrow{position:absolute; top:calc(50% - 4px); transform:translateY(-50%); z-index:20; width:46px; height:46px; border-radius:50%; display:grid; place-items:center; border:1px solid var(--line); background:color-mix(in srgb, var(--surface) 86%, transparent); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); color:var(--ink); cursor:pointer; box-shadow:var(--shadow); padding:0}
+.cf-arrow:hover{border-color:var(--line-2)}
+.cf-arrow svg{width:18px; height:18px}
+.cf-arrow.prev{left:0} .cf-arrow.next{right:0}
+@media (max-width:700px){ .cf-arrow{width:40px; height:40px} }
+.cf-caption{text-align:center; margin-top:6px; display:grid; gap:2px; min-height:3.2em}
+.cf-caption b{font-weight:600}
+.cf-caption span{font-family:var(--f-mono); font-size:.78rem; color:var(--ink-3)}
+.cf-dots{justify-content:center; flex-wrap:wrap; gap:2px; margin-top:10px}
+.cf-dots button{width:26px; height:22px; padding:0; border:0; background:none; cursor:pointer; display:grid; place-items:center}
+.cf-dots button::before{content:""; width:7px; height:7px; border-radius:99px; background:var(--line-2); transition:width .3s, background .3s}
+.cf-dots button[aria-current="true"]::before{width:20px; background:var(--accent)}
+
+/* text-only certificate face (until an image is added) */
+.cf-text{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3.2cqi; padding:9cqi 11cqi; text-align:center;
+  background:radial-gradient(circle at 1px 1px, var(--line-2) 1px, transparent 1.4px) 0 0/16px 16px, var(--surface)}
+.cf-text::before{content:""; position:absolute; inset:3cqi; border:1px solid var(--line-2); border-radius:8px; pointer-events:none}
+.cf-text::after{content:""; position:absolute; inset:calc(3cqi + 5px); border:1px solid var(--line); border-radius:6px; pointer-events:none}
+.cf-issuer{font-family:var(--f-mono); font-size:clamp(.62rem, 2.4cqi, .82rem); letter-spacing:.16em; text-transform:uppercase; color:var(--accent-ink)}
+.cf-title{font-family:var(--f-serif); font-size:clamp(1.05rem, 6.6cqi, 2.5rem); line-height:1.08; color:var(--ink); text-wrap:balance; max-width:20ch}
+.cf-date{font-family:var(--f-mono); font-size:clamp(.62rem, 2.4cqi, .82rem); color:var(--ink-3)}
+.cf-seal{width:clamp(30px, 9cqi, 52px); height:clamp(30px, 9cqi, 52px); border-radius:50%; background:var(--accent-soft); color:var(--accent-ink); display:grid; place-items:center; border:1px solid color-mix(in srgb, var(--accent) 35%, transparent)}
+.cf-seal svg{width:48%; height:48%}
+
+/* certificate viewer */
+.lb{width:min(980px, calc(100vw - 24px)); max-width:none; max-height:calc(100dvh - 24px); padding:0; border:1px solid var(--line); border-radius:20px; background:var(--surface); color:var(--ink); box-shadow:0 40px 80px -20px rgba(0,0,0,.55); overflow:auto}
+.lb::backdrop{background:rgba(8,10,9,.74); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px)}
+.lb[open]{animation:lb-in .22s ease-out}
+@keyframes lb-in{from{opacity:0; transform:translateY(10px) scale(.985)}}
+.lb-top{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 12px 10px 20px; border-bottom:1px solid var(--line); font-family:var(--f-mono); font-size:.78rem; color:var(--ink-3)}
+.lb-top b{color:var(--ink); font-weight:500}
+.lb-media{position:relative; background:var(--surface-2); padding:20px 68px; display:grid; place-items:center}
+.lb-frame{position:relative; width:100%; max-width:780px; aspect-ratio:4/3; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:var(--surface); container-type:inline-size; max-height:calc(100dvh - 260px)}
+.lb-frame img{display:block; width:100%; height:100%; object-fit:contain; background:var(--paper)}
+.lb-nav{position:absolute; top:50%; transform:translateY(-50%)}
+.lb-nav.prev{left:14px} .lb-nav.next{right:14px}
+.lb-info{display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px 32px; padding:20px 24px 6px; align-items:flex-start}
+.lb-info h3{font-size:1.3rem}
+.lb-issuer{color:var(--accent-ink); font-weight:500; margin-top:4px}
+.lb-meta{display:grid; gap:8px; justify-items:start; font-size:.92rem}
+.lb-meta .k{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-right:8px}
+.lb-verify{display:inline-flex; align-items:center; gap:6px; font-weight:500}
+.lb-verify svg{width:14px; height:14px}
+.lb-verify[hidden]{display:none}
+.lb-hint{padding:6px 24px 18px; font-family:var(--f-mono); font-size:.74rem; color:var(--ink-3)}
+@media (max-width:700px){
+  .lb-media{padding:12px}
+  .lb-nav{width:36px; height:36px; top:auto; bottom:18px; transform:none}
+  .lb-nav.prev{left:18px} .lb-nav.next{right:18px}
+  .lb-frame{max-height:none}
+  .lb-info{padding:16px 18px 18px}
+  .lb-hint{display:none}
+}
 
 /* skills */
 .skills{display:grid; border-top:1px solid var(--line)}
@@ -297,32 +386,56 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .contact .btn-line{background:transparent; color:var(--bg); border-color:color-mix(in srgb, var(--bg) 26%, var(--ink))}
 .contact .btn-line:hover{border-color:var(--bg)}
 
-footer{padding-block:32px 44px; font-family:var(--f-mono); font-size:.78rem; color:var(--ink-3); display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between}
+footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; color:var(--ink-3); display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between}
+
+/* language menu */
+.lang{position:fixed; left:max(16px, env(safe-area-inset-left,0px)); bottom:max(16px, env(safe-area-inset-bottom,0px)); z-index:60; display:none}
+.js .lang{display:block}
+.lang-btn{display:inline-flex; align-items:center; gap:8px; height:42px; padding:0 12px 0 11px; border-radius:999px; border:1px solid var(--line); background:color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:var(--shadow); color:var(--ink); font:500 .9rem var(--f-sans); cursor:pointer}
+.lang-btn:hover{border-color:var(--line-2)}
+.lang-btn .globe{width:18px; height:18px; color:var(--accent)}
+.lang-btn .chev{width:14px; height:14px; color:var(--ink-3); transition:transform .2s}
+.lang-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.lang-menu{position:absolute; bottom:calc(100% + 10px); left:0; width:268px; padding:8px; border-radius:16px; border:1px solid var(--line); background:var(--surface); box-shadow:0 24px 48px -16px rgba(0,0,0,.35); transform-origin:bottom left; animation:pop .16s ease-out}
+.lang-menu[hidden]{display:none}
+@keyframes pop{from{opacity:0; transform:translateY(6px) scale(.98)}}
+.lang-head{padding:6px 10px 8px; font-family:var(--f-mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
+.lang-opt{display:grid; grid-template-columns:34px 1fr 16px; align-items:center; gap:12px; width:100%; padding:8px 10px; border-radius:10px; border:1px solid transparent; background:none; color:inherit; text-align:left; cursor:pointer; font:inherit}
+.lang-opt + .lang-opt{margin-top:2px}
+.lang-opt:hover, .lang-opt:focus-visible{background:var(--surface-2)}
+.lang-opt[aria-checked="true"]{background:var(--accent-soft); border-color:color-mix(in srgb, var(--accent) 30%, transparent)}
+.lang-opt .code{height:26px; border-radius:6px; display:grid; place-items:center; font-family:var(--f-mono); font-size:.72rem; background:var(--surface-2); border:1px solid var(--line); color:var(--ink-2)}
+.lang-opt[aria-checked="true"] .code{color:var(--accent-ink); border-color:transparent; background:var(--surface)}
+.lang-opt b{display:block; font-weight:600; font-size:.95rem; line-height:1.3}
+.lang-opt small{display:block; font-size:.76rem; color:var(--ink-3); line-height:1.3}
+.lang-opt .check{width:16px; height:16px; color:var(--accent-ink); visibility:hidden}
+.lang-opt[aria-checked="true"] .check{visibility:visible}
 
 @media print{
-  .nav,.cta,.contact-actions,#theme{display:none !important}
+  .nav,.cta,.contact-actions,#theme,.lang,.cf-arrow,.cf-dots{display:none !important}
   body{background:#fff}
   section{padding-block:28px 0}
 }
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="#top" aria-label="Eaindray, back to top">eaindray<span>iscoding</span></a>
+    <a class="brand" href="#top" aria-label="Eaindray">eaindray<span>iscoding</span></a>
     <nav class="links" aria-label="Sections">
-      <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#awards">Awards</a>
-      <a href="#education">Education</a>
-      <a href="#skills">Skills</a>
+      <a href="#work" data-i18n="nav.work">Work</a>
+      <a href="#experience" data-i18n="nav.experience">Experience</a>
+      <a href="#projects" data-i18n="nav.projects">Projects</a>
+      <a href="#awards" data-i18n="nav.awards">Awards</a>
+      <a href="#education" data-i18n="nav.education">Education</a>
+      <a href="#certificates" data-i18n="nav.certs">Certificates</a>
+      <a href="#skills" data-i18n="nav.skills">Skills</a>
     </nav>
     <div class="nav-actions">
-      <button class="icon-btn" id="theme" type="button" aria-label="Switch between light and dark theme"></button>
-      <a class="btn btn-primary btn-sm" href="#contact">Contact</a>
+      <button class="icon-btn" id="theme" type="button" aria-label="Switch between light and dark theme" data-i18n-aria="theme.label"></button>
+      <a class="btn btn-primary btn-sm" href="#contact" data-i18n="nav.contact">Contact</a>
     </div>
   </div>
 </header>
@@ -333,131 +446,131 @@ footer{padding-block:32px 44px; font-family:var(--f-mono); font-size:.78rem; col
 <section class="hero" aria-labelledby="name">
   <div class="hero-grid">
     <div class="hero-copy">
-      <span class="status"><i aria-hidden="true"></i>Open to AI engineering internships</span>
+      <span class="status"><i aria-hidden="true"></i><span data-i18n="hero.status">Open to AI engineering internships</span></span>
       <h1 id="name">Eaindray</h1>
-      <p class="role"><b>AI Engineer Intern</b><span>Generative AI applications · Testing · AI operations</span></p>
-      <p class="lead">Software Engineering student at Mae Fah Luang University. At MFU Medical Center Hospital I deployed, tested and maintained the LLM behind <strong>CareMind</strong>, a generative AI application that drafts nursing notes with source citations.</p>
+      <p class="role"><b data-i18n="hero.role">AI Engineer Intern</b><span data-i18n="hero.focus">Generative AI applications · Testing · AI operations</span></p>
+      <p class="lead" data-i18n="hero.lead">Software Engineering student at Mae Fah Luang University. At MFU Medical Center Hospital I deployed, tested and maintained the LLM behind <strong>CareMind</strong>, a generative AI application that drafts nursing notes with source citations.</p>
       <div class="cta">
         <a class="btn btn-primary" href="Eaindray_CV.pdf" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 11l6 6 6-6M4 21h16"/></svg>
-          Download CV
+          <span data-i18n="hero.cv">Download CV</span>
         </a>
         <a class="btn btn-ghost" href="mailto:eaindrayfromearth@gmail.com">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          Email me
+          <span data-i18n="hero.email">Email me</span>
         </a>
         <span class="sep" aria-hidden="true"></span>
         <span class="cta-icons">
-        <a class="icon-btn" href="https://www.linkedin.com/in/eaindray-iscoding/" target="_blank" rel="noopener" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 2H3.6A1.6 1.6 0 0 0 2 3.6v16.8A1.6 1.6 0 0 0 3.6 22h16.8a1.6 1.6 0 0 0 1.6-1.6V3.6A1.6 1.6 0 0 0 20.4 2zM8 19H5V9h3zM6.5 7.7a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4zM19 19h-3v-4.9c0-1.2 0-2.7-1.6-2.7s-1.9 1.3-1.9 2.6V19h-3V9h2.9v1.4a3.2 3.2 0 0 1 2.9-1.6c3 0 3.6 2 3.6 4.6z"/></svg></a>
-        <a class="icon-btn" href="https://github.com/EaindrayMFU26" target="_blank" rel="noopener" aria-label="GitHub profile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+          <a class="icon-btn" href="https://www.linkedin.com/in/eaindray-iscoding/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 2H3.6A1.6 1.6 0 0 0 2 3.6v16.8A1.6 1.6 0 0 0 3.6 22h16.8a1.6 1.6 0 0 0 1.6-1.6V3.6A1.6 1.6 0 0 0 20.4 2zM8 19H5V9h3zM6.5 7.7a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4zM19 19h-3v-4.9c0-1.2 0-2.7-1.6-2.7s-1.9 1.3-1.9 2.6V19h-3V9h2.9v1.4a3.2 3.2 0 0 1 2.9-1.6c3 0 3.6 2 3.6 4.6z"/></svg></a>
+          <a class="icon-btn" href="https://github.com/EaindrayMFU26" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
         </span>
       </div>
-      <p class="loc">Chiang Rai, Thailand · B.Eng. expected May 2027</p>
+      <p class="loc" data-i18n="hero.loc">Chiang Rai, Thailand · B.Eng. expected May 2027</p>
     </div>
 
-    <figure class="report" aria-label="CareMind results summary">
-      <div class="report-head"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span><b>caremind</b> / results</span><span class="r">Jun – Sep 2026</span></div>
+    <figure class="report" aria-label="CareMind">
+      <div class="report-head"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span><b>caremind</b> / <span data-i18n="rep.results">results</span></span><span class="r" data-ym="2026-06|2026-09">Jun – Sep 2026</span></div>
       <div class="metric">
-        <span class="k">Citation precision</span>
+        <span class="k" data-i18n="rep.citation">Citation precision</span>
         <span class="v">97.7%</span>
         <div class="bar" aria-hidden="true"><i></i></div>
       </div>
       <div class="metric-row">
         <div class="metric">
-          <span class="k">Load test</span>
-          <span class="v">3,806<small>requests</small></span>
-          <span class="d">3 hours, zero errors or slowdown</span>
+          <span class="k" data-i18n="rep.load">Load test</span>
+          <span class="v">3,806<small data-i18n="rep.requests">requests</small></span>
+          <span class="d" data-i18n="rep.loadd">3 hours, zero errors or slowdown</span>
         </div>
         <div class="metric">
-          <span class="k">Quantisation study</span>
+          <span class="k" data-i18n="rep.quant">Quantisation study</span>
           <span class="v">p = 0.029</span>
-          <span class="d">Q4 drug-name regression, 42 runs each</span>
+          <span class="d" data-i18n="rep.quantd">Q4 drug-name regression, 42 runs each</span>
         </div>
       </div>
       <div class="metric">
-        <span class="k">Model serving</span>
-        <span class="v" style="font-size:1.15rem">8B Thai medical LLM</span>
-        <span class="d">Ollama · on-premise GPU server · authenticated API</span>
+        <span class="k" data-i18n="rep.serving">Model serving</span>
+        <span class="v sm" data-i18n="rep.model">8B Thai medical LLM</span>
+        <span class="d" data-i18n="rep.servingd">Ollama · on-premise GPU server · authenticated API</span>
       </div>
-      <div class="report-foot" aria-label="Checks that run in CI before every merge">
-        <span class="ci">CI, every merge:</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>accuracy</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>citation</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>drug-class</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>privacy</span>
+      <div class="report-foot">
+        <span class="ci" data-i18n="rep.ci">CI, every merge:</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="rep.acc">accuracy</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="rep.cit">citation</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="rep.drug">drug-class</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="rep.priv">privacy</span></span>
       </div>
     </figure>
   </div>
 
   <div class="stats">
-    <div class="stat"><b>3.92</b><span>GPA out of 4.00</span></div>
-    <div class="stat"><b>5</b><span>awards and prizes</span></div>
-    <div class="stat"><b>5</b><span>AI certifications</span></div>
-    <div class="stat"><b>885</b><span>TOEIC score</span></div>
+    <div class="stat"><b>3.92</b><span data-i18n="stat.gpa">GPA out of 4.00</span></div>
+    <div class="stat"><b>5</b><span data-i18n="stat.awards">awards and prizes</span></div>
+    <div class="stat"><b>5</b><span data-i18n="stat.certs">AI certifications</span></div>
+    <div class="stat"><b>885</b><span data-i18n="stat.toeic">TOEIC score</span></div>
   </div>
 </section>
 
 <section id="work" aria-labelledby="work-title">
   <div class="sec-head">
-    <span class="eyebrow">Featured work</span>
-    <h2 id="work-title">CareMind: an on-premise LLM for <em>hospital nursing notes</em></h2>
+    <span class="eyebrow" data-i18n="work.eyebrow">Featured work</span>
+    <h2 id="work-title" data-i18n="work.title">CareMind: an on-premise LLM for <em>hospital nursing notes</em></h2>
   </div>
 
   <article class="case">
     <div class="case-top">
       <div class="case-meta">
-        <span class="tag">Software Engineer Intern</span>
+        <span class="tag" data-i18n="work.role">Software Engineer Intern</span>
         <span class="tag">MFU Medical Center Hospital</span>
-        <span class="tag">Jun – Sep 2026</span>
-        <span class="tag tag-accent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"/></svg>Fast Track Award, TED Venture Catalyst 2026</span>
+        <span class="tag" data-ym="2026-06|2026-09">Jun – Sep 2026</span>
+        <span class="tag tag-accent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"/></svg><span data-i18n="work.award">Fast Track Award, TED Venture Catalyst 2026</span></span>
       </div>
-      <p>CareMind drafts Thai and English nursing notes with source citations, using a locally hosted 8B Thai medical LLM. <strong>I owned model serving, evaluation and AI operations (MLOps)</strong>: running the model reliably on an on-premise GPU server, measuring whether its output is accurate, and keeping the service healthy.</p>
+      <p data-i18n="work.intro">CareMind drafts Thai and English nursing notes with source citations, using a locally hosted 8B Thai medical LLM. <strong>I owned model serving, evaluation and AI operations (MLOps)</strong>: running the model reliably on an on-premise GPU server, measuring whether its output is accurate, and keeping the service healthy.</p>
     </div>
 
     <div class="flow-wrap">
-      <span class="label">How a note is made</span>
+      <span class="label" data-i18n="work.flow">How a note is made</span>
       <ol class="flow">
-        <li><span class="n">01</span><b>Patient records</b><small>Source data for the note</small></li>
-        <li><span class="n">02</span><b>LLM drafts the note</b><small>8B Thai medical LLM via Ollama</small></li>
-        <li class="mine"><span class="n">03 · built by me</span><b>Drug-name repair</b><small>Restores correct drug names</small></li>
-        <li><span class="n">04</span><b>Source citations</b><small>97.7% citation precision</small></li>
-        <li><span class="n">05</span><b>Nurse review</b><small>Nurse checks and approves the draft</small></li>
+        <li><span class="n">01</span><b data-i18n="flow.1t">Patient records</b><small data-i18n="flow.1d">Source data for the note</small></li>
+        <li><span class="n">02</span><b data-i18n="flow.2t">LLM drafts the note</b><small data-i18n="flow.2d">8B Thai medical LLM via Ollama</small></li>
+        <li class="mine"><span class="n">03 · <span data-i18n="flow.mine">built by me</span></span><b data-i18n="flow.3t">Drug-name repair</b><small data-i18n="flow.3d">Restores correct drug names</small></li>
+        <li><span class="n">04</span><b data-i18n="flow.4t">Source citations</b><small data-i18n="flow.4d">97.7% citation precision</small></li>
+        <li><span class="n">05</span><b data-i18n="flow.5t">Nurse review</b><small data-i18n="flow.5d">Nurse checks and approves the draft</small></li>
       </ol>
       <div class="gate">
-        <span class="label">CI gate, before every merge</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Accuracy</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Citations</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Drug-class consistency</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Privacy screen on test data</span>
+        <span class="label" data-i18n="gate.label">CI gate, before every merge</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="gate.1">Accuracy</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="gate.2">Citations</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="gate.3">Drug-class consistency</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="gate.4">Privacy screen on test data</span></span>
       </div>
     </div>
 
     <div class="did">
       <div>
-        <h4>Serving and deployment</h4>
+        <h4 data-i18n="did.1h">Serving and deployment</h4>
         <ul class="bullets">
-          <li>Deployed the LLM with Ollama behind a secure, authenticated API on an on-premise GPU server</li>
-          <li>Containerised the backend with an automated GitHub Actions image workflow and a one-step Docker Compose setup</li>
+          <li data-i18n="did.1a">Deployed the LLM with Ollama behind a secure, authenticated API on an on-premise GPU server</li>
+          <li data-i18n="did.1b">Containerised the backend with an automated GitHub Actions image workflow and a one-step Docker Compose setup</li>
         </ul>
       </div>
       <div>
-        <h4>Evaluation and testing</h4>
+        <h4 data-i18n="did.2h">Evaluation and testing</h4>
         <ul class="bullets">
-          <li>Built automated tests that run in CI before every merge, and measured 97.7% citation precision</li>
-          <li>Compared Q3 and Q4 quantisation over 42 runs each, found a significant drug-name regression in Q4 (p = 0.029), and built the repair step that fixes drug names before citations are attached</li>
+          <li data-i18n="did.2a">Built automated tests that run in CI before every merge, and measured 97.7% citation precision</li>
+          <li data-i18n="did.2b">Compared Q3 and Q4 quantisation over 42 runs each, found a significant drug-name regression in Q4 (p = 0.029), and built the repair step that fixes drug names before citations are attached</li>
         </ul>
       </div>
       <div>
-        <h4>Reliability and operations</h4>
+        <h4 data-i18n="did.3h">Reliability and operations</h4>
         <ul class="bullets">
-          <li>Load-tested 3,806 requests over 3 hours with zero errors or slowdown, and no hangs under burst load</li>
-          <li>Set up GPU monitoring: a self-healing watchdog, alerts, real-generation uptime checks, daily accuracy spot-checks and backups</li>
-          <li>Diagnosed a GPU memory lock-up and automated its detection and release</li>
+          <li data-i18n="did.3a">Load-tested 3,806 requests over 3 hours with zero errors or slowdown, and no hangs under burst load</li>
+          <li data-i18n="did.3b">Set up GPU monitoring: a self-healing watchdog, alerts, real-generation uptime checks, daily accuracy spot-checks and backups</li>
+          <li data-i18n="did.3c">Diagnosed a GPU memory lock-up and automated its detection and release</li>
         </ul>
       </div>
     </div>
 
-    <div class="chips" aria-label="Tools used on CareMind">
+    <div class="chips">
       <span class="chip">Ollama</span><span class="chip">LLM evaluation</span><span class="chip">Quantisation</span><span class="chip">Docker Compose</span><span class="chip">GitHub Actions</span><span class="chip">Monitoring</span><span class="chip">Load testing</span>
     </div>
   </article>
@@ -465,39 +578,39 @@ footer{padding-block:32px 44px; font-family:var(--f-mono); font-size:.78rem; col
 
 <section id="experience" aria-labelledby="xp-title">
   <div class="sec-head">
-    <span class="eyebrow">Experience</span>
-    <h2 id="xp-title">Where I have worked</h2>
+    <span class="eyebrow" data-i18n="xp.eyebrow">Experience</span>
+    <h2 id="xp-title" data-i18n="xp.title">Where I have worked</h2>
   </div>
   <div class="xp">
     <div class="xp-item">
-      <div class="xp-when">Jun 2026 – Sep 2026</div>
+      <div class="xp-when" data-ym="2026-06|2026-09">Jun 2026 – Sep 2026</div>
       <div class="xp-body">
-        <h3>Software Engineer Intern</h3>
-        <p class="where">MFU Medical Center Hospital · Chiang Rai, Thailand</p>
+        <h3 data-i18n="xp.1t">Software Engineer Intern</h3>
+        <p class="where" data-i18n="xp.1w">MFU Medical Center Hospital · Chiang Rai, Thailand</p>
         <ul class="bullets">
-          <li>Owned model serving, evaluation and AI operations for CareMind, an on-premise generative AI application that drafts nursing notes with source citations (<a href="#work">details above</a>)</li>
+          <li data-i18n="xp.1a">Owned model serving, evaluation and AI operations for CareMind, an on-premise generative AI application that drafts nursing notes with source citations (<a href="#work">details above</a>)</li>
         </ul>
       </div>
     </div>
     <div class="xp-item">
-      <div class="xp-when">Mar 2024 – Jul 2024</div>
+      <div class="xp-when" data-ym="2024-03|2024-07">Mar 2024 – Jul 2024</div>
       <div class="xp-body">
-        <h3>Junior Software Engineer</h3>
-        <p class="where">ACE Data Systems Ltd · Yangon, Myanmar</p>
+        <h3 data-i18n="xp.2t">Junior Software Engineer</h3>
+        <p class="where" data-i18n="xp.2w">ACE Data Systems Ltd · Yangon, Myanmar</p>
         <ul class="bullets">
-          <li>Developed C#/.NET backend APIs and SQL stored procedures for data processing in the SMEDB banking app</li>
-          <li>Built Java enterprise apps, documented API endpoints for frontend integration, and worked with QA in Agile sprints</li>
+          <li data-i18n="xp.2a">Developed C#/.NET backend APIs and SQL stored procedures for data processing in the SMEDB banking app</li>
+          <li data-i18n="xp.2b">Built Java enterprise apps, documented API endpoints for frontend integration, and worked with QA in Agile sprints</li>
         </ul>
         <div class="chips"><span class="chip">C#</span><span class="chip">.NET</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">Agile</span></div>
       </div>
     </div>
     <div class="xp-item">
-      <div class="xp-when">Jun 2016 – Jul 2024</div>
+      <div class="xp-when" data-ym="2016-06|2024-07">Jun 2016 – Jul 2024</div>
       <div class="xp-body">
-        <h3>Math Tutor</h3>
-        <p class="where">Self-employed</p>
+        <h3 data-i18n="xp.3t">Math Tutor</h3>
+        <p class="where" data-i18n="xp.3w">Self-employed</p>
         <ul class="bullets">
-          <li>Taught mathematics to school students, from algebra to college-level calculus</li>
+          <li data-i18n="xp.3a">Taught mathematics to school students, from algebra to college-level calculus</li>
         </ul>
       </div>
     </div>
@@ -506,8 +619,8 @@ footer{padding-block:32px 44px; font-family:var(--f-mono); font-size:.78rem; col
 
 <section id="projects" aria-labelledby="proj-title">
   <div class="sec-head">
-    <span class="eyebrow">Projects</span>
-    <h2 id="proj-title">Signals, sensors and <em>robots</em></h2>
+    <span class="eyebrow" data-i18n="proj.eyebrow">Projects</span>
+    <h2 id="proj-title" data-i18n="proj.title">Signals, sensors and <em>robots</em></h2>
   </div>
   <div class="grid-2">
     <article class="project">
@@ -527,10 +640,10 @@ footer{padding-block:32px 44px; font-family:var(--f-mono); font-size:.78rem; col
       </div>
       <div class="project-body">
         <span class="meta">FACE IT 2026 · Universitas Brawijaya</span>
-        <h3>ECG Arrhythmia Classification</h3>
+        <h3 data-i18n="proj.ecg.t">ECG Arrhythmia Classification</h3>
         <ul class="bullets">
-          <li>Built an ECG data processing pipeline: signal filtering, Pan–Tompkins R-peak detection, and RR and QRS features</li>
-          <li>Trained an SVM to flag arrhythmia beats, evaluated on a small 117-beat dataset with a stratified 70/30 split</li>
+          <li data-i18n="proj.ecg.a">Built an ECG data processing pipeline: signal filtering, Pan–Tompkins R-peak detection, and RR and QRS features</li>
+          <li data-i18n="proj.ecg.b">Trained an SVM to flag arrhythmia beats, evaluated on a small 117-beat dataset with a stratified 70/30 split</li>
         </ul>
         <div class="chips"><span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">SciPy</span><span class="chip">Pandas</span><span class="chip">NumPy</span></div>
       </div>
@@ -566,11 +679,11 @@ footer{padding-block:32px 44px; font-family:var(--f-mono); font-size:.78rem; col
         </svg>
       </div>
       <div class="project-body">
-        <span class="meta">Solo builds from scratch</span>
-        <h3>Autonomous Mobile Robot and Robotic Arm</h3>
+        <span class="meta" data-i18n="proj.bot.meta">Solo builds from scratch</span>
+        <h3 data-i18n="proj.bot.t">Autonomous Mobile Robot and Robotic Arm</h3>
         <ul class="bullets">
-          <li>Designed and built two robots on my own with affordable yet industrial-grade components, from the mechanics and electronics to the software</li>
-          <li>A mobile robot that senses with LiDAR and an inertial sensor, and a robotic arm with its own joints, gripper and control software</li>
+          <li data-i18n="proj.bot.a">Designed and built two robots on my own with affordable yet industrial-grade components, from the mechanics and electronics to the software</li>
+          <li data-i18n="proj.bot.b">A mobile robot that senses with LiDAR and an inertial sensor, and a robotic arm with its own joints, gripper and control software</li>
         </ul>
         <div class="chips"><span class="chip">C++</span><span class="chip">ROS 2</span><span class="chip">Python</span><span class="chip">STM32</span><span class="chip">LiDAR</span><span class="chip">EKF</span><span class="chip">SLAM</span></div>
         <a class="plink" href="https://github.com/EaindrayMFU26" target="_blank" rel="noopener">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
@@ -581,134 +694,178 @@ footer{padding-block:32px 44px; font-family:var(--f-mono); font-size:.78rem; col
 
 <section id="awards" aria-labelledby="aw-title">
   <div class="sec-head">
-    <span class="eyebrow">Awards and recognition</span>
-    <h2 id="aw-title">Prizes, a startup award and a <em>perfect year</em></h2>
+    <span class="eyebrow" data-i18n="aw.eyebrow">Awards and recognition</span>
+    <h2 id="aw-title" data-i18n="aw.title">Prizes, a startup award and a <em>perfect year</em></h2>
   </div>
   <div class="awards">
     <div class="award">
-      <div class="when">Sep 2026</div>
+      <div class="when" data-ym="2026-09">Sep 2026</div>
       <div class="medal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
-      <div class="what"><strong>Fast Track Award · TED Venture Catalyst 2026 (Northern Region)</strong><span>Won with CareMind among 23 teams, earning a place in the final round of the IDEA startup grant from TED Fund, Thailand.</span></div>
+      <div class="what"><strong data-i18n="aw.1t">Fast Track Award · TED Venture Catalyst 2026 (Northern Region)</strong><span data-i18n="aw.1d">Won with CareMind among 23 teams, earning a place in the final round of the IDEA startup grant from TED Fund, Thailand.</span></div>
     </div>
     <div class="award">
-      <div class="when">Mar 2026</div>
-      <div class="medal" aria-hidden="true">2nd</div>
-      <div class="what"><strong>2nd Prize · Hackathon CE 2026 for Anti-Online Scams</strong><span>Teams built solutions to protect people from online scams.</span></div>
+      <div class="when" data-ym="2026-03">Mar 2026</div>
+      <div class="medal" aria-hidden="true" data-i18n="aw.m2">2nd</div>
+      <div class="what"><strong data-i18n="aw.2t">2nd Prize · Hackathon CE 2026 for Anti-Online Scams</strong><span data-i18n="aw.2d">Teams built solutions to protect people from online scams.</span></div>
     </div>
     <div class="award">
-      <div class="when">Feb 2026</div>
-      <div class="medal" aria-hidden="true">3rd</div>
-      <div class="what"><strong>3rd Prize · ADT MediHack 2026: Exploring AI for Healthcare Solution</strong><span>School of Applied Digital Technology with MFU Medical Center Hospital. 75 students were selected from more than 100 applicants to solve real hospital challenges with AI and UX/UI design.</span></div>
+      <div class="when" data-ym="2026-02">Feb 2026</div>
+      <div class="medal" aria-hidden="true" data-i18n="aw.m3">3rd</div>
+      <div class="what"><strong data-i18n="aw.3t">3rd Prize · ADT MediHack 2026: Exploring AI for Healthcare Solution</strong><span data-i18n="aw.3d">School of Applied Digital Technology with MFU Medical Center Hospital. 75 students were selected from more than 100 applicants to solve real hospital challenges with AI and UX/UI design.</span></div>
     </div>
     <div class="award">
-      <div class="when">Aug 2025</div>
-      <div class="medal" aria-hidden="true">1st</div>
-      <div class="what"><strong>1st Prize · MFU Software Engineering Hackathon 2025</strong><span>A two-day hackathon run by the School of Applied Digital Technology with LINE Developer Thailand.</span></div>
+      <div class="when" data-ym="2025-08">Aug 2025</div>
+      <div class="medal" aria-hidden="true" data-i18n="aw.m1">1st</div>
+      <div class="what"><strong data-i18n="aw.4t">1st Prize · MFU Software Engineering Hackathon 2025</strong><span data-i18n="aw.4d">A two-day hackathon run by the School of Applied Digital Technology with LINE Developer Thailand.</span></div>
     </div>
     <div class="award">
-      <div class="when">Aug 2025</div>
+      <div class="when" data-ym="2025-08">Aug 2025</div>
       <div class="medal" aria-hidden="true">4.00</div>
-      <div class="what"><strong>Academic Distinction · Mae Fah Luang University</strong><span>Cumulative GPA of 4.00 in academic year 2024.</span></div>
+      <div class="what"><strong data-i18n="aw.5t">Academic Distinction · Mae Fah Luang University</strong><span data-i18n="aw.5d">Cumulative GPA of 4.00 in academic year 2024.</span></div>
     </div>
   </div>
 </section>
 
 <section id="education" aria-labelledby="ed-title">
   <div class="sec-head">
-    <span class="eyebrow">Education and certifications</span>
-    <h2 id="ed-title">Software engineering, with a <em>healthcare AI</em> exchange</h2>
+    <span class="eyebrow" data-i18n="ed.eyebrow">Education</span>
+    <h2 id="ed-title" data-i18n="ed.title">Software engineering, with a <em>healthcare AI</em> exchange</h2>
   </div>
   <div class="grid-2">
     <div class="card">
-      <span class="eyebrow">Degree</span>
-      <h3>Bachelor of Engineering in Software Engineering</h3>
-      <p class="muted">Mae Fah Luang University, School of Applied Digital Technology · Chiang Rai, Thailand</p>
-      <p class="gpa"><b>3.92</b><span>/ 4.00 GPA</span></p>
+      <span class="eyebrow" data-i18n="ed.deg">Degree</span>
+      <h3 data-i18n="ed.degt">Bachelor of Engineering in Software Engineering</h3>
+      <p class="muted" data-i18n="ed.uni">Mae Fah Luang University, School of Applied Digital Technology · Chiang Rai, Thailand</p>
+      <p class="gpa"><b>3.92</b><span data-i18n="ed.gpa">/ 4.00 GPA</span></p>
       <dl class="kv">
-        <dt>Dates</dt><dd>Aug 2024 – May 2027 (expected)</dd>
-        <dt>Honours</dt><dd>Academic Distinction, GPA 4.00 in academic year 2024</dd>
+        <dt data-i18n="ed.dates">Dates</dt><dd data-i18n="ed.degdates">Aug 2024 – May 2027 (expected)</dd>
+        <dt data-i18n="ed.honours">Honours</dt><dd data-i18n="ed.honoursv">Academic Distinction, GPA 4.00 in academic year 2024</dd>
       </dl>
     </div>
     <div class="card">
-      <span class="eyebrow">Exchange</span>
-      <h3>FACE IT 2026: AI in Healthcare</h3>
-      <p class="muted">Universitas Brawijaya, Faculty of Computer Science · Malang, Indonesia</p>
+      <span class="eyebrow" data-i18n="ed.ex">Exchange</span>
+      <h3 data-i18n="ed.ext">FACE IT 2026: AI in Healthcare</h3>
+      <p class="muted" data-i18n="ed.exuni">Universitas Brawijaya, Faculty of Computer Science · Malang, Indonesia</p>
       <dl class="kv">
-        <dt>Dates</dt><dd>Aug 2026 – Nov 2026</dd>
-        <dt>Selected</dt><dd>One of 17 students from Mae Fah Luang University</dd>
-        <dt>Track</dt><dd>Biomedical Signal Processing and Wearable Intelligence, 10 ECTS credits</dd>
-        <dt>Project</dt><dd><a href="#projects">ECG arrhythmia classification</a></dd>
+        <dt data-i18n="ed.dates">Dates</dt><dd data-ym="2026-08|2026-11">Aug 2026 – Nov 2026</dd>
+        <dt data-i18n="ed.selected">Selected</dt><dd data-i18n="ed.selectedv">One of 17 students from Mae Fah Luang University</dd>
+        <dt data-i18n="ed.track">Track</dt><dd data-i18n="ed.trackv">Biomedical Signal Processing and Wearable Intelligence, 10 ECTS credits</dd>
+        <dt data-i18n="ed.project">Project</dt><dd><a href="#projects" data-i18n="ed.projectv">ECG arrhythmia classification</a></dd>
       </dl>
     </div>
   </div>
+</section>
 
-  <div class="certs-head"><h3>Certifications</h3></div>
-  <div class="certs">
-    <div class="cert"><div><strong>TensorFlow Developer Professional Certificate</strong><div class="meta">DeepLearning.AI · Oct 2026</div></div></div>
-    <div class="cert"><div><strong>Machine Learning in Production</strong><div class="meta">DeepLearning.AI · Oct 2026</div></div></div>
-    <div class="cert"><div><strong>Retrieval Augmented Generation (RAG)</strong><div class="meta">DeepLearning.AI · Oct 2026</div></div></div>
-    <div class="cert"><div><strong>Agentic AI</strong><div class="meta">DeepLearning.AI · Oct 2026</div></div></div>
-    <div class="cert"><div><strong>AI Fundamentals</strong><div class="meta">Google · Oct 2026</div></div></div>
-    <div class="cert"><div><strong>AI Career Readiness Training</strong><div class="meta">ASEAN Foundation · Oct 2026</div></div></div>
-    <div class="cert"><div><strong>Embedded Systems Programming on ARM Cortex-M3/M4</strong><div class="meta">Udemy · Oct 2024</div></div><a href="https://ude.my/UC-6aa1a3de-980e-455c-a396-7a1cd77528ac" target="_blank" rel="noopener">Verify ↗</a></div>
-    <div class="cert"><div><strong>PLC Fundamentals (Level I)</strong><div class="meta">Udemy · Sep 2024</div></div><a href="https://ude.my/UC-533c2d58-6399-4712-87af-bf083009cb1b" target="_blank" rel="noopener">Verify ↗</a></div>
+<section id="certificates" aria-labelledby="cert-title">
+  <div class="sec-head">
+    <span class="eyebrow" data-i18n="cert.eyebrow">Certifications</span>
+    <h2 id="cert-title" data-i18n="cert.title">Always learning, <em>with proof</em></h2>
+    <p data-i18n="cert.sub">AI certifications from 2026, plus earlier courses in embedded systems. Select a certificate to view it.</p>
   </div>
+
+  <!-- To add a certificate image: put the file in certificates/ and add data-img="certificates/your-file.jpg" (and data-verify="https://…" if there is a public verify link) to its <li>. -->
+  <ul class="cert-src" id="cert-src">
+    <li data-ym="2026-10"><strong>TensorFlow Developer Professional Certificate</strong><span class="issuer">DeepLearning.AI</span><time data-ym="2026-10">Oct 2026</time></li>
+    <li data-ym="2026-10"><strong>Machine Learning in Production</strong><span class="issuer">DeepLearning.AI</span><time data-ym="2026-10">Oct 2026</time></li>
+    <li data-ym="2026-10"><strong>Retrieval Augmented Generation (RAG)</strong><span class="issuer">DeepLearning.AI</span><time data-ym="2026-10">Oct 2026</time></li>
+    <li data-ym="2026-10"><strong>Agentic AI</strong><span class="issuer">DeepLearning.AI</span><time data-ym="2026-10">Oct 2026</time></li>
+    <li data-ym="2026-10"><strong>AI Fundamentals</strong><span class="issuer">Google</span><time data-ym="2026-10">Oct 2026</time></li>
+    <li data-ym="2026-10"><strong>AI Career Readiness Training</strong><span class="issuer">ASEAN Foundation</span><time data-ym="2026-10">Oct 2026</time></li>
+    <li data-ym="2024-10" data-img="certificates/udemy-arm-cortex-m.jpg" data-verify="https://ude.my/UC-6aa1a3de-980e-455c-a396-7a1cd77528ac"><strong>Embedded Systems Programming on ARM Cortex-M3/M4</strong><span class="issuer">Udemy</span><time data-ym="2024-10">Oct 2024</time></li>
+    <li data-ym="2024-09" data-img="certificates/udemy-plc-fundamentals.jpg" data-verify="https://ude.my/UC-533c2d58-6399-4712-87af-bf083009cb1b"><strong>PLC Fundamentals (Level I)</strong><span class="issuer">Udemy</span><time data-ym="2024-09">Sep 2024</time></li>
+  </ul>
+
+  <div class="cf" id="cf" role="region" aria-roledescription="carousel" aria-labelledby="cert-title">
+    <div class="cf-stage" id="cf-stage" tabindex="0"></div>
+    <button class="cf-arrow prev" id="cf-prev" type="button" aria-label="Previous certificate" data-i18n-aria="cert.prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+    <button class="cf-arrow next" id="cf-next" type="button" aria-label="Next certificate" data-i18n-aria="cert.next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+  <p class="cf-caption" id="cf-caption" aria-live="polite"></p>
+  <div class="cf-dots" id="cf-dots"></div>
+
+  <dialog class="lb" id="lb" aria-labelledby="lb-title">
+    <div class="lb-top"><span><b id="lb-count">01</b> / <span id="lb-total">08</span></span><button class="icon-btn" id="lb-close" type="button" aria-label="Close" data-i18n-aria="cert.close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="lb-media">
+      <div class="lb-frame" id="lb-frame"></div>
+      <button class="cf-arrow lb-nav prev" id="lb-prev" type="button" aria-label="Previous certificate" data-i18n-aria="cert.prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+      <button class="cf-arrow lb-nav next" id="lb-next" type="button" aria-label="Next certificate" data-i18n-aria="cert.next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="lb-info">
+      <div><h3 id="lb-title"></h3><p class="lb-issuer" id="lb-issuer"></p></div>
+      <div class="lb-meta">
+        <span><span class="k" data-i18n="cert.issued">Issued</span><span id="lb-date"></span></span>
+        <a class="lb-verify" id="lb-verify" href="#" target="_blank" rel="noopener"><span data-i18n="cert.verify">Verify credential</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+    <p class="lb-hint" data-i18n="cert.hint">← → to browse · Esc to close</p>
+  </dialog>
 </section>
 
 <section id="skills" aria-labelledby="sk-title">
   <div class="sec-head">
-    <span class="eyebrow">Skills</span>
-    <h2 id="sk-title">Tools I have used in real work</h2>
+    <span class="eyebrow" data-i18n="sk.eyebrow">Skills</span>
+    <h2 id="sk-title" data-i18n="sk.title">Tools I have used in real work</h2>
   </div>
   <div class="skills">
-    <div class="skill"><h3>AI and machine learning</h3><div class="chips"><span class="chip">Generative AI</span><span class="chip">LLMs</span><span class="chip">RAG</span><span class="chip">AI agents</span><span class="chip">LLM evaluation</span><span class="chip">Quantisation</span><span class="chip">NLP</span><span class="chip">SVM</span><span class="chip">Precision · recall · specificity</span></div></div>
-    <div class="skill"><h3>MLOps and AI operations</h3><div class="chips"><span class="chip">Ollama</span><span class="chip">Model serving</span><span class="chip">Docker Compose</span><span class="chip">GitHub Actions (CI/CD)</span><span class="chip">Monitoring</span><span class="chip">Load testing</span></div></div>
-    <div class="skill"><h3>Data and ML tools</h3><div class="chips"><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">SciPy</span><span class="chip">scikit-learn</span><span class="chip">TensorFlow</span><span class="chip">Jupyter</span><span class="chip">SQL</span><span class="chip">Data pipelines</span></div></div>
-    <div class="skill"><h3>Programming</h3><div class="chips"><span class="chip">Python</span><span class="chip">TypeScript (Next.js)</span><span class="chip">C++</span><span class="chip">C</span><span class="chip">C# (.NET)</span><span class="chip">Java</span><span class="chip">SQL</span><span class="chip">APIs</span><span class="chip">Git</span><span class="chip">Linux</span><span class="chip">Agile</span></div></div>
-    <div class="skill"><h3>Robotics and embedded</h3><div class="chips"><span class="chip">ROS 2</span><span class="chip">STM32 (ARM Cortex-M)</span><span class="chip">LiDAR</span><span class="chip">EKF</span><span class="chip">SLAM</span></div></div>
-    <div class="skill"><h3>Languages</h3><div class="chips"><span class="chip">English (TOEIC 885)</span><span class="chip">German (A2)</span><span class="chip">Chinese (limited working proficiency)</span></div></div>
+    <div class="skill"><h3 data-i18n="sk.1">AI and machine learning</h3><div class="chips"><span class="chip">Generative AI</span><span class="chip">LLMs</span><span class="chip">RAG</span><span class="chip">AI agents</span><span class="chip">LLM evaluation</span><span class="chip">Quantisation</span><span class="chip">NLP</span><span class="chip">SVM</span><span class="chip">Precision · recall · specificity</span></div></div>
+    <div class="skill"><h3 data-i18n="sk.2">MLOps and AI operations</h3><div class="chips"><span class="chip">Ollama</span><span class="chip">Model serving</span><span class="chip">Docker Compose</span><span class="chip">GitHub Actions (CI/CD)</span><span class="chip">Monitoring</span><span class="chip">Load testing</span></div></div>
+    <div class="skill"><h3 data-i18n="sk.3">Data and ML tools</h3><div class="chips"><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">SciPy</span><span class="chip">scikit-learn</span><span class="chip">TensorFlow</span><span class="chip">Jupyter</span><span class="chip">SQL</span><span class="chip">Data pipelines</span></div></div>
+    <div class="skill"><h3 data-i18n="sk.4">Programming</h3><div class="chips"><span class="chip">Python</span><span class="chip">TypeScript (Next.js)</span><span class="chip">C++</span><span class="chip">C</span><span class="chip">C# (.NET)</span><span class="chip">Java</span><span class="chip">SQL</span><span class="chip">APIs</span><span class="chip">Git</span><span class="chip">Linux</span><span class="chip">Agile</span></div></div>
+    <div class="skill"><h3 data-i18n="sk.5">Robotics and embedded</h3><div class="chips"><span class="chip">ROS 2</span><span class="chip">STM32 (ARM Cortex-M)</span><span class="chip">LiDAR</span><span class="chip">EKF</span><span class="chip">SLAM</span></div></div>
+    <div class="skill"><h3 data-i18n="sk.6">Languages</h3><div class="chips"><span class="chip" data-i18n="sk.en">English (TOEIC 885)</span><span class="chip" data-i18n="sk.de">German (A2)</span><span class="chip" data-i18n="sk.zh">Chinese (limited working proficiency)</span></div></div>
   </div>
 </section>
 
 <section id="community" aria-labelledby="cm-title">
   <div class="sec-head">
-    <span class="eyebrow">Beyond the code</span>
-    <h2 id="cm-title">Mentoring, organising, volunteering</h2>
+    <span class="eyebrow" data-i18n="cm.eyebrow">Beyond the code</span>
+    <h2 id="cm-title" data-i18n="cm.title">Mentoring, organising, volunteering</h2>
   </div>
   <div class="grid-3">
-    <div class="item"><h3>Hackathon coach and mentor</h3><p>Coached high-school students at the ADT Open Space 2025 Hackathon, where 60 students from three Chiang Rai schools built AI-based app prototypes, and mentored at MediHack Junior 2026, a two-day AI and UX/UI hackathon.</p></div>
-    <div class="item"><h3>Event organiser</h3><p>Co-organised the orientation for 60+ new international students from seven countries at Mae Fah Luang University, and organised the 2nd Student Skills Development Program on leadership and growth mindset.</p></div>
-    <div class="item"><h3>Disaster relief volunteer</h3><p>Distributed food and helped with post-flood cleanup in Chiang Rai in 2024, and sorted donated relief supplies for flood-affected communities in Hat Yai in 2025.</p></div>
+    <div class="item"><h3 data-i18n="cm.1t">Hackathon coach and mentor</h3><p data-i18n="cm.1d">Coached high-school students at the ADT Open Space 2025 Hackathon, where 60 students from three Chiang Rai schools built AI-based app prototypes, and mentored at MediHack Junior 2026, a two-day AI and UX/UI hackathon.</p></div>
+    <div class="item"><h3 data-i18n="cm.2t">Event organiser</h3><p data-i18n="cm.2d">Co-organised the orientation for 60+ new international students from seven countries at Mae Fah Luang University, and organised the 2nd Student Skills Development Program on leadership and growth mindset.</p></div>
+    <div class="item"><h3 data-i18n="cm.3t">Disaster relief volunteer</h3><p data-i18n="cm.3d">Distributed food and helped with post-flood cleanup in Chiang Rai in 2024, and sorted donated relief supplies for flood-affected communities in Hat Yai in 2025.</p></div>
   </div>
 </section>
 
 <section id="contact" class="contact" aria-labelledby="ct-title">
   <div>
-    <span class="eyebrow">Contact</span>
-    <h2 id="ct-title">Let's <em>talk</em></h2>
-    <p>I'm looking for AI engineering internships. Email is the fastest way to reach me.</p>
+    <span class="eyebrow" data-i18n="ct.eyebrow">Contact</span>
+    <h2 id="ct-title" data-i18n="ct.title">Let's <em>talk</em></h2>
+    <p data-i18n="ct.p">I'm looking for AI engineering internships. Email is the fastest way to reach me.</p>
   </div>
   <div class="contact-actions">
     <div class="mail">
       <code id="email">eaindrayfromearth@gmail.com</code>
-      <button class="btn btn-sm" type="button" id="copy">Copy</button>
+      <button class="btn btn-sm" type="button" id="copy" data-i18n="ct.copy">Copy</button>
     </div>
     <div class="row">
-      <a class="btn btn-primary" href="mailto:eaindrayfromearth@gmail.com">Email me</a>
+      <a class="btn btn-primary" href="mailto:eaindrayfromearth@gmail.com" data-i18n="ct.email">Email me</a>
       <a class="btn btn-line" href="https://www.linkedin.com/in/eaindray-iscoding/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn btn-line" href="https://github.com/EaindrayMFU26" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn btn-line" href="Eaindray_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      <a class="btn btn-line" href="Eaindray_CV.pdf" target="_blank" rel="noopener" data-i18n="ct.cv">CV (PDF)</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <span>© 2026 Eaindray · Chiang Rai, Thailand</span>
+  <span data-i18n="ft.copy">© 2026 Eaindray · Chiang Rai, Thailand</span>
   <span>eaindrayiscoding.com</span>
 </footer>
 
 </div>
 </main>
+
+<div class="lang" id="lang">
+  <div class="lang-menu" id="lang-menu" role="menu" aria-labelledby="lang-btn" hidden>
+    <div class="lang-head">Language · 語言 · Sprache</div>
+  </div>
+  <button class="lang-btn" id="lang-btn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu">
+    <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+    <span id="lang-current">English</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+  </button>
+</div>
 
 <script>
 (function(){
@@ -752,10 +909,108 @@ footer{padding-block:32px 44px; font-family:var(--f-mono); font-size:.78rem; col
   var copy=document.getElementById('copy'); var email=document.getElementById('email');
   copy.addEventListener('click',function(){
     var text=email.textContent;
-    function done(){ copy.textContent='Copied'; setTimeout(function(){ copy.textContent='Copy'; },1800); }
+    function done(){
+      copy.textContent=(window.I18N && I18N.t('ct.copied')) || 'Copied';
+      setTimeout(function(){ copy.textContent=(window.I18N && I18N.t('ct.copy')) || 'Copy'; },1800);
+    }
     function fallback(){ var r=document.createRange(); r.selectNodeContents(email); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); }
     if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done,fallback); } else { fallback(); }
   });
+})();
+</script>
+<script src="i18n.js"></script>
+<script>
+/* Certificate coverflow + viewer */
+(function(){
+  var src=document.getElementById('cert-src'); if(!src) return;
+  var items=[].map.call(src.querySelectorAll('li'), function(li){
+    return { title:li.querySelector('strong').textContent.trim(), issuer:li.querySelector('.issuer').textContent.trim(), ym:li.getAttribute('data-ym'), img:li.getAttribute('data-img')||'', verify:li.getAttribute('data-verify')||'' };
+  });
+  var n=items.length, cur=0, swiped=false;
+  var stage=document.getElementById('cf-stage'), cap=document.getElementById('cf-caption'), dotsEl=document.getElementById('cf-dots');
+  function fmt(ym){
+    if(window.I18N) return I18N.fmt(ym, true);
+    var a=ym.split('-'); return new Intl.DateTimeFormat('en-US',{month:'short',year:'numeric'}).format(new Date(+a[0], +a[1]-1, 1));
+  }
+  function el(tag, cls, text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+  var sealSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>';
+  function face(it, eager){
+    if(it.img){ var im=el('img'); im.src=it.img; im.alt=it.title+' · '+it.issuer; im.decoding='async'; if(!eager) im.loading='lazy'; return im; }
+    var t=el('div','cf-text'); t.appendChild(el('span','cf-issuer',it.issuer)); t.appendChild(el('span','cf-title',it.title));
+    var d=el('span','cf-date',fmt(it.ym)); d.setAttribute('data-cert-ym', it.ym); t.appendChild(d);
+    var s=el('span','cf-seal'); s.innerHTML=sealSvg; t.appendChild(s); return t;
+  }
+  var cards=items.map(function(it,i){
+    var b=el('button','cf-card'); b.type='button'; b.setAttribute('aria-label', it.title+' · '+it.issuer);
+    b.appendChild(face(it));
+    b.addEventListener('click',function(){ if(swiped) return; if(i===cur) openLb(i); else go(i); });
+    stage.appendChild(b); return b;
+  });
+  var dots=items.map(function(it,i){
+    var d=el('button'); d.type='button'; d.setAttribute('aria-label', (i+1)+' / '+n+' · '+it.title);
+    d.addEventListener('click',function(){ go(i); }); dotsEl.appendChild(d); return d;
+  });
+  var TX=[0,56,92,124], SC=[1,.8,.64,.52], OP=[1,.85,.55,0];
+  function layout(){
+    cards.forEach(function(c,i){
+      var o=(i-cur+n)%n; if(o>n/2) o-=n;
+      var a=Math.min(Math.abs(o),3), s=o<0?-1:1;
+      c.style.setProperty('--tx', (s*TX[a])+'%'); c.style.setProperty('--sc', SC[a]); c.style.setProperty('--op', OP[a]); c.style.setProperty('--z', 10-a);
+      c.setAttribute('data-pos', a===0?'0':(a>=3?'far':String(o)));
+      c.tabIndex = a===0 ? 0 : -1;
+      if(a>=3) c.setAttribute('aria-hidden','true'); else c.removeAttribute('aria-hidden');
+    });
+    dots.forEach(function(d,i){ d.setAttribute('aria-current', i===cur?'true':'false'); });
+    var it=items[cur]; cap.textContent='';
+    cap.appendChild(el('b',null,it.title)); cap.appendChild(el('span',null,it.issuer+' · '+fmt(it.ym)));
+  }
+  function go(i){ cur=(i+n)%n; layout(); }
+  document.getElementById('cf-prev').addEventListener('click',function(){ go(cur-1); });
+  document.getElementById('cf-next').addEventListener('click',function(){ go(cur+1); });
+  stage.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft'){ go(cur-1); e.preventDefault(); }
+    else if(e.key==='ArrowRight'){ go(cur+1); e.preventDefault(); }
+    else if((e.key==='Enter'||e.key===' ') && e.target===stage){ openLb(cur); e.preventDefault(); }
+  });
+  var x0=null;
+  stage.addEventListener('pointerdown',function(e){ x0=e.clientX; swiped=false; });
+  stage.addEventListener('pointerup',function(e){
+    if(x0===null) return; var dx=e.clientX-x0; x0=null;
+    if(Math.abs(dx)>40){ swiped=true; go(cur+(dx<0?1:-1)); setTimeout(function(){ swiped=false; },0); }
+  });
+
+  /* viewer */
+  var lb=document.getElementById('lb'), lbi=0;
+  var lbFrame=document.getElementById('lb-frame'), lbTitle=document.getElementById('lb-title'), lbIssuer=document.getElementById('lb-issuer'),
+      lbDate=document.getElementById('lb-date'), lbVerify=document.getElementById('lb-verify'), lbCount=document.getElementById('lb-count');
+  document.getElementById('lb-total').textContent=String(n).padStart(2,'0');
+  function fillLb(i){
+    lbi=(i+n)%n; var it=items[lbi];
+    lbFrame.textContent=''; lbFrame.appendChild(face(it,true));
+    lbTitle.textContent=it.title; lbIssuer.textContent=it.issuer; lbDate.textContent=fmt(it.ym);
+    lbCount.textContent=String(lbi+1).padStart(2,'0');
+    if(it.verify){ lbVerify.href=it.verify; lbVerify.hidden=false; } else { lbVerify.hidden=true; }
+  }
+  function openLb(i){
+    if(typeof lb.showModal!=='function'){ var it=items[i]; if(it.img||it.verify) window.open(it.img||it.verify,'_blank','noopener'); return; }
+    fillLb(i); lb.showModal();
+  }
+  lb.addEventListener('close',function(){ go(lbi); var c=cards[lbi]; if(c) c.focus({preventScroll:true}); });
+  document.getElementById('lb-close').addEventListener('click',function(){ lb.close(); });
+  document.getElementById('lb-prev').addEventListener('click',function(){ fillLb(lbi-1); });
+  document.getElementById('lb-next').addEventListener('click',function(){ fillLb(lbi+1); });
+  lb.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft'){ fillLb(lbi-1); e.preventDefault(); }
+    else if(e.key==='ArrowRight'){ fillLb(lbi+1); e.preventDefault(); }
+  });
+  lb.addEventListener('click',function(e){ if(e.target===lb) lb.close(); });
+
+  document.addEventListener('langchange',function(){
+    layout();
+    [].forEach.call(document.querySelectorAll('[data-cert-ym]'),function(d){ d.textContent=fmt(d.getAttribute('data-cert-ym')); });
+    if(lb.open) lbDate.textContent=fmt(items[lbi].ym);
+  });
+  layout();
 })();
 </script>
 </body>
