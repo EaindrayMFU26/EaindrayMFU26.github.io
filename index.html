@@ -314,6 +314,26 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .lbl{font-family:var(--f-mono); font-size:9.5px; fill:var(--ink-3); letter-spacing:.03em}
 .lbl-accent{fill:var(--accent-ink)}
 
+/* project video */
+.grid-2 .project-media{aspect-ratio:16/9; min-height:0}
+.project-video{display:block; padding:0; min-height:0; background:#0b0d0c}
+.vid{position:relative; display:block; width:100%; aspect-ratio:16/9; margin:0; padding:0; border:0; overflow:hidden; background:#0b0d0c; color:#fff; font:inherit; text-align:left; cursor:pointer}
+.vid img{display:block; width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.vid:hover img{transform:scale(1.04)}
+.vid-shade{position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,9,.8), rgba(8,10,9,.08) 55%, rgba(8,10,9,.18))}
+.vid-play{position:absolute; left:50%; top:45%; width:68px; height:68px; margin:-34px 0 0 -34px; border-radius:50%; display:grid; place-items:center; background:#fff; color:#0D7A63;
+  box-shadow:inset 0 -3px 0 rgba(0,0,0,.12), 0 4px 0 rgba(0,0,0,.2), 0 16px 32px -10px rgba(0,0,0,.65); transition:transform .35s cubic-bezier(.3,1.7,.5,1)}
+.vid-play svg{width:28px; height:28px; margin-left:4px}
+.vid-play::after{content:""; position:absolute; inset:-9px; border-radius:50%; border:2px solid rgba(255,255,255,.75); animation:vid-ring 2.4s ease-out infinite}
+@keyframes vid-ring{0%{opacity:.85; transform:scale(.85)} 100%{opacity:0; transform:scale(1.35)}}
+.vid:hover .vid-play, .vid:focus-visible .vid-play{transform:scale(1.1)}
+.vid-bar{position:absolute; left:16px; right:14px; bottom:12px; display:flex; align-items:center; justify-content:space-between; gap:10px; text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.vid-label{font-weight:600; font-size:.95rem}
+.vid-len{flex:none; font-family:var(--f-mono); font-size:.76rem; padding:3px 8px; border-radius:6px; background:rgba(0,0,0,.7); text-shadow:none}
+.lb-video .vd-frame{aspect-ratio:16/9; background:#000}
+.lb-video .vd-frame iframe{display:block; width:100%; height:100%; border:0}
+.lb-video .vd-foot{padding:12px 20px 16px; font-size:.92rem; font-weight:500}
+
 /* awards */
 .awards{display:grid; border-top:1px solid var(--line)}
 .award{display:grid; grid-template-columns:120px 56px minmax(0,1fr); gap:6px 18px; padding:22px 0; border-bottom:1px solid var(--line); align-items:start}
@@ -804,33 +824,13 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     </article>
 
     <article class="project">
-      <div class="project-media">
-        <svg viewBox="0 0 200 200" width="170" role="img" aria-label="Top view of the autonomous mobile robot with LiDAR, microcontroller board and inertial sensor">
-          <rect class="draw-fill" x="50" y="20" width="100" height="150" rx="24"/>
-          <rect class="draw-fill" x="30" y="70" width="18" height="52" rx="4"/>
-          <rect class="draw-fill" x="152" y="70" width="18" height="52" rx="4"/>
-          <circle class="draw" cx="100" cy="155" r="6"/>
-          <circle class="draw-fill" cx="100" cy="62" r="20"/>
-          <circle class="draw-accent" cx="100" cy="62" r="8"/>
-          <circle class="dot-accent" cx="100" cy="62" r="2.5"/>
-          <path class="draw-accent" d="M100 62 L150 30 M100 62 L160 62 M100 62 L146 94" stroke-dasharray="3 4"/>
-          <rect class="draw" x="68" y="100" width="40" height="26" rx="3"/>
-          <rect class="draw" x="120" y="106" width="16" height="16" rx="2"/>
-          <circle class="dot-accent" cx="128" cy="114" r="2.2"/>
-          <text class="lbl" x="100" y="194" text-anchor="middle">mobile robot · top</text>
-        </svg>
-        <svg viewBox="0 0 220 200" width="185" role="img" aria-label="Side view of the robotic arm with base, two links, joints and gripper">
-          <rect class="draw-fill" x="18" y="164" width="104" height="12" rx="3"/>
-          <rect class="draw-fill" x="56" y="124" width="28" height="40" rx="4"/>
-          <path class="link-out" d="M70 120 L128 72"/><path class="link-in" d="M70 120 L128 72"/>
-          <path class="link-out" d="M128 72 L182 94"/><path class="link-in" d="M128 72 L182 94"/>
-          <circle class="draw-fill" cx="70" cy="120" r="10"/>
-          <circle class="draw-fill" cx="128" cy="72" r="10"/>
-          <circle class="draw-fill" cx="182" cy="94" r="8"/>
-          <circle class="dot-accent" cx="70" cy="120" r="2.6"/><circle class="dot-accent" cx="128" cy="72" r="2.6"/><circle class="dot-accent" cx="182" cy="94" r="2.4"/>
-          <path class="draw" d="M189 88 L204 79 L213 85 M189 100 L204 109 L213 103"/>
-          <text class="lbl" x="110" y="194" text-anchor="middle">robotic arm · side</text>
-        </svg>
+      <div class="project-media project-video">
+        <button class="vid" type="button" data-yt="Yxf14bPctgU" data-title="Autonomous Mobile Robot" aria-label="Play video: Autonomous Mobile Robot" data-i18n-aria="proj.bot.play">
+          <img src="media/amr-video.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+          <span class="vid-shade" aria-hidden="true"></span>
+          <span class="vid-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+          <span class="vid-bar" aria-hidden="true"><span class="vid-label" data-i18n="proj.bot.watch">Watch the robot in action</span><span class="vid-len">4:19</span></span>
+        </button>
       </div>
       <div class="project-body">
         <span class="meta" data-i18n="proj.bot.meta">Solo builds from scratch</span>
@@ -844,6 +844,12 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       </div>
     </article>
   </div>
+
+  <dialog class="lb lb-video" id="vd" aria-labelledby="vd-title">
+    <div class="lb-top"><span><b id="vd-title">Autonomous Mobile Robot</b> · 4:19</span><button class="icon-btn" id="vd-close" type="button" aria-label="Close" data-i18n-aria="cert.close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="vd-frame" id="vd-frame"></div>
+    <p class="vd-foot"><a href="https://youtu.be/Yxf14bPctgU" target="_blank" rel="noopener"><span data-i18n="proj.bot.yt">Watch on YouTube</span> ↗</a></p>
+  </dialog>
 </section>
 
 <section id="awards" aria-labelledby="aw-title">
@@ -1325,6 +1331,29 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   d.addEventListener('keydown', function(e){ if(list.length>1 && (e.key==='ArrowLeft'||e.key==='ArrowRight')){ show(i+(e.key==='ArrowRight'?1:-1)); e.preventDefault(); } });
   document.getElementById('ph-close').addEventListener('click', function(){ d.close(); });
   d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+})();
+</script>
+<script>
+/* Project video: YouTube privacy-enhanced player, loaded only on click */
+(function(){
+  var d=document.getElementById('vd'), frame=document.getElementById('vd-frame');
+  [].forEach.call(document.querySelectorAll('.vid[data-yt]'), function(b){
+    b.addEventListener('click', function(){
+      var id=b.getAttribute('data-yt');
+      if(!d || typeof d.showModal!=='function'){ window.open('https://youtu.be/'+id, '_blank', 'noopener'); return; }
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1';
+      f.title=b.getAttribute('data-title')||'Video';
+      f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen=true;
+      f.referrerPolicy='strict-origin-when-cross-origin';
+      frame.textContent=''; frame.appendChild(f); d.showModal();
+    });
+  });
+  if(d){
+    d.addEventListener('close', function(){ frame.textContent=''; });
+    document.getElementById('vd-close').addEventListener('click', function(){ d.close(); });
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  }
 })();
 </script>
 </body>
