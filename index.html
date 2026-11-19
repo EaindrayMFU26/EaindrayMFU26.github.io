@@ -357,11 +357,38 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
   .lb-hint{display:none}
 }
 
-/* skills */
-.skills{display:grid; border-top:1px solid var(--line)}
-.skill{display:grid; grid-template-columns:220px minmax(0,1fr); gap:10px 32px; padding:18px 0; border-bottom:1px solid var(--line); align-items:start}
-@media (max-width:700px){ .skill{grid-template-columns:1fr} }
-.skill h3{font-size:1rem; padding-top:3px}
+/* skills: candy jars */
+.jars{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.jar{--hi:rgba(255,255,255,.6); position:relative; display:grid; gap:18px; align-content:start; padding:22px; border-radius:24px; min-width:0;
+  background:color-mix(in srgb, var(--c) 6%, var(--surface)); border:1px solid color-mix(in srgb, var(--c) 18%, var(--line))}
+@media (max-width:640px){ .jars{grid-template-columns:1fr; gap:14px} .jar{padding:18px; border-radius:20px} }
+.jar-head{display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:14px; align-items:center}
+.jar-head h3{font-size:1.08rem}
+.jar-head p{font-size:.86rem; color:var(--ink-2); margin-top:2px}
+.swirl{width:40px; height:40px; border-radius:50%; flex:none; border:3px solid var(--surface);
+  background:repeating-conic-gradient(from 8deg, var(--c) 0 22.5deg, color-mix(in srgb, var(--c) 30%, #fff) 22.5deg 45deg);
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent), 0 4px 10px -4px color-mix(in srgb, var(--c) 70%, transparent);
+  transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+.jar:hover .swirl{transform:rotate(180deg)}
+.jar-count{min-width:30px; height:26px; padding:0 9px; border-radius:999px; display:grid; place-items:center; font-family:var(--f-mono); font-size:.76rem; font-weight:500;
+  color:color-mix(in srgb, var(--c) 60%, var(--ink)); background:color-mix(in srgb, var(--c) 14%, var(--surface))}
+.candies{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:9px 8px}
+.candy{--bg:color-mix(in srgb, var(--c) 13%, var(--surface)); --bd:color-mix(in srgb, var(--c) 34%, var(--surface)); --fg:color-mix(in srgb, var(--c) 55%, var(--ink));
+  display:inline-flex; align-items:center; gap:8px; padding:4px 13px 4px 4px; border-radius:999px; background:var(--bg); border:1px solid var(--bd); color:var(--fg);
+  font-size:.88rem; font-weight:500; line-height:1.25; white-space:nowrap; cursor:default;
+  box-shadow:inset 0 1px 0 var(--hi), 0 2px 0 var(--bd);
+  transition:transform .3s cubic-bezier(.3,1.7,.5,1), box-shadow .3s}
+.candy:hover{transform:translateY(-3px) rotate(-2deg); box-shadow:inset 0 1px 0 var(--hi), 0 5px 0 var(--bd)}
+.candy:nth-child(even):hover{transform:translateY(-3px) rotate(2deg)}
+.cap{width:26px; height:26px; border-radius:50%; background:#fff; display:grid; place-items:center; flex:none;
+  box-shadow:0 1px 2px rgba(0,0,0,.14), inset 0 0 0 1px color-mix(in srgb, var(--c) 20%, #fff)}
+.cap img{width:16px; height:16px; display:block}
+.cap i{width:10px; height:10px; border-radius:50%; background:var(--c); box-shadow:inset -1.5px -1.5px 0 rgba(0,0,0,.16), inset 1.5px 1.5px 0 rgba(255,255,255,.5)}
+.candy b{margin-left:2px; padding:2px 8px; border-radius:999px; font-family:var(--f-mono); font-size:.72rem; font-weight:500;
+  background:color-mix(in srgb, var(--c) 26%, var(--surface)); color:color-mix(in srgb, var(--c) 45%, var(--ink))}
+@media (max-width:640px){ .candy{white-space:normal} }
+:root[data-theme="dark"] .jar{--hi:rgba(255,255,255,.07)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .jar{--hi:rgba(255,255,255,.07)} }
 
 /* community */
 .grid-3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px}
@@ -806,15 +833,111 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
 <section id="skills" aria-labelledby="sk-title">
   <div class="sec-head">
     <span class="eyebrow" data-i18n="sk.eyebrow">Skills</span>
-    <h2 id="sk-title" data-i18n="sk.title">Tools I have used in real work</h2>
+    <h2 id="sk-title" data-i18n="sk.title">Tools I have used in <em>real work</em></h2>
+    <p data-i18n="sk.sub">Grouped by area, from my jobs, projects and certificates.</p>
   </div>
-  <div class="skills">
-    <div class="skill"><h3 data-i18n="sk.1">AI and machine learning</h3><div class="chips"><span class="chip">Generative AI</span><span class="chip">LLMs</span><span class="chip">RAG</span><span class="chip">AI agents</span><span class="chip">LLM evaluation</span><span class="chip">Quantisation</span><span class="chip">NLP</span><span class="chip">SVM</span><span class="chip">Precision · recall · specificity</span></div></div>
-    <div class="skill"><h3 data-i18n="sk.2">MLOps and AI operations</h3><div class="chips"><span class="chip">Ollama</span><span class="chip">Model serving</span><span class="chip">Docker Compose</span><span class="chip">GitHub Actions (CI/CD)</span><span class="chip">Monitoring</span><span class="chip">Load testing</span></div></div>
-    <div class="skill"><h3 data-i18n="sk.3">Data and ML tools</h3><div class="chips"><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">SciPy</span><span class="chip">scikit-learn</span><span class="chip">TensorFlow</span><span class="chip">Jupyter</span><span class="chip">SQL</span><span class="chip">Data pipelines</span></div></div>
-    <div class="skill"><h3 data-i18n="sk.4">Programming</h3><div class="chips"><span class="chip">Python</span><span class="chip">TypeScript (Next.js)</span><span class="chip">C++</span><span class="chip">C</span><span class="chip">C# (.NET)</span><span class="chip">Java</span><span class="chip">SQL</span><span class="chip">APIs</span><span class="chip">Git</span><span class="chip">Linux</span><span class="chip">Agile</span></div></div>
-    <div class="skill"><h3 data-i18n="sk.5">Robotics and embedded</h3><div class="chips"><span class="chip">ROS 2</span><span class="chip">STM32 (ARM Cortex-M)</span><span class="chip">LiDAR</span><span class="chip">EKF</span><span class="chip">SLAM</span></div></div>
-    <div class="skill"><h3 data-i18n="sk.6">Languages</h3><div class="chips"><span class="chip" data-i18n="sk.en">English (TOEIC 885)</span><span class="chip" data-i18n="sk.de">German (A2)</span><span class="chip" data-i18n="sk.zh">Chinese (limited working proficiency)</span></div></div>
+  <div class="jars">
+    <article class="jar wide" style="--c:#7C5CFA">
+      <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
+        <div><h3 data-i18n="sk.1">AI and machine learning</h3><p data-i18n="sk.1d">Building and evaluating LLM applications</p></div>
+        <span class="jar-count">9</span>
+      </header>
+      <ul class="candies">
+        <li class="candy"><span class="cap"><i></i></span>Generative AI</li>
+        <li class="candy"><span class="cap"><i></i></span>LLMs</li>
+        <li class="candy"><span class="cap"><i></i></span>RAG</li>
+        <li class="candy"><span class="cap"><i></i></span>AI agents</li>
+        <li class="candy"><span class="cap"><i></i></span>LLM evaluation</li>
+        <li class="candy"><span class="cap"><i></i></span>Quantisation</li>
+        <li class="candy"><span class="cap"><i></i></span>NLP</li>
+        <li class="candy"><span class="cap"><i></i></span>SVM</li>
+        <li class="candy"><span class="cap"><i></i></span>Precision · recall · specificity</li>
+      </ul>
+    </article>
+
+    <article class="jar" style="--c:#12A483">
+      <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
+        <div><h3 data-i18n="sk.2">MLOps and AI operations</h3><p data-i18n="sk.2d">Serving models and keeping them healthy</p></div>
+        <span class="jar-count">6</span>
+      </header>
+      <ul class="candies">
+        <li class="candy"><span class="cap"><img src="icons/ollama.svg" alt="" width="16" height="16"></span>Ollama</li>
+        <li class="candy"><span class="cap"><img src="icons/docker.svg" alt="" width="16" height="16"></span>Docker Compose</li>
+        <li class="candy"><span class="cap"><img src="icons/githubactions.svg" alt="" width="16" height="16"></span>GitHub Actions</li>
+        <li class="candy"><span class="cap"><i></i></span>Model serving</li>
+        <li class="candy"><span class="cap"><i></i></span>Monitoring</li>
+        <li class="candy"><span class="cap"><i></i></span>Load testing</li>
+      </ul>
+    </article>
+
+    <article class="jar" style="--c:#F07B1E">
+      <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
+        <div><h3 data-i18n="sk.3">Data and ML tools</h3><p data-i18n="sk.3d">Cleaning data and training models</p></div>
+        <span class="jar-count">8</span>
+      </header>
+      <ul class="candies">
+        <li class="candy"><span class="cap"><img src="icons/tensorflow.svg" alt="" width="16" height="16"></span>TensorFlow</li>
+        <li class="candy"><span class="cap"><img src="icons/scikitlearn.svg" alt="" width="16" height="16"></span>scikit-learn</li>
+        <li class="candy"><span class="cap"><img src="icons/pandas.svg" alt="" width="16" height="16"></span>Pandas</li>
+        <li class="candy"><span class="cap"><img src="icons/numpy.svg" alt="" width="16" height="16"></span>NumPy</li>
+        <li class="candy"><span class="cap"><img src="icons/scipy.svg" alt="" width="16" height="16"></span>SciPy</li>
+        <li class="candy"><span class="cap"><img src="icons/jupyter.svg" alt="" width="16" height="16"></span>Jupyter</li>
+        <li class="candy"><span class="cap"><i></i></span>SQL</li>
+        <li class="candy"><span class="cap"><i></i></span>Data pipelines</li>
+      </ul>
+    </article>
+
+    <article class="jar wide" style="--c:#2E7BF0">
+      <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
+        <div><h3 data-i18n="sk.4">Programming</h3><p data-i18n="sk.4d">Languages and tools I write software with</p></div>
+        <span class="jar-count">11</span>
+      </header>
+      <ul class="candies">
+        <li class="candy"><span class="cap"><img src="icons/python.svg" alt="" width="16" height="16"></span>Python</li>
+        <li class="candy"><span class="cap"><img src="icons/typescript.svg" alt="" width="16" height="16"></span>TypeScript</li>
+        <li class="candy"><span class="cap"><img src="icons/nextjs.svg" alt="" width="16" height="16"></span>Next.js</li>
+        <li class="candy"><span class="cap"><img src="icons/cplusplus.svg" alt="" width="16" height="16"></span>C++</li>
+        <li class="candy"><span class="cap"><img src="icons/c.svg" alt="" width="16" height="16"></span>C</li>
+        <li class="candy"><span class="cap"><img src="icons/csharp.svg" alt="" width="16" height="16"></span>C# (.NET)</li>
+        <li class="candy"><span class="cap"><img src="icons/java.svg" alt="" width="16" height="16"></span>Java</li>
+        <li class="candy"><span class="cap"><img src="icons/git.svg" alt="" width="16" height="16"></span>Git</li>
+        <li class="candy"><span class="cap"><img src="icons/linux.svg" alt="" width="16" height="16"></span>Linux</li>
+        <li class="candy"><span class="cap"><i></i></span>APIs</li>
+        <li class="candy"><span class="cap"><i></i></span>Agile</li>
+      </ul>
+    </article>
+
+    <article class="jar wide" style="--c:#D99A00">
+      <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
+        <div><h3 data-i18n="sk.5">Robotics and embedded</h3><p data-i18n="sk.5d">From microcontrollers to mapping</p></div>
+        <span class="jar-count">5</span>
+      </header>
+      <ul class="candies">
+        <li class="candy"><span class="cap"><img src="icons/ros.svg" alt="" width="16" height="16"></span>ROS 2</li>
+        <li class="candy"><span class="cap"><img src="icons/stmicroelectronics.svg" alt="" width="16" height="16"></span>STM32 (ARM Cortex-M)</li>
+        <li class="candy"><span class="cap"><i></i></span>LiDAR</li>
+        <li class="candy"><span class="cap"><i></i></span>EKF</li>
+        <li class="candy"><span class="cap"><i></i></span>SLAM</li>
+      </ul>
+    </article>
+
+    <article class="jar" style="--c:#E84D93">
+      <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
+        <div><h3 data-i18n="sk.6">Languages</h3><p data-i18n="sk.6d">Languages I work in</p></div>
+        <span class="jar-count">3</span>
+      </header>
+      <ul class="candies">
+        <li class="candy"><span class="cap"><i></i></span><span data-i18n="sk.l.en">English</span><b>TOEIC 885</b></li>
+        <li class="candy"><span class="cap"><i></i></span><span data-i18n="sk.l.de">German</span><b>A2</b></li>
+        <li class="candy"><span class="cap"><i></i></span><span data-i18n="sk.l.zh">Chinese</span><b data-i18n="sk.l.zhlvl">limited working</b></li>
+      </ul>
+    </article>
   </div>
 </section>
 
