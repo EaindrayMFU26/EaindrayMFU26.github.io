@@ -117,9 +117,9 @@ window.I18N = (function(){
     'proj.bot.watch':'ชมการทำงานของหุ่นยนต์',
     'proj.bot.yt':'ดูบน YouTube',
     'proj.bot.meta':'สร้างเองทั้งหมดตั้งแต่เริ่มต้น',
-    'proj.bot.t':'หุ่นยนต์เคลื่อนที่อัตโนมัติและแขนกล',
-    'proj.bot.a':'ออกแบบและสร้างหุ่นยนต์สองตัวด้วยตัวเอง โดยใช้ชิ้นส่วนราคาประหยัดแต่ได้มาตรฐานอุตสาหกรรม ตั้งแต่กลไก อิเล็กทรอนิกส์ ไปจนถึงซอฟต์แวร์',
-    'proj.bot.b':'หุ่นยนต์เคลื่อนที่ที่รับรู้สภาพแวดล้อมด้วย LiDAR และเซนเซอร์วัดความเฉื่อย และแขนกลที่มีข้อต่อ มือจับ และซอฟต์แวร์ควบคุมของตัวเอง',
+    'proj.bot.t':'หุ่นยนต์เคลื่อนที่อัตโนมัติ',
+    'proj.bot.a':'ออกแบบและสร้างด้วยตัวเอง โดยใช้ชิ้นส่วนราคาประหยัดแต่ได้มาตรฐานอุตสาหกรรม ตั้งแต่กลไก อิเล็กทรอนิกส์ ไปจนถึงซอฟต์แวร์',
+    'proj.bot.b':'รับรู้สภาพแวดล้อมด้วย LiDAR และเซนเซอร์วัดความเฉื่อย สร้างแผนที่และนำทางด้วย ROS 2 (SLAM, EKF)',
     'aw.eyebrow':'รางวัลและความสำเร็จ',
     'aw.title':'รางวัลการแข่งขัน รางวัลสตาร์ทอัพ และ<em>ปีที่ได้เกรดเต็ม</em>',
     'aw.view':'ดูรูปภาพ',
@@ -192,7 +192,13 @@ window.I18N = (function(){
     'ct.copied':'คัดลอกแล้ว',
     'ct.email':'ส่งอีเมล',
     'ct.cv':'CV (PDF)',
-    'ft.copy':'© 2026 Eaindray · เชียงราย ประเทศไทย'
+    'ft.copy':'© 2026 Eaindray · เชียงราย ประเทศไทย',
+    'proj.arm.view':'ดูรูปภาพ',
+    'proj.arm.wip':'กำลังพัฒนา',
+    'proj.arm.meta':'สร้างเอง · แอคชูเอเตอร์ OpenQDD',
+    'proj.arm.t':'แขนกล 6 แกน (6-DOF)',
+    'proj.arm.a':'แขนกลหกแกนจากการพิมพ์ 3 มิติ ขับเคลื่อนด้วยแอคชูเอเตอร์แบบ quasi-direct-drive ของ OpenQDD ขณะนี้สร้างข้อต่อฐานเสร็จแล้ว 3 ข้อ',
+    'proj.arm.b':'แต่ละข้อต่อใช้มอเตอร์บัสเลส Eaglepower 8308 (KV90 สองตัว และ KV160 หนึ่งตัว) คู่กับตัวควบคุม MKS XDrive Mini (ODrive 3.6 พร้อมเอนโค้ดเดอร์ AS5047P) สื่อสารผ่าน CAN ด้วย MKS CANable Pro'
   };
 
   /* ───────────── 简体中文 ───────────── */
@@ -245,9 +251,9 @@ window.I18N = (function(){
     'proj.ecg.a':'构建心电图数据处理流程：信号滤波、Pan–Tompkins R 波检测，以及 RR 和 QRS 特征',
     'proj.ecg.b':'训练 SVM 标记心律失常心搏，在包含 117 个心搏的小型数据集上按 70/30 分层划分进行评估',
     'proj.bot.meta':'从零开始独立打造',
-    'proj.bot.t':'自主移动机器人与机械臂',
-    'proj.bot.a':'独自设计并制作了两台机器人，选用价格亲民但达到工业级的元件，从机械、电子到软件全部亲手完成',
-    'proj.bot.b':'一台通过激光雷达（LiDAR）和惯性传感器感知环境的移动机器人，以及一只拥有自己的关节、夹爪和控制软件的机械臂',
+    'proj.bot.t':'自主移动机器人',
+    'proj.bot.a':'独自设计并制作，选用价格亲民但达到工业级的元件，从机械、电子到软件全部亲手完成',
+    'proj.bot.b':'通过激光雷达（LiDAR）和惯性传感器感知环境，并用 ROS 2 进行建图与导航（SLAM、EKF）',
     'aw.eyebrow':'奖项与荣誉','aw.title':'竞赛名次、创业奖项，以及<em>满分的一年</em>',
     'aw.1t':'Fast Track 奖 · TED Venture Catalyst 2026（北部赛区）',
     'aw.1d':'凭借 CareMind 在 23 支队伍中获奖，进入泰国 TED Fund IDEA 创业资助的决赛轮。',
@@ -285,7 +291,13 @@ window.I18N = (function(){
     'aw.p0':'Fast Track 奖',
     'proj.bot.play':'播放视频：自主移动机器人','proj.bot.watch':'观看机器人实际运行','proj.bot.yt':'在 YouTube 上观看',
     'cm.cert':'查看证书',
-    'ft.copy':'© 2026 Eaindray · 泰国清莱'
+    'ft.copy':'© 2026 Eaindray · 泰国清莱',
+    'proj.arm.view':'查看照片',
+    'proj.arm.wip':'开发中',
+    'proj.arm.meta':'独立制作 · OpenQDD 执行器',
+    'proj.arm.t':'6 自由度机械臂',
+    'proj.arm.a':'3D 打印的六轴机械臂，由 OpenQDD 准直驱执行器驱动；目前已完成底部三个关节',
+    'proj.arm.b':'每个关节由 Eaglepower 8308 无刷电机（两个 KV90、一个 KV160）搭配 MKS XDrive Mini 控制器（基于 ODrive 3.6，板载 AS5047P 编码器），通过 MKS CANable Pro 以 CAN 总线通信'
   };
 
   /* ───────────── 台語（漢字，教育部推薦用字） ───────────── */
@@ -338,9 +350,9 @@ window.I18N = (function(){
     'proj.ecg.a':'做心電圖資料處理的流程：訊號過濾、Pan–Tompkins R 波偵測，閣有 RR 佮 QRS 特徵',
     'proj.ecg.b':'訓練 SVM 共心律不整的心跳揣出來，用 117 个心跳的細資料集、70/30 分層切分來評估',
     'proj.bot.meta':'對零開始家己做',
-    'proj.bot.t':'自主移動機器人佮機械手臂',
-    'proj.bot.a':'家己一个人設計閣做出兩台機器人，用俗閣有工業等級的零件，對機構、電子到軟體攏家己來',
-    'proj.bot.b':'一台用光達（LiDAR）佮慣性感測器感知四箍圍的移動機器人，閣有一支有家己的關節、夾爪佮控制軟體的機械手臂',
+    'proj.bot.t':'自主移動機器人',
+    'proj.bot.a':'家己設計閣做出來，用俗閣有工業等級的零件，對機構、電子到軟體攏家己來',
+    'proj.bot.b':'用光達（LiDAR）佮慣性感測器感知四箍圍，閣用 ROS 2 建地圖佮導航（SLAM、EKF）',
     'aw.eyebrow':'獎項佮肯定','aw.title':'比賽名次、創業獎，閣有<em>滿分的一年</em>',
     'aw.1t':'Fast Track 獎 · TED Venture Catalyst 2026（北部區域）',
     'aw.1d':'靠 CareMind 佇 23 隊內底得獎，提著泰國 TED Fund IDEA 創業補助決賽的資格。',
@@ -378,7 +390,13 @@ window.I18N = (function(){
     'aw.p0':'Fast Track 獎',
     'proj.bot.play':'播影片：自主移動機器人','proj.bot.watch':'看機器人實際咧行','proj.bot.yt':'去 YouTube 看',
     'cm.cert':'看證書',
-    'ft.copy':'© 2026 Eaindray · 泰國清萊'
+    'ft.copy':'© 2026 Eaindray · 泰國清萊',
+    'proj.arm.view':'看相片',
+    'proj.arm.wip':'猶咧做',
+    'proj.arm.meta':'家己做 · OpenQDD 致動器',
+    'proj.arm.t':'6 自由度機械手臂',
+    'proj.arm.a':'3D 印出來的六軸機械手臂，用 OpenQDD 準直驅致動器來驅動；這馬已經做好下底三个關節',
+    'proj.arm.b':'逐个關節用 Eaglepower 8308 無刷馬達（兩粒 KV90、一粒 KV160）配 MKS XDrive Mini 控制器（ODrive 3.6，有 AS5047P 編碼器），透過 MKS CANable Pro 用 CAN 匯流排通訊'
   };
 
   /* ───────────── Deutsch ───────────── */
@@ -431,9 +449,9 @@ window.I18N = (function(){
     'proj.ecg.a':'EKG-Datenpipeline gebaut: Signalfilterung, R-Zacken-Erkennung nach Pan–Tompkins sowie RR- und QRS-Merkmale',
     'proj.ecg.b':'SVM trainiert, die Arrhythmie-Schläge markiert; evaluiert auf einem kleinen Datensatz mit 117 Schlägen und stratifiziertem 70/30-Split',
     'proj.bot.meta':'Eigenbauten von Grund auf',
-    'proj.bot.t':'Autonomer mobiler Roboter und Roboterarm',
-    'proj.bot.a':'Zwei Roboter allein entworfen und gebaut, mit günstigen und dennoch industrietauglichen Komponenten – von Mechanik und Elektronik bis zur Software',
-    'proj.bot.b':'Ein mobiler Roboter, der seine Umgebung per LiDAR und Inertialsensor erfasst, und ein Roboterarm mit eigenen Gelenken, Greifer und Steuerungssoftware',
+    'proj.bot.t':'Autonomer mobiler Roboter',
+    'proj.bot.a':'Allein entworfen und gebaut, mit günstigen und dennoch industrietauglichen Komponenten – von Mechanik und Elektronik bis zur Software',
+    'proj.bot.b':'Erfasst die Umgebung per LiDAR und Inertialsensor und kartiert und navigiert mit ROS 2 (SLAM, EKF)',
     'aw.eyebrow':'Auszeichnungen','aw.title':'Preise, ein Start-up-Award und ein <em>perfektes Jahr</em>',
     'aw.1t':'Fast Track Award · TED Venture Catalyst 2026 (Region Nord)',
     'aw.1d':'Mit CareMind unter 23 Teams ausgezeichnet und damit für die Finalrunde des IDEA-Start-up-Zuschusses des TED Fund, Thailand, qualifiziert.',
@@ -471,7 +489,13 @@ window.I18N = (function(){
     'aw.p0':'Fast Track Award',
     'proj.bot.play':'Video abspielen: Autonomer mobiler Roboter','proj.bot.watch':'Den Roboter in Aktion sehen','proj.bot.yt':'Auf YouTube ansehen',
     'cm.cert':'Zertifikat ansehen',
-    'ft.copy':'© 2026 Eaindray · Chiang Rai, Thailand'
+    'ft.copy':'© 2026 Eaindray · Chiang Rai, Thailand',
+    'proj.arm.view':'Fotos ansehen',
+    'proj.arm.wip':'In Arbeit',
+    'proj.arm.meta':'Eigenbau · OpenQDD-Aktuatoren',
+    'proj.arm.t':'6-DOF-Roboterarm',
+    'proj.arm.a':'3D-gedruckter Sechsachs-Arm mit Quasi-Direct-Drive-Aktuatoren nach OpenQDD; die drei Basisgelenke sind bereits gebaut',
+    'proj.arm.b':'Jedes Gelenk kombiniert einen bürstenlosen Eaglepower-8308-Motor (zweimal KV90, einmal KV160) mit einem MKS-XDrive-Mini-Controller (ODrive 3.6, AS5047P-Encoder); kommuniziert wird per CAN über ein MKS CANable Pro'
   };
 
   /* ───────────── engine ───────────── */

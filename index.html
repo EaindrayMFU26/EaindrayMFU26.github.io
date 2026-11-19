@@ -873,13 +873,33 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       </div>
       <div class="project-body">
         <span class="meta" data-i18n="proj.bot.meta">Solo builds from scratch</span>
-        <h3 data-i18n="proj.bot.t">Autonomous Mobile Robot and Robotic Arm</h3>
+        <h3 data-i18n="proj.bot.t">Autonomous Mobile Robot</h3>
         <ul class="bullets">
-          <li data-i18n="proj.bot.a">Designed and built two robots on my own with affordable yet industrial-grade components, from the mechanics and electronics to the software</li>
-          <li data-i18n="proj.bot.b">A mobile robot that senses with LiDAR and an inertial sensor, and a robotic arm with its own joints, gripper and control software</li>
+          <li data-i18n="proj.bot.a">Designed and built on my own with affordable yet industrial-grade components, from the mechanics and electronics to the software</li>
+          <li data-i18n="proj.bot.b">Senses with LiDAR and an inertial sensor, and builds maps and navigates with ROS 2 (SLAM, EKF)</li>
         </ul>
         <div class="chips"><span class="chip">C++</span><span class="chip">ROS 2</span><span class="chip">Python</span><span class="chip">STM32</span><span class="chip">LiDAR</span><span class="chip">EKF</span><span class="chip">SLAM</span></div>
         <a class="plink" href="https://github.com/EaindrayMFU26" target="_blank" rel="noopener">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media project-video">
+        <button class="vid gal-btn" type="button" data-photos="media/arm6-full.jpg|media/arm6-actuator.jpg" data-alts="The 3D-printed 6-DOF robotic arm on its stand, with an MKS XDrive Mini controller mounted on a joint|Close-up of an OpenQDD actuator during assembly, showing the printed ring gear, bearings and brass inserts" data-title="6-DOF Robotic Arm" aria-label="View photos" data-i18n-aria="proj.arm.view">
+          <img src="media/arm6-full.jpg" alt="" width="1200" height="1200" loading="lazy" decoding="async" style="object-position:50% 38%">
+          <span class="vid-shade" aria-hidden="true"></span>
+          <span class="moment-rank" style="--c:#E0A800"><i aria-hidden="true"></i><span data-i18n="proj.arm.wip">In progress</span></span>
+          <span class="moment-count" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M17 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/></svg>2</span>
+        </button>
+      </div>
+      <div class="project-body">
+        <span class="meta" data-i18n="proj.arm.meta">Solo build · OpenQDD actuators</span>
+        <h3 data-i18n="proj.arm.t">6-DOF Robotic Arm</h3>
+        <ul class="bullets">
+          <li data-i18n="proj.arm.a">A 3D-printed six-axis arm driven by OpenQDD quasi-direct-drive actuators; the three base joints are built so far</li>
+          <li data-i18n="proj.arm.b">Each joint pairs an Eaglepower 8308 brushless motor (two KV90, one KV160) with an MKS XDrive Mini controller (ODrive 3.6, AS5047P encoder), talking over CAN through an MKS CANable Pro</li>
+        </ul>
+        <div class="chips"><span class="chip">OpenQDD</span><span class="chip">ODrive</span><span class="chip">CAN bus</span><span class="chip">BLDC motors</span><span class="chip">3D printing</span></div>
       </div>
     </article>
   </div>
@@ -1232,7 +1252,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   });
 })();
 </script>
-<script src="i18n.js?v=202611192313"></script>
+<script src="i18n.js?v=1795107158"></script>
 <script>
 /* Certificate coverflow + viewer */
 (function(){
@@ -1359,7 +1379,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   var list=[], i=0, caption='';
   function show(k){
     i=(k+list.length)%list.length; img.src=list[i].src; img.alt=list[i].alt;
-    meta.textContent=(list.length>1 ? (i+1)+' / '+list.length+' · ' : '')+caption;
+    meta.textContent=(list.length>1 ? (i+1)+' / '+list.length+(caption?' · ':'') : '')+caption;
   }
   [].forEach.call(document.querySelectorAll('.moment-img'), function(b){
     b.addEventListener('click', function(){
@@ -1370,6 +1390,16 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       rank.textContent=b.querySelector('.moment-rank').textContent.trim();
       caption=fig.querySelector('figcaption > span').textContent;
       prev.hidden=next.hidden=list.length<2;
+      show(0); d.showModal();
+    });
+  });
+  [].forEach.call(document.querySelectorAll('.gal-btn'), function(b){
+    b.addEventListener('click', function(){
+      var srcs=b.getAttribute('data-photos').split('|'), alts=(b.getAttribute('data-alts')||'').split('|');
+      list=srcs.map(function(s,k){ return { src:s, alt:alts[k]||'' }; });
+      title.textContent=b.closest('.project').querySelector('h3').textContent;
+      rank.textContent=b.querySelector('.moment-rank').textContent.trim();
+      caption=''; prev.hidden=next.hidden=list.length<2;
       show(0); d.showModal();
     });
   });
