@@ -381,7 +381,7 @@ p{margin:0}
   var KEY = 'ea-admin-key', RANGE = 'ea-admin-range', NOTRACK = 'ea-notrack';
   var RANGES = { today: 'yesterday', '7d': 'the 7 days before', '30d': 'the 30 days before', '90d': 'the 90 days before', '12m': 'the year before' };
   var LANG_NAMES = { en: 'English', th: 'ไทย · Thai', 'zh-Hans': '简体中文 · Chinese', nan: '台語 · Hokkien', de: 'Deutsch · German' };
-  var SECTIONS = ['Featured work', 'Experience', 'Projects', 'Awards', 'Certificates', 'Skills', 'Beyond the code', 'Contact'];
+  var SECTIONS = ['CareMind card', 'Experience', 'Projects', 'Awards', 'Certificates', 'Skills', 'Beyond the code', 'Contact'];
   var EVENTS = {
     cv: 'Opened the CV', email: 'Clicked "Email me"', copy: 'Copied the email address', linkedin: 'Opened LinkedIn',
     github: 'Opened GitHub', video: 'Played the robot video', cert: 'Opened a certificate', photo: 'Opened a photo',
@@ -759,7 +759,7 @@ p{margin:0}
   function depth(d){
     var dp = d.depth || {}, n = num(dp.n);
     if (!n) { bars($('depth'), []); return; }
-    var items = [{ name: 'Top of the page', value: n }].concat(SECTIONS.map(function(s, i){ return { name: s, value: num(dp['s' + i]) }; }));
+    var items = [{ name: 'Top of the page', value: n }].concat([1, 2, 0, 3, 4, 5, 6, 7].map(function(i){ return { name: SECTIONS[i], value: num(dp['s' + i]) }; }));
     bars($('depth'), items.map(function(it){ return { name: esc(it.name), value: it.value, note: '<span>' + pct(it.value, n) + '%</span>' }; }), { limit: 9 });
   }
 
