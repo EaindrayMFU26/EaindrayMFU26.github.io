@@ -926,7 +926,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   </div>
   <div class="moments">
     <figure class="moment" style="--c:#7C5CFA" data-more="awards/caremind-team-2026.jpg" data-more-alt="The CareMind team in matching CareMind T-shirts in the Software Engineering Lab at Mae Fah Luang University">
-      <button class="moment-img" type="button" aria-label="View photo" data-i18n-aria="aw.view">
+      <button class="moment-img" type="button" data-title="Fast Track Award, TED Venture Catalyst 2026" aria-label="View photo" data-i18n-aria="aw.view">
         <img src="awards/ted-venture-catalyst-2026.webp" alt="Members of the CareMind team receiving the Fast Track award board with a 5,000 baht prize on stage at TED Venture Catalyst 2026, Northern Region" width="1477" height="1108" loading="lazy" decoding="async" style="object-position:50% 58%">
         <span class="moment-rank"><i aria-hidden="true"></i><span data-i18n="aw.p0">Fast Track Award</span></span>
         <span class="moment-count" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M17 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/></svg>2</span>
@@ -935,7 +935,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       <figcaption><strong>TED Venture Catalyst 2026 · Northern Region</strong><span><time data-ym="2026-09">Sep 2026</time> · ฿5,000 · CareMind · TED Fund</span></figcaption>
     </figure>
     <figure class="moment" style="--c:#E0A800">
-      <button class="moment-img" type="button" aria-label="View photo" data-i18n-aria="aw.view">
+      <button class="moment-img" type="button" data-title="1st Prize, MFU SE Hackathon 2025" aria-label="View photo" data-i18n-aria="aw.view">
         <img src="awards/mfu-se-hackathon-2025.webp" alt="Prize-winning team on stage at the MFU Software Engineering Hackathon 2025, holding the 5,000 baht prize board" width="1280" height="748" loading="lazy" decoding="async" style="object-position:50% 45%">
         <span class="moment-rank"><i aria-hidden="true"></i><span data-i18n="aw.p1">1st Prize</span></span>
         <span class="moment-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
@@ -943,7 +943,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       <figcaption><strong>MFU Software Engineering Hackathon 2025</strong><span><time data-ym="2025-08">Aug 2025</time> · ฿5,000 · LINE Developer Thailand</span></figcaption>
     </figure>
     <figure class="moment" style="--c:#C8742E">
-      <button class="moment-img" type="button" aria-label="View photo" data-i18n-aria="aw.view">
+      <button class="moment-img" type="button" data-title="3rd Prize, ADT MediHack 2026" aria-label="View photo" data-i18n-aria="aw.view">
         <img src="awards/adt-medihack-2026.webp" alt="Team receiving the 2nd runner-up award, 1,500 baht, at ADT MediHack 2026 in front of the School of Applied Digital Technology sign" width="2000" height="1125" loading="lazy" decoding="async" style="object-position:50% 60%">
         <span class="moment-rank"><i aria-hidden="true"></i><span data-i18n="aw.p3">3rd Prize</span></span>
         <span class="moment-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
@@ -951,7 +951,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       <figcaption><strong>ADT MediHack 2026</strong><span><time data-ym="2026-02">Feb 2026</time> · ฿1,500 · MFU Medical Center Hospital</span></figcaption>
     </figure>
     <figure class="moment" style="--c:#12A483">
-      <button class="moment-img" type="button" aria-label="View photo" data-i18n-aria="aw.view">
+      <button class="moment-img" type="button" data-title="Academic Distinction, Wai Khru 2025" aria-label="View photo" data-i18n-aria="aw.view">
         <img src="awards/mfu-wai-khru-2025.jpg" alt="Receiving a certificate on stage at Mae Fah Luang University's Teacher Appreciation Ceremony (Wai Khru), 7 August 2025" width="1600" height="1066" loading="lazy" decoding="async" style="object-position:45% 50%">
         <span class="moment-rank"><i aria-hidden="true"></i><span data-i18n="aw.p5">Academic Distinction</span></span>
         <span class="moment-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
@@ -1511,6 +1511,74 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   }
   document.addEventListener('langchange', start);
   start();
+})();
+</script>
+<script>
+/* Cookie-free visit counter (code in _analytics/). No cookies, and no IP addresses are stored. */
+(function(){
+  var host = location.hostname;
+  var live = /(^|\.)eaindrayiscoding\.com$/.test(host);
+  var local = /^(localhost|127\.0\.0\.1)$/.test(host) && /[?&]stats=local\b/.test(location.search);
+  if (!live && !local) return;
+  try { if (localStorage.getItem('ea-notrack') === '1') return; } catch (e) {}
+  if (navigator.webdriver) return;
+  var EP = live ? 'https://eaindray-stats.medcard-api.workers.dev' : 'http://127.0.0.1:8787';
+  if (EP.indexOf('SUBDOMAIN') > 0) return;
+
+  var id; try { id = crypto.randomUUID(); } catch (e) { id = Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12); }
+  function send(path, o){
+    o.id = id;
+    var body = JSON.stringify(o);
+    try { if (navigator.sendBeacon && navigator.sendBeacon(EP + path, body)) return; } catch (e) {}
+    try { fetch(EP + path, { method: 'POST', body: body, keepalive: true, mode: 'no-cors' }); } catch (e) {}
+  }
+
+  /* the visit */
+  var ua = navigator.userAgent, touch = navigator.maxTouchPoints || 0;
+  var tablet = /iPad|Tablet|PlayBook|Silk/i.test(ua) || (/Macintosh/.test(ua) && touch > 1) || (/Android/i.test(ua) && !/Mobile/i.test(ua));
+  var device = tablet ? 'tablet' : /Mobi|iPhone|iPod|Android|IEMobile|Opera Mini/i.test(ua) ? 'mobile' : 'desktop';
+  var ref = ''; try { var r = document.referrer && new URL(document.referrer); if (r && r.hostname !== host) ref = r.hostname; } catch (e) {}
+  var q = new URLSearchParams(location.search);
+  send('/v', { dv: device, lg: (window.I18N && I18N.lang) || 'en', bl: navigator.language || '', r: ref, s: q.get('ref') || q.get('utm_source') || '' });
+
+  /* sections seen, and time with the page in view */
+  var SECTIONS = ['work', 'experience', 'projects', 'awards', 'certificates', 'skills', 'community', 'contact'], depth = 0;
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { depth |= 1 << SECTIONS.indexOf(e.target.id); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -35% 0px' });
+    SECTIONS.forEach(function(s){ var el = document.getElementById(s); if (el) io.observe(el); });
+  }
+  var shown = 0, since = document.visibilityState === 'visible' ? Date.now() : 0, beats = 0;
+  function ping(){ send('/l', { s: Math.min(Math.round((shown + (since ? Date.now() - since : 0)) / 1000), 7200), d: depth }); }
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'hidden') { if (since) { shown += Date.now() - since; since = 0; } ping(); }
+    else if (!since) since = Date.now();
+  });
+  addEventListener('pagehide', ping);
+  var beat = setInterval(function(){ if (!since) return; if (++beats > 120) return clearInterval(beat); ping(); }, 30000);
+
+  /* a few clicks */
+  function track(name, label){ send('/e', { n: name, l: label ? String(label).slice(0, 120) : '' }); }
+  document.addEventListener('click', function(e){
+    var el = e.target && e.target.closest && e.target.closest('a, button');
+    if (!el) return;
+    var href = el.getAttribute('href') || '';
+    if (/\.pdf([?#]|$)/i.test(href)) track('cv');
+    else if (/^mailto:/i.test(href)) track('email');
+    else if (el.id === 'copy') track('copy');
+    else if (/linkedin\.com/i.test(href)) track('linkedin');
+    else if (/github\.com/i.test(href)) track('github');
+    else if (/^https?:/i.test(href) && el.hostname && el.hostname !== host) track('outbound', el.hostname.replace(/^www\./, ''));
+    else if (el.matches('.vid[data-yt]')) track('video', el.getAttribute('data-title'));
+    else if (el.matches('.gal-btn, .moment-img')) track('photo', el.getAttribute('data-title'));
+    else if (el.matches('.lang-opt')) track('lang', el.getAttribute('data-lang'));
+    else if (el.id === 'theme') setTimeout(function(){ track('theme', document.documentElement.getAttribute('data-theme')); }, 0);
+  }, true);
+  var lb = document.getElementById('lb');
+  if (lb && window.MutationObserver) new MutationObserver(function(){
+    if (lb.open) track('cert', (document.getElementById('lb-title') || {}).textContent || '');
+  }).observe(lb, { attributes: true, attributeFilter: ['open'] });
 })();
 </script>
 </body>

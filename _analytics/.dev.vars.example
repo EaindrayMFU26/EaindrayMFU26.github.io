@@ -1,0 +1,2 @@
+# Local development only. The real admin key is set with: npm run set-admin-key
+ADMIN_KEY=local-test-key

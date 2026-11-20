@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Visitors · eaindrayiscoding</title>
+<meta name="description" content="Private visitor stats for eaindrayiscoding.com.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D7A63'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='40' fill='%23fff'%3EE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#ECF3EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D100F" media="(prefers-color-scheme: dark)">
+<script>
+(function(){ var d=document.documentElement; try{ var t=localStorage.getItem('theme'); if(t==='dark'||t==='light'){ d.setAttribute('data-theme',t); } }catch(e){} })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root{
+  --bg:#ECF3EE; --surface:#FBFDFB; --surface-2:#E9F0EB; --ink:#121413; --ink-2:#4F5753; --ink-3:#69726D;
+  --line:#D6E2DA; --line-2:#C4D3C9;
+  --accent:#0D7A63; --accent-ink:#0A6553; --accent-soft:#D3EDE3; --on-accent:#FFFFFF;
+  --up:#0E8A62; --down:#C2412D; --views:#7C5CFA;
+  --shadow:0 1px 2px rgba(20,60,45,.06), 0 14px 34px -16px rgba(20,60,45,.22);
+  --glow-1:rgba(60,207,169,.30); --glow-2:rgba(255,170,120,.24); --glow-3:rgba(150,120,250,.18); --dot:rgba(13,122,99,.10);
+  --f-sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"Geist Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --f-serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D100F; --surface:#141817; --surface-2:#1A1F1D; --ink:#ECEEEA; --ink-2:#A6ADA9; --ink-3:#757D79;
+    --line:#252B29; --line-2:#333A37;
+    --accent:#3CCFA9; --accent-ink:#62DDBD; --accent-soft:#0F2C25; --on-accent:#05211A;
+    --up:#4FD8A8; --down:#FF8A73; --views:#A996FF;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -14px rgba(0,0,0,.7);
+    --glow-1:rgba(60,207,169,.10); --glow-2:transparent; --glow-3:rgba(124,92,250,.06); --dot:rgba(255,255,255,.035);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D100F; --surface:#141817; --surface-2:#1A1F1D; --ink:#ECEEEA; --ink-2:#A6ADA9; --ink-3:#757D79;
+  --line:#252B29; --line-2:#333A37;
+  --accent:#3CCFA9; --accent-ink:#62DDBD; --accent-soft:#0F2C25; --on-accent:#05211A;
+  --up:#4FD8A8; --down:#FF8A73; --views:#A996FF;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -14px rgba(0,0,0,.7);
+  --glow-1:rgba(60,207,169,.10); --glow-2:transparent; --glow-3:rgba(124,92,250,.06); --dot:rgba(255,255,255,.035);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; min-height:100vh; color:var(--ink); background-color:var(--bg); font-family:var(--f-sans); font-size:1rem; line-height:1.55; -webkit-font-smoothing:antialiased}
+body::before{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(52vw 46vh at 92% 0%, var(--glow-1), transparent 70%),
+    radial-gradient(44vw 42vh at 0% 38%, var(--glow-2), transparent 70%),
+    radial-gradient(48vw 44vh at 96% 92%, var(--glow-3), transparent 70%),
+    radial-gradient(var(--dot) 1px, transparent 1.4px) 0 0 / 22px 22px}
+a{color:var(--accent-ink); text-decoration:none}
+a:hover{text-decoration:underline; text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:6px}
+h1,h2,h3{margin:0; line-height:1.15; text-wrap:balance}
+p{margin:0}
+[hidden]{display:none !important}
+.sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+.wrap{max-width:1180px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px))}
+@media (min-width:700px){ .wrap{padding-left:max(28px, env(safe-area-inset-left,0px)); padding-right:max(28px, env(safe-area-inset-right,0px))} }
+
+/* header */
+.nav{position:sticky; top:0; z-index:40; background:color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter:saturate(1.4) blur(12px); -webkit-backdrop-filter:saturate(1.4) blur(12px); border-bottom:1px solid var(--line)}
+.nav-in{display:flex; align-items:center; gap:12px; height:60px}
+.brand{font-family:var(--f-mono); font-weight:500; font-size:.98rem; color:var(--ink); white-space:nowrap; letter-spacing:-.01em}
+.brand span{color:var(--accent-ink)}
+.brand:hover{text-decoration:none}
+.crumb{font-family:var(--f-mono); font-size:.9rem; color:var(--ink-3); white-space:nowrap}
+.nav-actions{display:flex; align-items:center; gap:8px; margin-left:auto}
+.icon-btn{width:38px; height:38px; border:1px solid var(--line); background:var(--surface); border-radius:10px; display:inline-flex; align-items:center; justify-content:center; color:var(--ink); cursor:pointer; padding:0; flex:none}
+.icon-btn:hover{border-color:var(--line-2)}
+.icon-btn svg{width:17px; height:17px}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 16px; border-radius:10px; font:500 .94rem/1.2 var(--f-sans); border:1px solid transparent; cursor:pointer; white-space:nowrap}
+.btn:hover{text-decoration:none}
+.btn svg{width:16px; height:16px; flex:none}
+.btn-primary{background:var(--accent); color:var(--on-accent); border-color:var(--accent)}
+.btn-primary:hover{background:var(--accent-ink); border-color:var(--accent-ink)}
+.btn-primary:disabled{opacity:.6; cursor:progress}
+.btn-ghost{background:var(--surface); color:var(--ink); border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--line-2)}
+.btn-sm{padding:8px 13px; font-size:.88rem}
+
+/* sign in */
+.login{min-height:calc(100vh - 61px); display:grid; place-items:center; padding:40px 0}
+.login-card{width:min(420px, 100%); background:var(--surface); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:30px; display:grid; gap:18px}
+.login-card h1{font-size:1.9rem; font-weight:600; letter-spacing:-.03em}
+.login-card h1 em, .dash-head h1 em{font-family:var(--f-serif); font-style:italic; font-weight:400; letter-spacing:-.01em; font-size:1.1em; color:var(--accent-ink)}
+.login-card p{color:var(--ink-2)}
+.field{display:grid; gap:6px}
+.field label{font-size:.88rem; font-weight:500; color:var(--ink-2)}
+.field input{font:inherit; width:100%; padding:11px 13px; border-radius:10px; border:1px solid var(--line-2); background:var(--bg); color:var(--ink)}
+.field input:focus{outline:2px solid var(--accent); outline-offset:1px}
+.check{display:flex; gap:9px; align-items:center; font-size:.9rem; color:var(--ink-2); cursor:pointer}
+.check input{accent-color:var(--accent); width:16px; height:16px; margin:0}
+.err{color:var(--down); font-size:.9rem; min-height:1.4em}
+.hint{font-size:.84rem; color:var(--ink-3)}
+
+/* dashboard */
+.dash{padding:28px 0 56px; display:grid; grid-template-columns:minmax(0, 1fr); gap:20px}
+.dash > *{min-width:0}
+.dash-head{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px}
+.dash-head > *{min-width:0}
+.eyebrow{display:block; font-family:var(--f-mono); font-size:.74rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px}
+.dash-head h1{font-size:clamp(1.7rem, 3.4vw, 2.4rem); font-weight:600; letter-spacing:-.03em}
+.range{display:inline-flex; padding:4px; gap:2px; border:1px solid var(--line); background:var(--surface); border-radius:12px; max-width:100%; overflow-x:auto; scrollbar-width:none}
+.range button{font:500 .88rem var(--f-sans); padding:7px 12px; border:0; background:transparent; color:var(--ink-2); border-radius:8px; cursor:pointer; white-space:nowrap}
+.range button:hover{color:var(--ink)}
+.range button[aria-pressed="true"]{background:var(--accent); color:var(--on-accent)}
+@media (max-width:520px){
+  .crumb{display:none}
+  .range{width:100%; padding:3px; gap:0}
+  .range button{flex:1 0 auto; padding:7px 5px; font-size:.82rem}
+}
+.live{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; font-size:.92rem; color:var(--ink-2)}
+.pulse{width:10px; height:10px; border-radius:50%; background:#12A483; box-shadow:0 0 0 0 rgba(18,164,131,.5); animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(18,164,131,0)} 100%{box-shadow:0 0 0 0 rgba(18,164,131,0)}}
+.live b{color:var(--ink); font-weight:600}
+.live .sep{color:var(--line-2)}
+.link-btn{display:inline-flex; align-items:center; gap:6px; background:none; border:0; padding:0; font:inherit; color:var(--accent-ink); cursor:pointer}
+.link-btn svg{width:15px; height:15px}
+.link-btn:hover{text-decoration:underline; text-underline-offset:3px}
+.banner{padding:12px 16px; border-radius:12px; border:1px solid color-mix(in srgb, var(--down) 40%, var(--line)); background:color-mix(in srgb, var(--down) 8%, var(--surface)); color:var(--ink); font-size:.92rem}
+.dash.loading .kpis, .dash.loading .card{opacity:.55; transition:opacity .2s}
+
+.kpis{display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:14px}
+@media (max-width:1000px){ .kpis{grid-template-columns:repeat(3, minmax(0,1fr))} }
+@media (max-width:620px){ .kpis{grid-template-columns:repeat(2, minmax(0,1fr))} }
+.kpi{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:16px 18px; display:grid; gap:6px; align-content:start; min-width:0}
+.kpi-label{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3)}
+.kpi-value{font-size:clamp(1.5rem, 2.6vw, 2rem); font-weight:600; letter-spacing:-.03em; line-height:1.1; font-variant-numeric:tabular-nums}
+.kpi-sub{font-size:.82rem; color:var(--ink-2)}
+.delta{font-weight:600}
+.delta.up{color:var(--up)}
+.delta.down{color:var(--down)}
+
+.card{background:var(--surface); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); padding:20px 22px; min-width:0}
+.card-head{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 16px; margin-bottom:16px}
+.card h2{font-size:1.05rem; font-weight:600; letter-spacing:-.01em}
+.card h3{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); font-weight:500; margin:0 0 12px}
+.card-note{font-size:.84rem; color:var(--ink-3)}
+.legend{display:flex; gap:14px; font-size:.82rem; color:var(--ink-2)}
+.legend i{display:inline-block; width:14px; height:3px; border-radius:2px; vertical-align:middle; margin-right:6px; background:var(--accent)}
+.legend i.lg-views{background:repeating-linear-gradient(90deg, var(--views) 0 4px, transparent 4px 7px)}
+.empty{color:var(--ink-3); font-size:.9rem; padding:6px 0}
+
+.chart{position:relative; height:250px}
+.chart svg{display:block; width:100%; height:100%; overflow:visible}
+.chart .grid line{stroke:var(--line)}
+.chart .axis text{fill:var(--ink-3); font:11px var(--f-mono)}
+.chart .area{fill:url(#area-fill)}
+.chart .u{fill:none; stroke:var(--accent); stroke-width:2.2; stroke-linejoin:round; stroke-linecap:round}
+.chart .v{fill:none; stroke:var(--views); stroke-width:1.6; stroke-dasharray:4 3; stroke-linejoin:round}
+.chart .cursor{stroke:var(--ink-3); stroke-width:1; stroke-dasharray:2 3}
+.chart .pt{fill:var(--surface); stroke-width:2}
+.tip{position:absolute; z-index:5; pointer-events:none; background:var(--ink); color:var(--bg); font-size:.8rem; line-height:1.45; padding:7px 10px; border-radius:8px; white-space:nowrap; box-shadow:0 10px 24px -10px rgba(0,0,0,.5); opacity:0; transition:opacity .12s}
+.tip.on{opacity:1}
+.tip b{font-weight:600}
+
+.geo{display:grid; grid-template-columns:minmax(0, 1.7fr) minmax(0, 1fr); gap:24px; align-items:start}
+@media (max-width:900px){ .geo{grid-template-columns:1fr} }
+.map{position:relative; min-height:120px}
+.map svg{display:block; width:100%; height:auto}
+.map .land{fill:var(--surface-2); stroke:var(--line-2); stroke-width:.6}
+.map .dot{fill:color-mix(in srgb, var(--accent) 50%, transparent); stroke:var(--accent); stroke-width:1.2; cursor:pointer; transition:fill .15s}
+.map .dot:hover{fill:var(--accent)}
+.geo-main{display:grid; gap:22px; min-width:0}
+.bars.cols{grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:28px}
+@media (max-width:560px){ .bars.cols{grid-template-columns:1fr} }
+
+.bars{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.bars li{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 12px; align-items:center; font-size:.9rem}
+.bars .name{display:flex; align-items:center; gap:8px; min-width:0}
+.bars .name > span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.bars .name small{color:var(--ink-3); font-size:.8rem}
+.bars .val{font-variant-numeric:tabular-nums; color:var(--ink-3); font-size:.82rem; white-space:nowrap}
+.bars .val b{color:var(--ink); font-weight:600; font-size:.9rem; margin-right:6px}
+.bars .bar{grid-column:1 / -1; height:6px; border-radius:6px; background:var(--surface-2); overflow:hidden}
+.bars .bar i{display:block; height:100%; border-radius:inherit; background:var(--c, var(--accent)); transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.bars .sub{grid-column:1 / -1; font-size:.8rem; color:var(--ink-3); margin-top:-1px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.more{margin-top:12px}
+.flag{width:20px; height:15px; border-radius:3px; object-fit:cover; flex:none; box-shadow:0 0 0 1px var(--line); background:var(--surface-2)}
+.flag.none{display:inline-block}
+
+.grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px}
+@media (max-width:1040px){ .grid{grid-template-columns:repeat(2, minmax(0,1fr))} }
+@media (max-width:660px){ .grid{grid-template-columns:1fr} }
+.card.wide{grid-column:span 2}
+@media (max-width:660px){ .card.wide{grid-column:auto} }
+.two{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px}
+@media (max-width:420px){ .two{grid-template-columns:1fr} }
+
+.split{display:flex; height:12px; border-radius:8px; overflow:hidden; background:var(--surface-2); gap:2px}
+.split i{display:block; height:100%}
+.split-legend{display:flex; flex-wrap:wrap; gap:6px 16px; font-size:.86rem; color:var(--ink-2); margin:10px 0 20px}
+.split-legend span{display:inline-flex; align-items:center; gap:7px}
+.split-legend span::before{content:""; width:10px; height:10px; border-radius:3px; background:var(--c)}
+.split-legend b{color:var(--ink); font-weight:600}
+
+.heat{display:grid; grid-template-columns:36px repeat(24, minmax(0,1fr)); gap:3px; font:11px var(--f-mono); color:var(--ink-3); align-items:center}
+.heat .cell{aspect-ratio:1; border-radius:3px; background:var(--surface-2); min-width:0}
+.heat .hl{grid-column:span 6}
+.heat-key{display:flex; align-items:center; gap:6px; margin-top:12px; font-size:.8rem; color:var(--ink-3)}
+.heat-key i{width:12px; height:12px; border-radius:3px}
+
+.recent{display:grid}
+.rv{display:grid; grid-template-columns:104px minmax(150px,1.4fr) minmax(150px,1.3fr) minmax(90px,.9fr) minmax(90px,.8fr) 64px 92px; gap:12px; align-items:center; padding:11px 0; border-top:1px solid var(--line); font-size:.88rem}
+.rv.head{border-top:0; padding-top:0; font:500 .7rem var(--f-mono); letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3)}
+.rv .c-where{display:flex; align-items:center; gap:8px; min-width:0; font-weight:500}
+.rv .c-where span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.rv .muted{color:var(--ink-3)}
+.rv .c-dev{display:flex; align-items:center; gap:7px; min-width:0}
+.rv .c-dev svg{width:15px; height:15px; flex:none; color:var(--ink-3)}
+.rv .c-dev span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.dots{display:flex; gap:3px}
+.dots i{width:8px; height:8px; border-radius:50%; background:var(--surface-2); box-shadow:inset 0 0 0 1px var(--line-2)}
+.dots i.on{background:var(--accent); box-shadow:none}
+.now-tag{display:inline-block; font:600 .68rem var(--f-mono); letter-spacing:.04em; color:#0E8A62; background:color-mix(in srgb, #12A483 16%, transparent); padding:1px 6px; border-radius:999px; margin-left:6px; vertical-align:1px}
+@media (max-width:900px){
+  .rv.head{display:none}
+  .rv{display:flex; flex-wrap:wrap; gap:3px 12px; font-size:.84rem}
+  .rv .c-where{flex:1 1 100%; order:-2; font-size:.92rem}
+  .rv .c-when{order:-1; flex:1 1 100%; color:var(--ink-3)}
+  .rv .c-from::before{content:"from "; color:var(--ink-3)}
+  .rv .c-depth{flex:1 1 100%}
+}
+
+.foot{display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 20px; font-size:.84rem; color:var(--ink-3)}
+.foot p{max-width:70ch}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Back to eaindrayiscoding.com">eaindray<span>iscoding</span></a>
+    <span class="crumb">/ visitors</span>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" type="button" aria-label="Switch between light and dark theme"></button>
+      <button class="btn btn-ghost btn-sm" id="signout" type="button" hidden>Sign out</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="login" id="login" hidden aria-labelledby="login-title">
+    <form class="login-card" id="login-form" autocomplete="on">
+      <div>
+        <span class="eyebrow">Admin</span>
+        <h1 id="login-title">Visitor <em>stats</em></h1>
+      </div>
+      <p>Sign in with your admin key to see who has been visiting eaindrayiscoding.com.</p>
+      <input type="text" name="username" autocomplete="username" value="admin" hidden>
+      <div class="field">
+        <label for="key">Admin key</label>
+        <input id="key" name="password" type="password" autocomplete="current-password" required spellcheck="false">
+      </div>
+      <label class="check"><input type="checkbox" id="keep" checked> Keep me signed in on this device</label>
+      <p class="err" id="login-err" role="alert"></p>
+      <button class="btn btn-primary" id="login-btn" type="submit">Sign in</button>
+      <p class="hint">Once you sign in, your own visits from this device stop being counted.</p>
+    </form>
+  </section>
+
+  <section class="dash" id="dash" hidden aria-labelledby="dash-title">
+    <div class="dash-head">
+      <div>
+        <span class="eyebrow">Visitors</span>
+        <h1 id="dash-title">Who's been <em>visiting</em></h1>
+      </div>
+      <div class="range" id="range" role="group" aria-label="Time range">
+        <button type="button" data-r="today">Today</button>
+        <button type="button" data-r="7d">7 days</button>
+        <button type="button" data-r="30d">30 days</button>
+        <button type="button" data-r="90d">90 days</button>
+        <button type="button" data-r="12m">1 year</button>
+      </div>
+    </div>
+
+    <div class="live" aria-live="polite">
+      <span class="pulse" aria-hidden="true"></span>
+      <span><b id="live-n">0</b> <span id="live-label">people on the site now</span></span>
+      <span class="sep" aria-hidden="true">·</span>
+      <span>Updated <time id="updated"></time></span>
+      <button class="link-btn" id="refresh" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg>Refresh</button>
+    </div>
+
+    <p class="banner" id="banner" role="alert" hidden></p>
+
+    <div class="kpis" id="kpis"></div>
+
+    <article class="card">
+      <div class="card-head">
+        <h2>Visitors over time</h2>
+        <div class="legend"><span><i></i>Visitors</span><span><i class="lg-views"></i>Page views</span></div>
+      </div>
+      <div class="chart" id="chart"></div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <h2>Where they're viewing from</h2>
+        <span class="card-note" id="geo-note"></span>
+      </div>
+      <div class="geo">
+        <div class="geo-main">
+          <div class="map" id="map"></div>
+          <div><h3>Cities</h3><ol class="bars cols" id="cities"></ol></div>
+        </div>
+        <div><h3>Countries</h3><ol class="bars" id="countries"></ol></div>
+      </div>
+    </article>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-head"><h2>Where they came from</h2></div>
+        <ol class="bars" id="refs"></ol>
+      </article>
+      <article class="card">
+        <div class="card-head"><h2>What they clicked</h2></div>
+        <ol class="bars" id="events"></ol>
+      </article>
+      <article class="card">
+        <div class="card-head"><h2>How far they scroll</h2><span class="card-note">share of visits</span></div>
+        <ol class="bars" id="depth"></ol>
+      </article>
+      <article class="card wide">
+        <div class="card-head"><h2>Devices</h2></div>
+        <div class="split" id="device-split"></div>
+        <div class="split-legend" id="device-legend"></div>
+        <div class="two">
+          <div><h3>Browsers</h3><ol class="bars" id="browsers"></ol></div>
+          <div><h3>Systems</h3><ol class="bars" id="os"></ol></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-head"><h2>Language they read in</h2></div>
+        <ol class="bars" id="langs"></ol>
+      </article>
+      <article class="card wide">
+        <div class="card-head"><h2>When they visit</h2><span class="card-note">Thailand time</span></div>
+        <div class="heat" id="heat"></div>
+        <div class="heat-key" id="heat-key"></div>
+      </article>
+      <article class="card">
+        <div class="card-head"><h2>Did they stay?</h2></div>
+        <ol class="bars" id="engage"></ol>
+      </article>
+    </div>
+
+    <article class="card">
+      <div class="card-head"><h2>Latest visits</h2><span class="card-note">newest first</span></div>
+      <div class="recent" id="recent"></div>
+    </article>
+
+    <div class="foot">
+      <p>Counted without cookies, and no IP addresses are stored. A visitor is counted once per day. Location comes from the network, so it is approximate. Times are Thailand time.</p>
+      <label class="check"><input type="checkbox" id="notrack"> Don't count my visits from this device</label>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  'use strict';
+  /* Where the visit counter (Cloudflare Worker in _analytics/) runs. */
+  var PROD_API = 'https://eaindray-stats.medcard-api.workers.dev';
+  var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  var API = LOCAL ? 'http://127.0.0.1:8787' : PROD_API;
+  var READY = LOCAL || PROD_API.indexOf('SUBDOMAIN') < 0;
+
+  var HOUR = 3600000, DAY = 24 * HOUR, TZ = 7 * HOUR;
+  var KEY = 'ea-admin-key', RANGE = 'ea-admin-range', NOTRACK = 'ea-notrack';
+  var RANGES = { today: 'yesterday', '7d': 'the 7 days before', '30d': 'the 30 days before', '90d': 'the 90 days before', '12m': 'the year before' };
+  var LANG_NAMES = { en: 'English', th: 'ไทย · Thai', 'zh-Hans': '简体中文 · Chinese', nan: '台語 · Hokkien', de: 'Deutsch · German' };
+  var SECTIONS = ['Featured work', 'Experience', 'Projects', 'Awards', 'Certificates', 'Skills', 'Beyond the code', 'Contact'];
+  var EVENTS = {
+    cv: 'Opened the CV', email: 'Clicked "Email me"', copy: 'Copied the email address', linkedin: 'Opened LinkedIn',
+    github: 'Opened GitHub', video: 'Played the robot video', cert: 'Opened a certificate', photo: 'Opened a photo',
+    lang: 'Switched language', theme: 'Switched light / dark', outbound: 'Other outside links'
+  };
+  var DEVICES = { desktop: ['Desktop', '#2E7BF0'], mobile: ['Phone', '#12A483'], tablet: ['Tablet', '#F07B1E'] };
+  var ICONS = {
+    desktop: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>',
+    mobile: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>',
+    tablet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M11 18h2"/></svg>'
+  };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var NF = new Intl.NumberFormat('en');
+  var regions = null; try { regions = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
+  var REL = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+  var CLOCK = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', hour: '2-digit', minute: '2-digit' });
+  var STAMP = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  var DAYFMT = new Intl.DateTimeFormat('en', { timeZone: 'UTC', month: 'short', day: 'numeric' });
+  var DAYLONG = new Intl.DateTimeFormat('en', { timeZone: 'UTC', weekday: 'short', month: 'short', day: 'numeric' });
+  var MONFMT = new Intl.DateTimeFormat('en', { timeZone: 'UTC', month: 'short', year: 'numeric' });
+  var MONSHORT = new Intl.DateTimeFormat('en', { timeZone: 'UTC', month: 'short' });
+
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function num(v){ v = Number(v); return isFinite(v) ? v : 0; }
+  function pct(a, b){ return b ? Math.round(100 * a / b) : 0; }
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function bkk(ts){ return new Date(ts + TZ).toISOString().slice(0, 10); }
+  function plural(n, one, many){ return n === 1 ? one : many; }
+  function get(store, k){ try { return window[store].getItem(k); } catch (e) { return null; } }
+  function put(store, k, v){ try { if (v == null) window[store].removeItem(k); else window[store].setItem(k, v); } catch (e) {} }
+
+  function country(cc){
+    if (!cc || !/^[A-Z]{2}$/.test(cc) || cc === 'XX') return 'Unknown';
+    if (cc === 'T1') return 'Tor network';
+    try { return regions ? regions.of(cc) : cc; } catch (e) { return cc; }
+  }
+  function flag(cc){
+    if (!cc || !/^[A-Z]{2}$/.test(cc) || cc === 'XX' || cc === 'T1') return '<span class="flag none" aria-hidden="true"></span>';
+    return '<img class="flag" src="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/flags/4x3/' + cc.toLowerCase() + '.svg" alt="" loading="lazy" width="20" height="15">';
+  }
+  function dur(s){
+    s = Math.round(num(s));
+    if (s < 60) return s + ' s';
+    if (s < 3600) return Math.floor(s / 60) + ' min' + (s % 60 ? ' ' + (s % 60) + ' s' : '');
+    return Math.floor(s / 3600) + ' h ' + Math.floor((s % 3600) / 60) + ' min';
+  }
+  function ago(ts, now){
+    var m = Math.round((ts - now) / 60000);
+    if (m > -1) return 'just now';
+    if (m > -60) return REL.format(m, 'minute');
+    var h = Math.round(m / 60);
+    if (h > -24) return REL.format(h, 'hour');
+    return REL.format(Math.round(h / 24), 'day');
+  }
+
+  /* ───────── state ───────── */
+  var key = get('localStorage', KEY) || get('sessionStorage', KEY);
+  var range = get('localStorage', RANGE) || '30d';
+  if (!RANGES[range]) range = '30d';
+  var data = null, busy = false, lastLoad = 0;
+
+  /* ───────── theme (same switch as the main site) ───────── */
+  var root = document.documentElement, themeBtn = $('theme');
+  var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  function isDark(){ var t = root.getAttribute('data-theme'); return t ? t === 'dark' : !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches); }
+  function paintTheme(){ themeBtn.innerHTML = isDark() ? SUN : MOON; }
+  paintTheme();
+  themeBtn.addEventListener('click', function(){ var next = isDark() ? 'light' : 'dark'; root.setAttribute('data-theme', next); put('localStorage', 'theme', next); paintTheme(); });
+
+  /* ───────── sign in / out ───────── */
+  function showLogin(msg){
+    $('dash').hidden = true; $('signout').hidden = true; $('login').hidden = false;
+    $('login-err').textContent = msg || (READY ? '' : 'The visitor counter is not connected yet.');
+    setTimeout(function(){ $('key').focus(); }, 0);
+  }
+  function showDash(){ $('login').hidden = true; $('dash').hidden = false; $('signout').hidden = false; }
+
+  function request(k, r){
+    return fetch(API + '/stats?range=' + encodeURIComponent(r), { headers: { Authorization: 'Bearer ' + k }, cache: 'no-store' })
+      .then(function(res){ return res.json().catch(function(){ return {}; }).then(function(j){ return { status: res.status, body: j }; }); });
+  }
+
+  $('login-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var k = $('key').value.trim();
+    if (!k || !READY) return;
+    var btn = $('login-btn'); btn.disabled = true; $('login-err').textContent = '';
+    request(k, range).then(function(res){
+      if (res.status !== 200) { $('login-err').textContent = res.body.error || ('Sign-in failed (error ' + res.status + ').'); return; }
+      key = k; $('key').value = '';
+      var keep = $('keep').checked;
+      put(keep ? 'localStorage' : 'sessionStorage', KEY, k);
+      put(keep ? 'sessionStorage' : 'localStorage', KEY, null);
+      put('localStorage', NOTRACK, '1');
+      $('notrack').checked = true;
+      show(res.body);
+    }).catch(function(){ $('login-err').textContent = 'Could not reach the visitor counter. Check your connection and try again.'; })
+      .then(function(){ btn.disabled = false; });
+  });
+
+  $('signout').addEventListener('click', function(){
+    key = null; data = null; put('localStorage', KEY, null); put('sessionStorage', KEY, null);
+    showLogin();
+  });
+
+  $('notrack').checked = get('localStorage', NOTRACK) === '1';
+  $('notrack').addEventListener('change', function(){ put('localStorage', NOTRACK, this.checked ? '1' : null); });
+
+  /* ───────── loading ───────── */
+  function load(quiet){
+    if (!key) return showLogin();
+    if (busy) return;
+    busy = true;
+    if (!quiet) $('dash').classList.add('loading');
+    request(key, range).then(function(res){
+      if (res.status === 401) { key = null; put('localStorage', KEY, null); put('sessionStorage', KEY, null); showLogin('Your saved key no longer works. Sign in again.'); return; }
+      if (res.status !== 200) { banner(res.body.error || ('Could not load the stats (error ' + res.status + ').')); return; }
+      show(res.body);
+    }).catch(function(){ if (data) banner('Could not reach the visitor counter. Showing the last numbers.'); else showLogin('Could not reach the visitor counter. Check your connection and try again.'); })
+      .then(function(){ busy = false; $('dash').classList.remove('loading'); });
+  }
+  function banner(msg){ var b = $('banner'); b.textContent = msg || ''; b.hidden = !msg; }
+
+  function show(d){
+    data = d; lastLoad = Date.now(); banner('');
+    showDash();
+    [].forEach.call($('range').children, function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-r') === d.range ? 'true' : 'false'); });
+    render(d);
+  }
+
+  $('range').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    range = b.getAttribute('data-r'); put('localStorage', RANGE, range);
+    [].forEach.call(this.children, function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    load();
+  });
+  $('refresh').addEventListener('click', function(){ load(); });
+  setInterval(function(){ if (key && document.visibilityState === 'visible' && !$('dash').hidden) load(true); }, 60000);
+  document.addEventListener('visibilitychange', function(){ if (key && document.visibilityState === 'visible' && Date.now() - lastLoad > 60000 && !$('dash').hidden) load(true); });
+
+  /* ───────── rendering ───────── */
+  function render(d){
+    var t = d.totals || {};
+    $('updated').textContent = CLOCK.format(new Date(d.now));
+    $('live-n').textContent = NF.format(d.live);
+    $('live-label').textContent = plural(d.live, 'person on the site now', 'people on the site now');
+    kpis(d);
+    chart(d);
+    geo(d);
+    refs(d);
+    events(d);
+    depth(d);
+    devices(d);
+    langs(d);
+    heat(d);
+    engage(d);
+    recent(d);
+  }
+
+  function delta(cur, prev){
+    cur = num(cur); prev = num(prev);
+    if (!prev) return cur ? '<span class="delta up">New</span> vs ' + esc(RANGES[data.range]) : 'No visits before this';
+    var p = Math.round(100 * (cur - prev) / prev);
+    if (!p) return '<span class="delta">±0%</span> vs ' + esc(RANGES[data.range]);
+    return '<span class="delta ' + (p > 0 ? 'up' : 'down') + '">' + (p > 0 ? '+' : '−') + Math.abs(p) + '%</span> vs ' + esc(RANGES[data.range]);
+  }
+  function eventTotal(d, name){
+    var n = 0, u = 0;
+    (d.events || []).forEach(function(e){ if (e.name === name) { n += num(e.n); u += num(e.visitors); } });
+    return { n: n, u: u };
+  }
+  function kpis(d){
+    var t = d.totals || {}, p = d.previous || {}, cv = eventTotal(d, 'cv');
+    var cards = [
+      ['Visitors', NF.format(num(t.visitors)), delta(t.visitors, p.visitors)],
+      ['Page views', NF.format(num(t.views)), delta(t.views, p.views)],
+      ['Avg. time on site', dur(t.avgSecs), num(t.views) ? pct(num(t.engaged), num(t.views)) + '% stayed 10 s or more' : 'No visits yet'],
+      ['Countries', NF.format(num(t.countries)), delta(t.countries, p.countries)],
+      ['CV opened', NF.format(cv.n), num(t.visitors) ? pct(cv.u, num(t.visitors)) + '% of visitors' : '—']
+    ];
+    $('kpis').innerHTML = cards.map(function(c){
+      return '<div class="kpi"><span class="kpi-label">' + c[0] + '</span><span class="kpi-value">' + c[1] + '</span><span class="kpi-sub">' + c[2] + '</span></div>';
+    }).join('');
+  }
+
+  /* chart */
+  function points(d){
+    var map = {}, out = [];
+    (d.series || []).forEach(function(r){ map[String(r.k)] = r; });
+    function add(k, short, long){ var r = map[k] || {}; out.push({ short: short, long: long, u: num(r.visitors), v: num(r.views) }); }
+    if (d.bucket === 'hour') {
+      var hNow = new Date(d.now + TZ).getUTCHours();
+      for (var h = 0; h <= hNow; h++) add(String(h), pad(h) + ':00', 'Today, ' + pad(h) + ':00–' + pad(h) + ':59');
+    } else if (d.bucket === 'day') {
+      for (var ts = d.from; ts <= d.now; ts += DAY) { var day = bkk(ts), dt = new Date(day + 'T00:00:00Z'); add(day, DAYFMT.format(dt), DAYLONG.format(dt)); }
+    } else {
+      var start = bkk(d.from), y = +start.slice(0, 4), m = +start.slice(5, 7), end = bkk(d.now).slice(0, 7);
+      for (var i = 0; i < 14; i++) {
+        var key2 = y + '-' + pad(m), mt = new Date(key2 + '-01T00:00:00Z');
+        add(key2, MONSHORT.format(mt), MONFMT.format(mt));
+        if (key2 === end) break;
+        m++; if (m > 12) { m = 1; y++; }
+      }
+    }
+    return out;
+  }
+  /* Whole-number axis steps (1, 2, 5, 10, 20, 50…) with at most five gridlines. */
+  function axis(v){
+    v = Math.max(1, v);
+    var p = Math.pow(10, Math.floor(Math.log10(v)));
+    var steps = [p / 10, p / 5, p / 2, p, 2 * p, 5 * p, 10 * p];
+    for (var i = 0; i < steps.length; i++) {
+      var s = Math.max(1, steps[i]);
+      if (Math.ceil(v / s) <= 5) return { step: s, max: Math.ceil(v / s) * s };
+    }
+    return { step: 10 * p, max: Math.ceil(v / (10 * p)) * 10 * p };
+  }
+  function chart(d){
+    var el = $('chart'), pts = points(d);
+    var W = el.clientWidth || 600, H = el.clientHeight || 250, L = 34, R = 10, T = 10, B = 26;
+    var ax = axis(Math.max.apply(null, pts.map(function(p){ return Math.max(p.u, p.v); }).concat([1]))), max = ax.max;
+    var n = pts.length, iw = W - L - R, ih = H - T - B;
+    function x(i){ return L + (n < 2 ? iw / 2 : i * iw / (n - 1)); }
+    function y(v){ return T + ih - v / max * ih; }
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Visitors and page views over time">';
+    s += '<defs><linearGradient id="area-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".28"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>';
+    s += '<g class="grid axis">';
+    for (var gv = 0; gv <= max; gv += ax.step) {
+      var gy = y(gv);
+      s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + gy + '" y2="' + gy + '"/>';
+      s += '<text x="' + (L - 8) + '" y="' + (gy + 4) + '" text-anchor="end">' + NF.format(Math.round(gv)) + '</text>';
+    }
+    var every = Math.max(1, Math.ceil(n / Math.max(2, Math.floor(iw / 72))));
+    for (var i = 0; i < n; i += every) s += '<text x="' + x(i) + '" y="' + (H - 6) + '" text-anchor="middle">' + esc(pts[i].short) + '</text>';
+    s += '</g>';
+    var line = function(k){ return pts.map(function(p, i){ return (i ? 'L' : 'M') + x(i).toFixed(1) + ',' + y(p[k]).toFixed(1); }).join(''); };
+    if (n > 1) s += '<path class="area" d="' + line('u') + 'L' + x(n - 1) + ',' + y(0) + 'L' + x(0) + ',' + y(0) + 'Z"/>';
+    s += '<path class="v" d="' + line('v') + '"/><path class="u" d="' + line('u') + '"/>';
+    if (n === 1) s += '<circle class="pt" r="4" cx="' + x(0) + '" cy="' + y(pts[0].u) + '" stroke="var(--accent)"/>';
+    s += '<line class="cursor" id="c-line" y1="' + T + '" y2="' + (T + ih) + '" visibility="hidden"/>';
+    s += '<circle class="pt" id="c-v" r="3.5" stroke="var(--views)" visibility="hidden"/><circle class="pt" id="c-u" r="4" stroke="var(--accent)" visibility="hidden"/>';
+    s += '<rect id="c-hit" x="' + L + '" y="' + T + '" width="' + iw + '" height="' + ih + '" fill="transparent"/>';
+    s += '</svg><div class="tip" id="c-tip"></div>';
+    el.innerHTML = s;
+
+    var hit = $('c-hit'), tip = $('c-tip'), cl = $('c-line'), cu = $('c-u'), cv = $('c-v');
+    function move(ev){
+      var box = el.getBoundingClientRect(), px = (ev.clientX - box.left) * (W / box.width);
+      var i = n < 2 ? 0 : Math.max(0, Math.min(n - 1, Math.round((px - L) / (iw / (n - 1))))), p = pts[i], cx = x(i);
+      cl.setAttribute('x1', cx); cl.setAttribute('x2', cx); cl.setAttribute('visibility', 'visible');
+      cu.setAttribute('cx', cx); cu.setAttribute('cy', y(p.u)); cu.setAttribute('visibility', 'visible');
+      cv.setAttribute('cx', cx); cv.setAttribute('cy', y(p.v)); cv.setAttribute('visibility', 'visible');
+      tip.innerHTML = '<b>' + esc(p.long) + '</b><br>' + NF.format(p.u) + ' ' + plural(p.u, 'visitor', 'visitors') + ' · ' + NF.format(p.v) + ' ' + plural(p.v, 'view', 'views');
+      var left = cx * box.width / W, tw = tip.offsetWidth;
+      tip.style.left = Math.max(0, Math.min(box.width - tw, left - tw / 2)) + 'px';
+      tip.style.top = Math.max(0, y(Math.max(p.u, p.v)) * box.height / H - tip.offsetHeight - 12) + 'px';
+      tip.classList.add('on');
+    }
+    function leave(){ tip.classList.remove('on'); [cl, cu, cv].forEach(function(e){ e.setAttribute('visibility', 'hidden'); }); }
+    hit.addEventListener('pointermove', move);
+    hit.addEventListener('pointerdown', move);
+    hit.addEventListener('pointerleave', leave);
+  }
+
+  /* bar lists */
+  function bars(el, items, opts){
+    opts = opts || {};
+    var more = el.nextElementSibling && el.nextElementSibling.classList.contains('more') ? el.nextElementSibling : null;
+    if (!items.length) { el.innerHTML = '<li class="empty">' + (opts.empty || 'Nothing yet for this period.') + '</li>'; if (more) more.remove(); return; }
+    var max = Math.max.apply(null, items.map(function(i){ return i.value; }).concat([1]));
+    var limit = opts.limit || 8, shown = el.getAttribute('data-all') === '1' ? items.length : Math.min(limit, items.length);
+    el.innerHTML = items.slice(0, shown).map(function(it){
+      return '<li' + (it.color ? ' style="--c:' + it.color + '"' : '') + '><span class="name">' + (it.icon || '') + '<span>' + it.name + '</span></span>' +
+        '<span class="val"><b>' + NF.format(it.value) + '</b>' + (it.note || '') + '</span>' +
+        '<span class="bar"><i style="width:' + Math.max(2, 100 * it.value / max) + '%"></i></span>' +
+        (it.sub ? '<span class="sub">' + it.sub + '</span>' : '') + '</li>';
+    }).join('');
+    if (items.length > limit) {
+      if (!more) { more = document.createElement('button'); more.type = 'button'; more.className = 'link-btn more'; el.after(more); more.addEventListener('click', function(){ el.setAttribute('data-all', el.getAttribute('data-all') === '1' ? '0' : '1'); render(data); }); }
+      more.textContent = el.getAttribute('data-all') === '1' ? 'Show fewer' : 'Show all ' + items.length;
+    } else if (more) more.remove();
+  }
+
+  function share(v, total){ return total ? '<span>' + pct(v, total) + '%</span>' : ''; }
+
+  /* map + places */
+  var geoLib = null;
+  function loadScript(src){ return new Promise(function(ok, fail){ var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s); }); }
+  function mapLib(){
+    if (!geoLib) {
+      geoLib = loadScript('https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js')
+        .then(function(){ return Promise.all([loadScript('https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js'), loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js')]); })
+        .then(function(){ return fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(function(r){ return r.json(); }); })
+        .then(function(world){
+          var all = topojson.feature(world, world.objects.countries);
+          all.features = all.features.filter(function(f){ return f.id !== '010'; }); // no Antarctica
+          return all;
+        });
+      geoLib.catch(function(){ geoLib = null; });
+    }
+    return geoLib;
+  }
+  function geo(d){
+    var total = num((d.totals || {}).visitors);
+    bars($('countries'), (d.countries || []).map(function(c){
+      return { name: esc(country(c.k)), icon: flag(c.k), value: num(c.visitors), note: share(num(c.visitors), total) };
+    }), { limit: 12 });
+    var cities = d.cities || [];
+    bars($('cities'), cities.map(function(c){
+      var where = [c.region, country(c.country)].filter(function(x, i, a){ return x && x !== c.city && a.indexOf(x) === i; }).join(', ');
+      return { name: esc(c.city) + (where ? ' <small>' + esc(where) + '</small>' : ''), icon: flag(c.country), value: num(c.visitors) };
+    }), { limit: 8 });
+    $('geo-note').textContent = cities.length ? NF.format(cities.length) + ' ' + plural(cities.length, 'city', 'cities') + ' in ' + NF.format(num((d.totals || {}).countries)) + ' ' + plural(num((d.totals || {}).countries), 'country', 'countries') : '';
+
+    var el = $('map');
+    mapLib().then(function(land){
+      if (data !== d) return;
+      var W = el.clientWidth || 640;
+      var proj = d3.geoNaturalEarth1().fitWidth(W, land);
+      var path = d3.geoPath(proj), b = path.bounds(land), H = Math.ceil(b[1][1]) + 2;
+      var max = Math.max.apply(null, cities.map(function(c){ return num(c.visitors); }).concat([1]));
+      var rMax = Math.max(9, W / 42);
+      var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="World map of visitor cities"><g>';
+      s += land.features.map(function(f){ return '<path class="land" d="' + path(f) + '"/>'; }).join('');
+      s += '</g><g>';
+      cities.slice().sort(function(a, b2){ return num(b2.visitors) - num(a.visitors); }).forEach(function(c, i){
+        if (c.lat == null || c.lon == null) return;
+        var p = proj([num(c.lon), num(c.lat)]); if (!p) return;
+        var r = Math.max(3.5, Math.sqrt(num(c.visitors) / max) * rMax);
+        s += '<circle class="dot" data-i="' + cities.indexOf(c) + '" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + r.toFixed(1) + '"/>';
+      });
+      s += '</g></svg><div class="tip" id="m-tip"></div>';
+      el.innerHTML = s;
+      var tip = $('m-tip');
+      el.querySelectorAll('.dot').forEach(function(dot){
+        function on(){
+          var c = cities[+dot.getAttribute('data-i')], box = el.getBoundingClientRect(), db = dot.getBoundingClientRect();
+          tip.innerHTML = '<b>' + esc(c.city) + '</b>, ' + esc(country(c.country)) + '<br>' + NF.format(num(c.visitors)) + ' ' + plural(num(c.visitors), 'visitor', 'visitors');
+          tip.style.left = Math.max(0, Math.min(box.width - tip.offsetWidth, db.left - box.left + db.width / 2 - tip.offsetWidth / 2)) + 'px';
+          tip.style.top = Math.max(0, db.top - box.top - tip.offsetHeight - 8) + 'px';
+          tip.classList.add('on');
+        }
+        dot.addEventListener('pointerenter', on);
+        dot.addEventListener('pointerdown', on);
+        dot.addEventListener('pointerleave', function(){ tip.classList.remove('on'); });
+      });
+    }).catch(function(){ el.innerHTML = '<p class="empty">The map could not load. The lists still show every place.</p>'; });
+  }
+
+  function refs(d){
+    var total = num((d.totals || {}).visitors);
+    bars($('refs'), (d.refs || []).map(function(r){
+      return { name: r.k ? esc(r.k) : 'Direct, or app without a link', value: num(r.visitors), note: share(num(r.visitors), total) };
+    }), { limit: 8 });
+  }
+
+  function events(d){
+    var by = {}, total = num((d.totals || {}).visitors);
+    (d.events || []).forEach(function(e){
+      var g = by[e.name] || (by[e.name] = { n: 0, u: 0, labels: [] });
+      g.n += num(e.n); g.u += num(e.visitors);
+      if (e.label) g.labels.push([e.name === 'lang' ? (LANG_NAMES[e.label] || e.label) : e.label, num(e.n)]);
+    });
+    var items = Object.keys(by).filter(function(k){ return EVENTS[k]; }).map(function(k){
+      var g = by[k];
+      g.labels.sort(function(a, b){ return b[1] - a[1]; });
+      var sub = g.labels.length && k !== 'video' ? g.labels.slice(0, 3).map(function(l){ return esc(l[0]) + ' ' + NF.format(l[1]); }).join(' · ') : '';
+      return { name: esc(EVENTS[k]), value: g.n, note: total ? '<span>' + pct(g.u, total) + '% of visitors</span>' : '', sub: sub };
+    }).sort(function(a, b){ return b.value - a.value; });
+    bars($('events'), items, { limit: 11, empty: 'No clicks yet for this period.' });
+  }
+
+  function depth(d){
+    var dp = d.depth || {}, n = num(dp.n);
+    if (!n) { bars($('depth'), []); return; }
+    var items = [{ name: 'Top of the page', value: n }].concat(SECTIONS.map(function(s, i){ return { name: s, value: num(dp['s' + i]) }; }));
+    bars($('depth'), items.map(function(it){ return { name: esc(it.name), value: it.value, note: '<span>' + pct(it.value, n) + '%</span>' }; }), { limit: 9 });
+  }
+
+  function devices(d){
+    var list = d.devices || [], total = list.reduce(function(s, x){ return s + num(x.visitors); }, 0);
+    $('device-split').innerHTML = list.map(function(x){ var m = DEVICES[x.k] || [x.k, '#888']; return '<i style="width:' + (100 * num(x.visitors) / (total || 1)) + '%; background:' + m[1] + '" title="' + esc(m[0]) + '"></i>'; }).join('');
+    $('device-legend').innerHTML = list.length ? list.map(function(x){ var m = DEVICES[x.k] || [x.k, '#888']; return '<span style="--c:' + m[1] + '">' + esc(m[0]) + ' <b>' + pct(num(x.visitors), total) + '%</b></span>'; }).join('') : '<span class="empty">No visits yet for this period.</span>';
+    bars($('browsers'), (d.browsers || []).map(function(b){ return { name: esc(b.k || 'Other'), value: num(b.visitors) }; }), { limit: 6 });
+    bars($('os'), (d.os || []).map(function(b){ return { name: esc(b.k || 'Other'), value: num(b.visitors) }; }), { limit: 6 });
+  }
+
+  function langs(d){
+    var total = num((d.totals || {}).views);
+    bars($('langs'), (d.langs || []).map(function(l){ return { name: esc(LANG_NAMES[l.k] || l.k), value: num(l.views), note: share(num(l.views), total) }; }), { limit: 6 });
+  }
+
+  function heat(d){
+    var grid = {}, max = 0;
+    (d.heat || []).forEach(function(c){ grid[c.d + '-' + c.h] = num(c.n); max = Math.max(max, num(c.n)); });
+    var names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], order = [1, 2, 3, 4, 5, 6, 0];
+    function color(v){ return v ? 'color-mix(in srgb, var(--accent) ' + Math.round(18 + 82 * v / max) + '%, var(--surface-2))' : ''; }
+    var s = '<span></span>' + ['00', '06', '12', '18'].map(function(h){ return '<span class="hl">' + h + ':00</span>'; }).join('');
+    order.forEach(function(day){
+      s += '<span>' + names[day] + '</span>';
+      for (var h = 0; h < 24; h++) {
+        var v = grid[day + '-' + h] || 0;
+        s += '<span class="cell" title="' + names[day] + ' ' + pad(h) + ':00 · ' + v + ' ' + plural(v, 'visit', 'visits') + '"' + (v ? ' style="background:' + color(v) + '"' : '') + '></span>';
+      }
+    });
+    $('heat').innerHTML = s;
+    $('heat-key').innerHTML = max ? 'Fewer <i style="background:' + color(1) + '"></i><i style="background:' + color(Math.ceil(max / 2)) + '"></i><i style="background:' + color(max) + '"></i> More (busiest hour: ' + max + ' ' + plural(max, 'visit', 'visits') + ')' : 'No visits yet for this period.';
+  }
+
+  function engage(d){
+    var t = d.totals || {}, views = num(t.views), engaged = num(t.engaged);
+    if (!views) { bars($('engage'), []); return; }
+    var dp = d.depth || {}, contact = num(dp.s7);
+    bars($('engage'), [
+      { name: 'Stayed 10 s or more', value: engaged, note: '<span>' + pct(engaged, views) + '%</span>' },
+      { name: 'Left within 10 s', value: views - engaged, note: '<span>' + pct(views - engaged, views) + '%</span>', color: 'var(--line-2)' },
+      { name: 'Reached the contact section', value: contact, note: '<span>' + pct(contact, views) + '%</span>' }
+    ], { limit: 3 });
+  }
+
+  function recent(d){
+    var rows = d.recent || [];
+    if (!rows.length) { $('recent').innerHTML = '<p class="empty">No visits yet.</p>'; return; }
+    var head = '<div class="rv head"><span>When</span><span>Where</span><span>Device</span><span>From</span><span>Language</span><span>Time</span><span>Sections</span></div>';
+    $('recent').innerHTML = head + rows.map(function(r){
+      var live = num(r.last) > d.now - 5 * 60000;
+      var place = r.city ? esc(r.city) + ', ' + esc(country(r.country)) : esc(country(r.country));
+      var dots = '';
+      for (var i = 0; i < 8; i++) dots += '<i' + ((num(r.depth) >> i) & 1 ? ' class="on"' : '') + ' title="' + esc(SECTIONS[i]) + '"></i>';
+      return '<div class="rv">' +
+        '<span class="c-when" title="' + esc(STAMP.format(new Date(num(r.ts)))) + '">' + esc(ago(num(r.ts), d.now)) + (live ? '<span class="now-tag">NOW</span>' : '') + '</span>' +
+        '<span class="c-where">' + flag(r.country) + '<span>' + place + '</span></span>' +
+        '<span class="c-dev">' + (ICONS[r.device] || ICONS.desktop) + '<span>' + esc(r.browser || 'Other') + ' · ' + esc(r.os || 'Other') + '</span></span>' +
+        '<span class="c-from">' + (r.ref ? esc(r.ref) : '<span class="muted">Direct</span>') + '</span>' +
+        '<span class="c-lang">' + esc((LANG_NAMES[r.lang] || r.lang || '').split(' · ')[0]) + '</span>' +
+        '<span class="c-time">' + esc(dur(r.secs)) + '</span>' +
+        '<span class="c-depth dots" aria-label="Sections seen">' + dots + '</span>' +
+        '</div>';
+    }).join('');
+  }
+
+  /* redraw the chart and map when the layout width changes */
+  if (window.ResizeObserver) {
+    var lastW = 0, raf = 0;
+    new ResizeObserver(function(entries){
+      var w = Math.round(entries[0].contentRect.width);
+      if (!data || w === lastW) return;
+      lastW = w; cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function(){ chart(data); geo(data); });
+    }).observe($('chart'));
+  }
+
+  /* start */
+  if (key && READY) { showDash(); $('dash').classList.add('loading'); load(); }
+  else showLogin();
+})();
+</script>
+</body>
+</html>
