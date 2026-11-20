@@ -131,6 +131,25 @@ ul{margin:0}
 .links a.active{color:var(--ink); background:var(--surface-2)}
 .nav-actions{display:flex; align-items:center; gap:8px}
 @media (max-width:1040px){ .links{display:none} .nav-actions{margin-left:auto} }
+/* section menu on phones and tablets */
+.icon-btn.menu-btn{display:none}
+.menu-btn path{transition:transform .25s ease, opacity .2s ease; transform-box:fill-box; transform-origin:center}
+.menu-btn[aria-expanded="true"] .mb-1{transform:translateY(5px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] .mb-2{opacity:0}
+.menu-btn[aria-expanded="true"] .mb-3{transform:translateY(-5px) rotate(-45deg)}
+.mnav{position:absolute; left:0; right:0; top:100%; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  background:var(--bg);
+  box-shadow:0 22px 34px -22px rgba(0,0,0,.35); animation:mnav-in .22s ease-out}
+.mnav[hidden]{display:none}
+.mnav-in{display:grid; gap:2px; padding-top:8px; padding-bottom:14px}
+.mnav a{display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; color:var(--ink); font-weight:500; font-size:1.02rem}
+.mnav a::before{content:""; width:9px; height:9px; border-radius:50%; flex:none; background:var(--c, var(--accent));
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--c, var(--accent)) 18%, transparent)}
+.mnav a::after{content:"\203A"; margin-left:auto; color:var(--ink-3); font-size:1.3rem; line-height:1}
+.mnav a:hover, .mnav a.active{background:var(--surface-2); text-decoration:none}
+@keyframes mnav-in{from{opacity:0; transform:translateY(-6px)}}
+@media (max-width:1040px){ .icon-btn.menu-btn{display:inline-flex} }
+@media (min-width:1041px){ .mnav{display:none !important} }
 
 .icon-btn{width:38px; height:38px; border:1px solid var(--line); background:var(--surface); border-radius:10px; display:inline-flex; align-items:center; justify-content:center; color:var(--ink); cursor:pointer; padding:0; flex:none}
 .icon-btn:hover{border-color:var(--line-2); text-decoration:none}
@@ -399,6 +418,11 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .vid:hover .vid-play, .vid:focus-visible .vid-play{transform:scale(1.1)}
 .vid-bar{position:absolute; left:16px; right:14px; bottom:12px; display:flex; align-items:center; justify-content:space-between; gap:10px; text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .vid-label{font-weight:600; font-size:.95rem}
+.vid-brand .vid-shade{background:linear-gradient(to top, rgba(8,10,9,.78), rgba(8,10,9,0) 40%)}
+.vid-brand .vid-play{left:14px; top:auto; bottom:10px; width:42px; height:42px; margin:0}
+.vid-brand .vid-play svg{width:18px; height:18px; margin-left:3px}
+.vid-brand .vid-play::after{inset:-6px}
+.vid-brand .vid-bar{left:68px; bottom:15px}
 .vid-len{flex:none; font-family:var(--f-mono); font-size:.76rem; padding:3px 8px; border-radius:6px; background:rgba(0,0,0,.7); text-shadow:none}
 .lb-video .vd-frame{aspect-ratio:16/9; background:#000}
 .lb-video .vd-frame iframe{display:block; width:100%; height:100%; border:0}
@@ -643,8 +667,18 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     <div class="nav-actions">
       <button class="icon-btn" id="theme" type="button" aria-label="Switch between light and dark theme" data-i18n-aria="theme.label"></button>
       <a class="btn btn-primary btn-sm" href="#contact" data-i18n="nav.contact">Contact</a>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu" data-i18n-aria="nav.menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="mb-1" d="M4 7h16"/><path class="mb-2" d="M4 12h16"/><path class="mb-3" d="M4 17h16"/></svg></button>
     </div>
   </div>
+  <nav class="mnav" id="mnav" aria-label="Sections" hidden>
+    <div class="wrap mnav-in">
+      <a href="#experience" data-i18n="nav.experience" style="--c:#2E7BF0">Experience</a>
+      <a href="#projects" data-i18n="nav.projects" style="--c:#12A483">Projects</a>
+      <a href="#awards" data-i18n="nav.awards" style="--c:#E0A800">Awards</a>
+      <a href="#certificates" data-i18n="nav.certs" style="--c:#7C5CFA">Certificates</a>
+      <a href="#skills" data-i18n="nav.skills" style="--c:#E84D93">Skills</a>
+    </div>
+  </nav>
 </header>
 
 <main id="main">
@@ -839,11 +873,12 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   <div class="grid-2">
     <article class="project" id="caremind">
       <div class="project-media project-video">
-        <button class="vid gal-btn" type="button" data-photos="awards/caremind-team-2026.jpg|awards/ted-venture-catalyst-2026.webp" data-alts="The CareMind team in matching CareMind T-shirts in the Software Engineering Lab at Mae Fah Luang University|Members of the CareMind team receiving the Fast Track award board with a 5,000 baht prize on stage at TED Venture Catalyst 2026, Northern Region" data-title="CareMind" aria-label="View photos" data-i18n-aria="proj.arm.view">
-          <img src="awards/caremind-team-2026.jpg" alt="" width="1600" height="1600" loading="lazy" decoding="async" style="object-position:50% 42%">
+        <button class="vid vid-brand" type="button" data-yt="C2mGUTi46cA" data-title="CareMind presentation" data-len="7:37" aria-label="Play video: CareMind presentation" data-i18n-aria="proj.cm.play">
+          <img src="media/caremind-poster.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
           <span class="vid-shade" aria-hidden="true"></span>
           <span class="moment-rank" style="--c:#7C5CFA"><i aria-hidden="true"></i><span data-i18n="aw.p0">Fast Track Award</span></span>
-          <span class="moment-count" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M17 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/></svg>2</span>
+          <span class="vid-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+          <span class="vid-bar" aria-hidden="true"><span class="vid-label" data-i18n="proj.cm.watch">Watch the presentation</span><span class="vid-len">7:37</span></span>
         </button>
       </div>
       <div class="project-body">
@@ -885,7 +920,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
 
     <article class="project">
       <div class="project-media project-video">
-        <button class="vid" type="button" data-yt="Yxf14bPctgU" data-title="Autonomous Mobile Robot" aria-label="Play video: Autonomous Mobile Robot" data-i18n-aria="proj.bot.play">
+        <button class="vid" type="button" data-yt="Yxf14bPctgU" data-title="Autonomous Mobile Robot" data-len="4:19" aria-label="Play video: Autonomous Mobile Robot" data-i18n-aria="proj.bot.play">
           <video class="vid-loop" muted loop playsinline preload="none" disablepictureinpicture poster="media/amr-loop.jpg" width="960" height="540" aria-hidden="true"><source src="media/amr-loop.mp4" type="video/mp4"></video>
           <span class="vid-shade" aria-hidden="true"></span>
           <span class="vid-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
@@ -926,9 +961,9 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   </div>
 
   <dialog class="lb lb-video" id="vd" aria-labelledby="vd-title">
-    <div class="lb-top"><span><b id="vd-title">Autonomous Mobile Robot</b> · 4:19</span><button class="icon-btn" id="vd-close" type="button" aria-label="Close" data-i18n-aria="cert.close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="lb-top"><span><b id="vd-title">Autonomous Mobile Robot</b> · <span id="vd-len">4:19</span></span><button class="icon-btn" id="vd-close" type="button" aria-label="Close" data-i18n-aria="cert.close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
     <div class="vd-frame" id="vd-frame"></div>
-    <p class="vd-foot"><a href="https://youtu.be/Yxf14bPctgU" target="_blank" rel="noopener"><span data-i18n="proj.bot.yt">Watch on YouTube</span> ↗</a></p>
+    <p class="vd-foot"><a id="vd-yt" href="https://youtu.be/Yxf14bPctgU" target="_blank" rel="noopener"><span data-i18n="proj.bot.yt">Watch on YouTube</span> ↗</a></p>
   </dialog>
 </section>
 
@@ -1247,14 +1282,22 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   function onScroll(){ nav.classList.toggle('scrolled', window.scrollY>8); }
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-  var links=[].slice.call(document.querySelectorAll('.links a'));
+  var mb=document.getElementById('menu-btn'), mn=document.getElementById('mnav');
+  function setMenu(open){ mn.hidden=!open; mb.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  mb.addEventListener('click', function(){ setMenu(mn.hidden); });
+  mn.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+  document.addEventListener('click', function(e){ if(!mn.hidden && !e.target.closest('#nav')) setMenu(false); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !mn.hidden){ setMenu(false); mb.focus(); } });
+  if(window.matchMedia){ var wide=window.matchMedia('(min-width:1041px)'); if(wide.addEventListener) wide.addEventListener('change', function(e){ if(e.matches) setMenu(false); }); }
+
+  var links=[].slice.call(document.querySelectorAll('.links a, .mnav a'));
   if('IntersectionObserver' in window){
-    var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+    var map={}; links.forEach(function(a){ var id=a.getAttribute('href').slice(1); (map[id]=map[id]||[]).push(a); });
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if(e.isIntersecting && map[e.target.id]){
           links.forEach(function(a){ a.classList.remove('active'); });
-          map[e.target.id].classList.add('active');
+          map[e.target.id].forEach(function(a){ a.classList.add('active'); });
         }
       });
     },{rootMargin:'-45% 0px -50% 0px'});
@@ -1273,7 +1316,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   });
 })();
 </script>
-<script src="i18n.js?v=1795183335"></script>
+<script src="i18n.js?v=1795183834"></script>
 <script>
 /* Certificate coverflow + viewer */
 (function(){
@@ -1439,6 +1482,9 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
     b.addEventListener('click', function(){
       var id=b.getAttribute('data-yt');
       if(!d || typeof d.showModal!=='function'){ window.open('https://youtu.be/'+id, '_blank', 'noopener'); return; }
+      document.getElementById('vd-title').textContent=b.getAttribute('data-title')||'';
+      document.getElementById('vd-len').textContent=b.getAttribute('data-len')||'';
+      document.getElementById('vd-yt').href='https://youtu.be/'+id;
       var f=document.createElement('iframe');
       f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1';
       f.title=b.getAttribute('data-title')||'Video';

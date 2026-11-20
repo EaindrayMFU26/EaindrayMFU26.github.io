@@ -384,7 +384,7 @@ p{margin:0}
   var SECTIONS = ['CareMind card', 'Experience', 'Projects', 'Awards', 'Certificates', 'Skills', 'Beyond the code', 'Contact'];
   var EVENTS = {
     cv: 'Opened the CV', email: 'Clicked "Email me"', copy: 'Copied the email address', linkedin: 'Opened LinkedIn',
-    github: 'Opened GitHub', video: 'Played the robot video', cert: 'Opened a certificate', photo: 'Opened a photo',
+    github: 'Opened GitHub', video: 'Played a video', cert: 'Opened a certificate', photo: 'Opened a photo',
     lang: 'Switched language', theme: 'Switched light / dark', outbound: 'Other outside links'
   };
   var DEVICES = { desktop: ['Desktop', '#2E7BF0'], mobile: ['Phone', '#12A483'], tablet: ['Tablet', '#F07B1E'] };
@@ -750,7 +750,7 @@ p{margin:0}
     var items = Object.keys(by).filter(function(k){ return EVENTS[k]; }).map(function(k){
       var g = by[k];
       g.labels.sort(function(a, b){ return b[1] - a[1]; });
-      var sub = g.labels.length && k !== 'video' ? g.labels.slice(0, 3).map(function(l){ return esc(l[0]) + ' ' + NF.format(l[1]); }).join(' · ') : '';
+      var sub = g.labels.length ? g.labels.slice(0, 3).map(function(l){ return esc(l[0]) + ' ' + NF.format(l[1]); }).join(' · ') : '';
       return { name: esc(EVENTS[k]), value: g.n, note: total ? '<span>' + pct(g.u, total) + '% of visitors</span>' : '', sub: sub };
     }).sort(function(a, b){ return b.value - a.value; });
     bars($('events'), items, { limit: 11, empty: 'No clicks yet for this period.' });
