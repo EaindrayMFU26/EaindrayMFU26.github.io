@@ -80,7 +80,7 @@
 :lang(th) body{line-height:1.8}
 :lang(th) h2, :lang(th) h3, :lang(th) h4, :lang(th) .role b, :lang(th) .award .what strong, :lang(th) .flow b{line-height:1.45; letter-spacing:0}
 :lang(th) h2 em{font-family:inherit; font-style:normal; font-weight:700; font-size:1em; letter-spacing:0}
-:lang(th) .eyebrow, :lang(th) .label, :lang(th) .metric .k, :lang(th) .tl-badge, :lang(th) .lb-meta .k{letter-spacing:.03em}
+:lang(th) .eyebrow, :lang(th) .label, :lang(th) .tl-badge, :lang(th) .lb-meta .k{letter-spacing:.03em}
 :lang(zh) h2, :lang(nan) h2, :lang(zh) h3, :lang(nan) h3, :lang(zh) .role b, :lang(nan) .role b{letter-spacing:0}
 :lang(zh) h2 em, :lang(nan) h2 em{font-family:inherit; font-style:normal; font-weight:700; font-size:1em; letter-spacing:0}
 :lang(zh) .eyebrow, :lang(nan) .eyebrow{letter-spacing:.06em}
@@ -183,28 +183,71 @@ h1{font-family:var(--f-serif); font-weight:400; font-size:clamp(4rem,10.5vw,7.25
 .typer.typing .typer-caret{animation:none}
 @keyframes caret-blink{50%{opacity:0}}
 
-/* report card */
-.report{margin:0; background:var(--surface); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); overflow:hidden; min-width:0}
-.report-head{display:flex; align-items:center; gap:10px; white-space:nowrap; padding:13px 18px; border-bottom:1px solid var(--line); font-family:var(--f-mono); font-size:.76rem; color:var(--ink-3)}
-.dots{display:flex; gap:5px}
-.dots i{width:9px; height:9px; border-radius:50%; background:var(--line-2)}
-.report-head b{color:var(--ink); font-weight:500}
-.report-head .r{margin-left:auto}
-.metric{display:grid; gap:6px; padding:16px 18px; border-bottom:1px solid var(--line)}
-.metric .k{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3)}
-.metric .v{font-size:1.5rem; font-weight:600; letter-spacing:-.025em; line-height:1.15; font-variant-numeric:tabular-nums}
-.metric .v small{font-size:.86rem; font-weight:400; color:var(--ink-2); letter-spacing:0; margin-left:6px}
-.metric .v.sm{font-size:1.15rem}
-.metric .d{font-size:.88rem; color:var(--ink-2)}
-.bar{height:6px; border-radius:6px; background:var(--surface-2); overflow:hidden; margin-top:2px}
-.bar i{display:block; height:100%; width:97.7%; background:var(--accent); border-radius:6px}
-.metric-row{display:grid; grid-template-columns:1fr 1fr}
-.metric-row .metric + .metric{border-left:1px solid var(--line)}
-@media (max-width:420px){ .metric-row{grid-template-columns:1fr} .metric-row .metric + .metric{border-left:0} }
-.report-foot{padding:12px 18px; display:flex; flex-wrap:wrap; gap:6px 14px; font-family:var(--f-mono); font-size:.76rem; color:var(--ink-2); background:var(--surface-2)}
-.report-foot span{display:inline-flex; align-items:center; gap:5px}
-.report-foot svg{width:13px; height:13px; color:var(--accent)}
-.report-foot .ci{color:var(--ink-3)}
+/* hero: hello line */
+.name-wrap{display:grid; gap:6px}
+.hello{display:flex; align-items:center; gap:10px; font-family:var(--f-serif); font-style:italic; font-size:clamp(1.45rem,2.6vw,1.9rem); line-height:1.1; color:var(--accent-ink)}
+.wave{display:inline-block; font-style:normal; font-size:.92em; transform-origin:70% 80%; animation:wave 3.2s ease-in-out 1.2s infinite}
+@keyframes wave{0%,55%,100%{transform:rotate(0)} 8%,24%{transform:rotate(16deg)} 16%{transform:rotate(-8deg)} 32%{transform:rotate(-4deg)} 40%{transform:rotate(10deg)}}
+
+/* hero: portrait with stickers */
+.hero-art{position:relative; justify-self:center; width:min(100%, 330px); margin:24px 70px 28px}
+.card-back{position:absolute; inset:5% -7% 2% 6%; border-radius:8px; transform:rotate(7deg);
+  background:color-mix(in srgb, #B9A6FF 45%, var(--surface)); box-shadow:0 18px 34px -20px rgba(40,20,90,.45)}
+.snap{position:relative; z-index:1; margin:0; padding:12px 12px 48px; border-radius:6px; background:#FFFDF8; transform:rotate(-3deg);
+  box-shadow:0 1px 2px rgba(0,0,0,.08), 0 26px 44px -20px rgba(20,60,45,.5); transition:transform .6s cubic-bezier(.3,1.5,.5,1)}
+.snap:hover{transform:rotate(-1deg) translateY(-4px)}
+.snap img{display:block; width:100%; height:auto; aspect-ratio:2/3; object-fit:cover; border-radius:3px; background:#EFE9DD}
+.tape{position:absolute; z-index:2; width:104px; height:30px; opacity:.88;
+  background:repeating-linear-gradient(135deg, var(--t1) 0 7px, var(--t2) 7px 14px);
+  clip-path:polygon(3% 0, 97% 0, 100% 25%, 97% 50%, 100% 75%, 97% 100%, 3% 100%, 0 75%, 3% 50%, 0 25%)}
+.tape-a{--t1:#9BE3CD; --t2:#B6EBDA; top:-12px; left:-26px; transform:rotate(-38deg)}
+.tape-b{--t1:#FFC2A6; --t2:#FFD5C2; top:-10px; right:-28px; transform:rotate(34deg)}
+.bot{position:absolute; z-index:3; left:-15%; bottom:-7%; width:96px; height:auto; overflow:visible;
+  filter:drop-shadow(0 10px 12px rgba(20,40,60,.22)); animation:bot-bob 4.6s ease-in-out infinite}
+@keyframes bot-bob{0%, 100%{transform:translateY(0) rotate(-6deg)} 50%{transform:translateY(-6px) rotate(-2deg)}}
+.bot-arm{transform-box:view-box; transform-origin:84px 100px; animation:bot-wave 2.6s ease-in-out infinite}
+@keyframes bot-wave{0%, 100%{transform:rotate(0)} 20%{transform:rotate(-24deg)} 40%{transform:rotate(4deg)} 60%{transform:rotate(-20deg)} 80%{transform:rotate(2deg)}}
+.bot-eyes{transform-box:fill-box; transform-origin:center; animation:blink 4.8s infinite}
+@keyframes blink{0%, 93%, 100%{transform:scaleY(1)} 95.5%{transform:scaleY(.12)}}
+.bot-light{animation:bot-glow 1.9s ease-in-out infinite}
+@keyframes bot-glow{0%, 100%{opacity:1} 50%{opacity:.45}}
+.spark{position:absolute; z-index:2; color:var(--c); animation:twinkle 3.4s ease-in-out infinite}
+.spark svg{display:block; width:100%; height:100%}
+.sp1{top:-3%; right:-2%; width:28px; height:28px}
+.sp2{top:58%; left:-15%; width:16px; height:16px; animation-delay:-1.2s}
+.sp3{bottom:-4%; right:12%; width:18px; height:18px; animation-delay:-2.3s}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0)} 50%{transform:scale(.62) rotate(45deg)}}
+.art-stage{position:relative}
+.stickers{list-style:none; margin:0; padding:0}
+.sticker{--hi:rgba(255,255,255,.65); --bg:color-mix(in srgb, var(--c) 14%, var(--surface)); --bd:color-mix(in srgb, var(--c) 36%, var(--surface)); --fg:color-mix(in srgb, var(--c) 58%, var(--ink));
+  position:absolute; z-index:3; display:inline-flex; align-items:center; gap:8px; padding:4px 14px 4px 4px; border-radius:999px;
+  background:var(--bg); border:1px solid var(--bd); color:var(--fg); font-size:.86rem; font-weight:600; line-height:1.2; white-space:nowrap;
+  box-shadow:inset 0 1px 0 var(--hi), 0 3px 0 var(--bd), 0 18px 30px -14px rgba(0,0,0,.35);
+  transform:rotate(var(--r)); animation:bob 6s ease-in-out infinite}
+.sticker .cap{color:var(--c)}
+.sticker .cap svg{width:15px; height:15px}
+.s1{--r:-5deg; top:6%; left:-34%}
+.s2{--r:4deg; top:80%; right:-30%; animation-delay:-2s}
+.s3{--r:-3deg; top:52%; left:-36%; animation-delay:-4s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(var(--r))} 50%{transform:translateY(-8px) rotate(var(--r))}}
+.me{position:absolute; z-index:3; top:-15%; right:-28%; margin:0; font-family:var(--f-serif); font-style:italic; font-size:1.5rem; line-height:1; color:var(--ink-2); white-space:nowrap; transform:rotate(7deg)}
+.me svg{display:block; width:54px; height:44px; margin:4px 0 0 -6px; color:var(--accent)}
+:root[data-theme="dark"] .sticker{--hi:rgba(255,255,255,.07)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .sticker{--hi:rgba(255,255,255,.07)} }
+@media (max-width:940px){
+  .hero-art{order:-1; width:min(62vw, 260px); margin:18px auto 8px}
+  .stickers{position:relative; left:50%; translate:-50% 0; width:min(calc(100vw - 32px), 560px);
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px 12px; margin-top:30px}
+  .stickers .sticker{position:relative; inset:auto}
+  .me{top:-12%; right:-34%; font-size:1.25rem}
+}
+@media (max-width:520px){
+  .sticker{font-size:.78rem; padding:3px 11px 3px 3px; gap:6px}
+  .sticker .cap{width:22px; height:22px}
+  .me{right:auto; left:80%}
+  .me svg{width:42px; height:34px}
+  .bot{width:70px}
+}
 
 /* stats */
 .stats{margin-top:64px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border:1px solid var(--line); border-radius:16px; background:var(--surface); overflow:hidden}
@@ -563,12 +606,12 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
 .lang-opt[aria-checked="true"] .check{visibility:visible}
 
 /* scroll reveal: elements start hidden (only when JS can reveal them) and animate in one by one */
-.rv-ready :is(.hero-copy > *, .report, .stat, .sec-head > *, .case, .flow li, .gate, .did > div, .jr-filter, .tl-node, .tl-date, .tl-card, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .candy, .grid-3 .item, .contact):not(.rv-in){opacity:0}
+.rv-ready :is(.hero-copy > *, .hero-art, .stat, .sec-head > *, .case, .flow li, .gate, .did > div, .jr-filter, .tl-node, .tl-date, .tl-card, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .candy, .grid-3 .item, .contact):not(.rv-in){opacity:0}
 .rv-ready .rv-in{animation:rv-up .8s cubic-bezier(.16,.84,.3,1) var(--rv-d,0ms) backwards}
 .rv-ready main{overflow-x:clip}
-.rv-ready :is(.report, .tl-card).rv-in{animation-name:rv-right}
+.rv-ready .tl-card.rv-in{animation-name:rv-right}
 .rv-ready :is(.tl-date, .award).rv-in{animation-name:rv-left}
-.rv-ready :is(.case, .project, .moment, .cf, .jar, .contact).rv-in{animation-name:rv-zoom}
+.rv-ready :is(.hero-art, .case, .project, .moment, .cf, .jar, .contact).rv-in{animation-name:rv-zoom}
 .rv-ready :is(.tl-node, .candy).rv-in{animation:rv-pop .6s cubic-bezier(.3,1.5,.5,1) var(--rv-d,0ms) backwards}
 @keyframes rv-up{from{opacity:0; transform:translateY(22px)}}
 @keyframes rv-left{from{opacity:0; transform:translateX(-26px)}}
@@ -612,7 +655,10 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   <div class="hero-grid">
     <div class="hero-copy">
       <span class="status"><i aria-hidden="true"></i><span data-i18n="hero.status">Open to AI engineering internships</span></span>
-      <h1 id="name">Eaindray</h1>
+      <div class="name-wrap">
+        <p class="hello"><span data-i18n="hero.hello">Hi, I’m</span> <span class="wave" aria-hidden="true">👋</span></p>
+        <h1 id="name">Eaindray</h1>
+      </div>
       <p class="role"><b class="typer" data-roles="AI Engineer Intern|Robotics Software Engineer|Full-Stack Engineer|Software Engineer|MLOps Engineer|Embedded Systems Engineer" aria-hidden="true"><span class="typer-text">AI Engineer Intern</span><span class="typer-caret"></span></b><span class="sr-only" id="role-sr">AI Engineer Intern</span><span data-i18n="hero.focus">Generative AI applications · Testing · AI operations</span></p>
       <p class="lead" data-i18n="hero.lead">Software Engineering student at Mae Fah Luang University. At MFU Medical Center Hospital I deployed, tested and maintained the LLM behind <strong>CareMind</strong>, a generative AI application that drafts nursing notes with source citations.</p>
       <div class="cta">
@@ -633,38 +679,52 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
       <p class="loc" data-i18n="hero.loc">Chiang Rai, Thailand · B.Eng. expected May 2027</p>
     </div>
 
-    <figure class="report" aria-label="CareMind">
-      <div class="report-head"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span><b>caremind</b> / <span data-i18n="rep.results">results</span></span><span class="r" data-ym="2026-06|2026-09">Jun – Sep 2026</span></div>
-      <div class="metric">
-        <span class="k" data-i18n="rep.citation">Citation precision</span>
-        <span class="v">97.7%</span>
-        <div class="bar" aria-hidden="true"><i></i></div>
+    <div class="hero-art">
+      <div class="art-stage">
+      <span class="card-back" aria-hidden="true"></span>
+      <figure class="snap">
+        <img src="media/eaindray-cartoon.webp" alt="Cartoon portrait of Eaindray" aria-label="Cartoon portrait of Eaindray" data-i18n-aria="hero.avatar" width="688" height="1032" decoding="async" fetchpriority="high">
+        <span class="tape tape-a" aria-hidden="true"></span>
+        <span class="tape tape-b" aria-hidden="true"></span>
+      </figure>
+      <svg class="bot" viewBox="0 0 120 140" aria-hidden="true">
+        <defs>
+          <linearGradient id="bot-shell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDE7E3"/></linearGradient>
+        </defs>
+        <path d="M60 30V15" stroke="#9FB0AA" stroke-width="3" stroke-linecap="round"/>
+        <circle class="bot-light" cx="60" cy="11" r="6.5" fill="#FF8A6B"/>
+        <rect x="13" y="47" width="11" height="22" rx="5.5" fill="#3CCFA9"/>
+        <rect x="96" y="47" width="11" height="22" rx="5.5" fill="#3CCFA9"/>
+        <rect x="22" y="28" width="76" height="58" rx="24" fill="url(#bot-shell)" stroke="#C3D0CB" stroke-width="1.6"/>
+        <rect x="31" y="39" width="58" height="35" rx="16" fill="#22304F"/>
+        <g class="bot-eyes" fill="#6FF0CF">
+          <rect x="41" y="50" width="11" height="13" rx="5.5"/><rect x="68" y="50" width="11" height="13" rx="5.5"/>
+        </g>
+        <path d="M53 67Q60 71.5 67 67" fill="none" stroke="#6FF0CF" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="34" cy="80" r="3.4" fill="#FFB3A7" opacity=".8"/><circle cx="86" cy="80" r="3.4" fill="#FFB3A7" opacity=".8"/>
+        <rect x="52" y="84" width="16" height="8" rx="3" fill="#C3D0CB"/>
+        <path d="M37 101L24 117" stroke="#C3D0CB" stroke-width="10" stroke-linecap="round"/>
+        <path d="M37 101L24 117" stroke="#F4F8F6" stroke-width="7" stroke-linecap="round"/>
+        <g class="bot-arm">
+          <path d="M84 100L101 80" stroke="#C3D0CB" stroke-width="10" stroke-linecap="round"/>
+          <path d="M84 100L101 80" stroke="#F4F8F6" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="103" cy="77" r="7.5" fill="#F4F8F6" stroke="#C3D0CB" stroke-width="1.6"/>
+        </g>
+        <rect x="33" y="90" width="54" height="40" rx="15" fill="url(#bot-shell)" stroke="#C3D0CB" stroke-width="1.6"/>
+        <circle class="bot-light" cx="60" cy="109" r="6" fill="#7C5CFA"/>
+        <rect x="39" y="127" width="16" height="9" rx="4.5" fill="#22304F"/><rect x="65" y="127" width="16" height="9" rx="4.5" fill="#22304F"/>
+      </svg>
+      <span class="spark sp1" style="--c:#E84D93" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 0c1.2 6.6 5.4 10.8 12 12-6.6 1.2-10.8 5.4-12 12C10.8 17.4 6.6 13.2 0 12 6.6 10.8 10.8 6.6 12 0z" fill="currentColor"/></svg></span>
+      <span class="spark sp2" style="--c:#D99A00" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 0c1.2 6.6 5.4 10.8 12 12-6.6 1.2-10.8 5.4-12 12C10.8 17.4 6.6 13.2 0 12 6.6 10.8 10.8 6.6 12 0z" fill="currentColor"/></svg></span>
+      <span class="spark sp3" style="--c:#2E7BF0" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 0c1.2 6.6 5.4 10.8 12 12-6.6 1.2-10.8 5.4-12 12C10.8 17.4 6.6 13.2 0 12 6.6 10.8 10.8 6.6 12 0z" fill="currentColor"/></svg></span>
+      <p class="me" aria-hidden="true"><span data-i18n="hero.me">That’s me!</span><svg viewBox="0 0 54 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M46 3C40 18 28 28 9 34"/><path d="M17 27 8 34l10 4"/></svg></p>
       </div>
-      <div class="metric-row">
-        <div class="metric">
-          <span class="k" data-i18n="rep.load">Load test</span>
-          <span class="v">3,806<small data-i18n="rep.requests">requests</small></span>
-          <span class="d" data-i18n="rep.loadd">3 hours, zero errors or slowdown</span>
-        </div>
-        <div class="metric">
-          <span class="k" data-i18n="rep.quant">Quantisation study</span>
-          <span class="v">p = 0.029</span>
-          <span class="d" data-i18n="rep.quantd">Q4 drug-name regression, 42 runs each</span>
-        </div>
-      </div>
-      <div class="metric">
-        <span class="k" data-i18n="rep.serving">Model serving</span>
-        <span class="v sm" data-i18n="rep.model">8B Thai medical LLM</span>
-        <span class="d" data-i18n="rep.servingd">Ollama · on-premise GPU server · authenticated API</span>
-      </div>
-      <div class="report-foot">
-        <span class="ci" data-i18n="rep.ci">CI, every merge:</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="rep.acc">accuracy</span></span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="rep.cit">citation</span></span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="rep.drug">drug-class</span></span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-i18n="rep.priv">privacy</span></span>
-      </div>
-    </figure>
+      <ul class="stickers">
+        <li class="sticker s1" style="--c:#12A483"><span class="cap" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-5 4 10 2.5-5H21"/></svg></span><span data-i18n="hero.s1">AI in a real hospital</span></li>
+        <li class="sticker s2" style="--c:#7C5CFA"><span class="cap" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9.5 13v.5M14.5 13v.5M10 16.5h4"/></svg></span><span data-i18n="hero.s2">Builds robots from scratch</span></li>
+        <li class="sticker s3" style="--c:#F07B1E"><span class="cap" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5.5a2.5 2.5 0 0 0 2.6 3.4M16 6h2.5a2.5 2.5 0 0 1-2.6 3.4M12 13v3M8.5 20h7M10 16.5h4"/></svg></span><span data-i18n="hero.s3">Hackathon winner</span></li>
+      </ul>
+    </div>
   </div>
 
   <div class="stats">
@@ -1260,7 +1320,7 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
   });
 })();
 </script>
-<script src="i18n.js?v=1795107158"></script>
+<script src="i18n.js?v=1795176199"></script>
 <script>
 /* Certificate coverflow + viewer */
 (function(){
@@ -1460,9 +1520,9 @@ footer{padding-block:32px 96px; font-family:var(--f-mono); font-size:.78rem; col
 (function(){
   var root=document.documentElement; window.__rv=1;
   if(!root.classList.contains('rv-ready')) return;
-  var SEL='.hero-copy > *, .report, .stat, .sec-head > *, .case, .flow li, .gate, .did > div, .jr-filter, .tl-node, .tl-date, .tl-card, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .candy, .grid-3 .item, .contact';
+  var SEL='.hero-copy > *, .hero-art, .stat, .sec-head > *, .case, .flow li, .gate, .did > div, .jr-filter, .tl-node, .tl-date, .tl-card, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .candy, .grid-3 .item, .contact';
   var GROUPS='.hero-copy, .sec-head, .stats, .flow-wrap, .did, .tl, .grid-2, .moments, .awards, .jars, .candies, .grid-3';
-  var BASE=[['.report',220],['.stat',350],['.case',150],['.tl-date',60],['.tl-card',110]];
+  var BASE=[['.hero-art',160],['.stat',350],['.case',150],['.tl-date',60],['.tl-card',110]];
   var els=[].slice.call(document.querySelectorAll(SEL));
   function show(el){ el.classList.add('rv-in'); }
   window.addEventListener('beforeprint', function(){ els.forEach(show); });
