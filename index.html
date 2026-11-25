@@ -193,6 +193,11 @@ h1{font-size:clamp(4rem,10.5vw,7.25rem); line-height:.9; letter-spacing:-.025em}
 
 /* screen-reader-only text */
 .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+/* hero role: types each role, pauses, deletes, types the next (static for reduced motion) */
+.typer{display:inline-flex; align-items:center; min-height:1.3333em; white-space:nowrap}
+.typer-caret{display:inline-block; width:3px; height:1.05em; margin-left:4px; border-radius:2px; background:var(--accent); animation:caret-blink 1.05s steps(1) infinite}
+.typer.typing .typer-caret{animation:none}
+@keyframes caret-blink{50%{opacity:0}}
 
 /* hero: hello line */
 .name-wrap{display:grid; gap:8px}
@@ -552,7 +557,7 @@ main{overflow-x:clip}
         <p class="hello"><span data-i18n="hero.hello">Hi, I’m</span></p>
         <h1 id="name">Eaindray</h1>
       </div>
-      <p class="role"><b class="role-title">AI Engineer Intern</b><span data-i18n="hero.focus">Generative AI applications · Testing · AI operations</span></p>
+      <p class="role"><b class="typer" data-roles="AI Engineer Intern|Robotics Software Engineer|Full-Stack Engineer|Software Engineer|MLOps Engineer|Embedded Systems Engineer" aria-hidden="true"><span class="typer-text">AI Engineer Intern</span><span class="typer-caret"></span></b><span class="sr-only" id="role-sr">AI Engineer Intern</span><span data-i18n="hero.focus">Generative AI applications · Testing · AI operations</span></p>
       <p class="lead" data-i18n="hero.lead">Software Engineering student at Mae Fah Luang University. At MFU Medical Center Hospital I deployed, tested and maintained the LLM behind <strong>CareMind</strong>, a generative AI application that drafts nursing notes with source citations.</p>
       <div class="cta">
         <a class="btn btn-primary" href="Eaindray_CV.pdf" target="_blank" rel="noopener">
@@ -1281,6 +1286,7 @@ main{overflow-x:clip}
       prev=document.getElementById('ph-prev'), next=document.getElementById('ph-next');
   var list=[], i=0, caption='';
   function show(k){
+    if(!list.length) return;
     i=(k+list.length)%list.length; if(img.getAttribute('src')!==list[i].src){ img.classList.remove('loaded'); img.src=list[i].src; } img.alt=list[i].alt;
     meta.textContent=(list.length>1 ? (i+1)+' / '+list.length+(caption?' · ':'') : '')+caption;
   }
@@ -1356,12 +1362,30 @@ main{overflow-x:clip}
 })();
 </script>
 <script>
-/* Hero role title: the first role, in the current language */
+/* Hero role: types out each role, pauses, deletes, types the next (static for reduced motion) */
 (function(){
-  var el=document.querySelector('.role-title'); if(!el) return;
-  var en=el.textContent;
-  function set(){ var t=window.I18N && I18N.lang!=='en' && I18N.t('hero.roles'); el.textContent=t ? String(t).split('|')[0] : en; }
-  document.addEventListener('langchange', set); set();
+  var box=document.querySelector('.typer'); if(!box) return;
+  var txt=box.querySelector('.typer-text'), sr=document.getElementById('role-sr');
+  var reduce=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var roles=[], ri=0, timer=null, run=0;
+  function list(){ var t=window.I18N && I18N.lang!=='en' && I18N.t('hero.roles'); return String(t || box.getAttribute('data-roles')).split('|'); }
+  function wait(ms, id, fn){ timer=setTimeout(function(){ if(id!==run) return; if(document.hidden){ wait(500, id, fn); return; } fn(); }, ms); }
+  function typeTo(word, id, done){
+    var cur=Array.from(txt.textContent), w=Array.from(word);
+    if(cur.join('')===word){ box.classList.remove('typing'); done(); return; }
+    box.classList.add('typing');
+    if(word.indexOf(cur.join(''))!==0){ txt.textContent=cur.slice(0,-1).join(''); wait(26, id, function(){ typeTo(word, id, done); }); }
+    else { txt.textContent=w.slice(0, cur.length+1).join(''); wait(45+Math.random()*55, id, function(){ typeTo(word, id, done); }); }
+  }
+  function cycle(id){ wait(2200, id, function(){ ri=(ri+1)%roles.length; typeTo(roles[ri], id, function(){ cycle(id); }); }); }
+  function start(){
+    clearTimeout(timer); run++; roles=list(); ri=0;
+    txt.textContent=roles[0]; box.classList.remove('typing');
+    if(sr) sr.textContent=roles.join(', ');
+    if(!reduce && roles.length>1) cycle(run);
+  }
+  document.addEventListener('langchange', start);
+  start();
 })();
 </script>
 <script>
