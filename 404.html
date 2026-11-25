@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found · eaindrayiscoding</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#EEF4F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B1120" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2322408F'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='40' fill='%23fff'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root{
+  --bg:#EEF4F3; --surface:#FBFDFD; --ink:#0F1424; --ink-2:#4A5163; --line:#D5E0E0;
+  --accent:#22408F; --accent-ink:#1D3678; --on-accent:#FFFFFF; --r:12px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#0B1120; --surface:#121A2B; --ink:#E9EEF7; --ink-2:#A3ADC2; --line:#222C42; --accent:#3CCFA9; --accent-ink:#62DDBD; --on-accent:#0A1430; color-scheme:dark}
+}
+*{box-sizing:border-box}
+body{margin:0; min-height:100vh; display:grid; grid-template-rows:auto 1fr; background:var(--bg); color:var(--ink);
+  font:400 1rem/1.5 "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing:antialiased}
+.wrap{width:100%; max-width:1120px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px))}
+@media (min-width:700px){ .wrap{padding-left:max(28px, env(safe-area-inset-left,0px)); padding-right:max(28px, env(safe-area-inset-right,0px))} }
+header{border-bottom:1px solid var(--line)}
+.top{display:flex; align-items:center; height:64px}
+.brand{font-weight:600; font-size:1rem; line-height:1.5; color:var(--ink); text-decoration:none; letter-spacing:-.01em}
+.brand span{color:var(--accent-ink)}
+main{display:grid; gap:16px; align-content:start; padding-top:96px; padding-bottom:96px}
+.eyebrow{font-size:.75rem; line-height:1.3333; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink)}
+h1{margin:0; font-family:"Instrument Serif", Georgia, serif; font-weight:400; font-size:clamp(2.5rem,6vw,4rem); line-height:1.1; letter-spacing:-.015em; text-wrap:balance}
+p{margin:0; max-width:56ch; color:var(--ink-2); font-size:1.125rem; line-height:1.5556}
+.btn{display:inline-flex; align-items:center; height:40px; padding:0 16px; margin-top:16px; width:fit-content; border-radius:var(--r);
+  background:var(--accent); color:var(--on-accent); font-size:.875rem; line-height:1.4286; font-weight:500; text-decoration:none}
+.btn:hover{background:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+</style>
+</head>
+<body>
+<header><div class="wrap top"><a class="brand" href="/">eaindray<span>iscoding</span></a></div></header>
+<main class="wrap">
+  <span class="eyebrow">Error 404</span>
+  <h1>This page doesn’t exist</h1>
+  <p>The link may be old or mistyped. Experience, projects, awards, certificates and contact details are all on the home page.</p>
+  <a class="btn" href="/">Go to the home page</a>
+</main>
+</body>
+</html>
