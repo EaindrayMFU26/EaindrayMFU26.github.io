@@ -438,20 +438,33 @@ h1{font-size:clamp(4rem,10.5vw,7.25rem); line-height:.9; letter-spacing:-.025em}
   .lb-hint{display:none}
 }
 
-/* skills: candy jars */
-.jars{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px}
-.jar{position:relative; display:grid; gap:20px; align-content:start; padding:24px; border-radius:var(--r); min-width:0; background:var(--surface); border:1px solid var(--line)}
-@media (max-width:640px){ .jars{grid-template-columns:1fr; gap:16px} .jar{padding:20px; border-radius:var(--r)} }
-.jar-head{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; align-items:start}
-.jar-head p{font-size:.875rem; color:var(--ink-2); margin-top:4px; line-height:1.4286}
-.jar-count{display:inline-grid; place-items:center; min-width:32px; height:24px; padding:0 8px; border-radius:var(--r-full); font-size:.75rem; line-height:1.3333; font-weight:600; color:var(--ink-2); background:var(--surface-2)}
-.candies{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px 8px}
-.candy{display:inline-flex; align-items:center; gap:8px; min-height:32px; padding:4px 12px 4px 4px; border-radius:var(--r-full); background:var(--surface-2); border:1px solid var(--line); color:var(--ink);
-  font-size:.875rem; line-height:1.4286; font-weight:500; white-space:nowrap; cursor:default}
-.cap{width:24px; height:24px; border-radius:50%; background:#fff; display:grid; place-items:center; flex:none; border:1px solid var(--line)}
+/* skills: candy jars, each in its own colour */
+.jars{--hi:rgba(255,255,255,.6); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px}
+:root[data-theme="dark"] .jars{--hi:rgba(255,255,255,.08)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .jars{--hi:rgba(255,255,255,.08)} }
+.jar{--c:var(--accent); position:relative; display:grid; gap:20px; align-content:start; padding:24px; border-radius:var(--r); min-width:0;
+  background:color-mix(in srgb, var(--c) 8%, var(--surface)); border:1px solid color-mix(in srgb, var(--c) 32%, var(--line))}
+@media (max-width:640px){ .jars{grid-template-columns:1fr; gap:16px} .jar{padding:20px} }
+.jar-head{display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:16px; align-items:center}
+.jar-head h3{color:color-mix(in srgb, var(--c) 50%, var(--ink))}
+.jar-head p{font-size:.875rem; line-height:1.4286; color:var(--ink-2); margin-top:4px}
+.swirl{width:40px; height:40px; border-radius:50%; flex:none; border:3px solid var(--surface);
+  background:repeating-conic-gradient(from 8deg, var(--c) 0 22.5deg, color-mix(in srgb, var(--c) 28%, #fff) 22.5deg 45deg);
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--c) 40%, transparent); transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.jar:hover .swirl{transform:rotate(180deg)}
+.jar-count{display:inline-grid; place-items:center; min-width:32px; height:24px; padding:0 8px; border-radius:var(--r-full); font-size:.75rem; line-height:1.3333; font-weight:600;
+  color:color-mix(in srgb, var(--c) 62%, var(--ink)); background:color-mix(in srgb, var(--c) 16%, var(--surface))}
+.candies{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px}
+.candy{--bg:color-mix(in srgb, var(--c) 14%, var(--surface)); --bd:color-mix(in srgb, var(--c) 40%, var(--surface)); --fg:color-mix(in srgb, var(--c) 58%, var(--ink));
+  display:inline-flex; align-items:center; gap:8px; min-height:32px; padding:4px 12px 4px 4px; border-radius:var(--r-full); background:var(--bg); border:1px solid var(--bd); color:var(--fg);
+  font-size:.875rem; line-height:1.4286; font-weight:500; white-space:nowrap; cursor:default;
+  box-shadow:inset 0 1px 0 var(--hi), 0 2px 0 var(--bd); transition:transform .2s ease-out, box-shadow .2s ease-out}
+.candy:hover{transform:translateY(-2px); box-shadow:inset 0 1px 0 var(--hi), 0 4px 0 var(--bd)}
+.cap{width:24px; height:24px; border-radius:50%; background:#fff; display:grid; place-items:center; flex:none; border:1px solid color-mix(in srgb, var(--c) 30%, #fff)}
 .cap img{width:16px; height:16px; display:block}
-.cap i{width:8px; height:8px; border-radius:50%; background:var(--ink-3)}
-.candy b{display:inline-flex; align-items:center; height:20px; margin-left:4px; padding:0 8px; border-radius:var(--r-full); font-size:.75rem; line-height:1.3333; font-weight:600; background:var(--surface); color:var(--ink-2)}
+.cap i{width:12px; height:12px; border-radius:50%; background:var(--c); box-shadow:inset -2px -2px 0 rgba(0,0,0,.16), inset 2px 2px 0 rgba(255,255,255,.5)}
+.candy b{display:inline-flex; align-items:center; height:20px; margin-left:4px; padding:0 8px; border-radius:var(--r-full); font-size:.75rem; line-height:1.3333; font-weight:600;
+  background:color-mix(in srgb, var(--c) 26%, var(--surface)); color:color-mix(in srgb, var(--c) 48%, var(--ink))}
 @media (max-width:640px){ .candy{white-space:normal} }
 
 /* community */
@@ -523,7 +536,7 @@ footer{padding-block:32px 96px; font-family:var(--f-sans); font-size:.75rem; col
 main{overflow-x:clip}
 
 /* scroll reveal: each section and card fades and rises into place once, as it comes into view */
-.rv-ready :is(.hero-copy > *, .hero-art, .sec-head > *, .jr-filter, .tl-item, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .grid-3 .item, .contact):not(.rv-in){opacity:0}
+.rv-ready :is(.hero-copy > *, .hero-art, .sec-head > *, .jr-filter, .tl-item, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .candy, .grid-3 .item, .contact):not(.rv-in){opacity:0}
 .rv-ready .rv-in{animation:rv-rise .6s cubic-bezier(.2,.7,.2,1) var(--rv-d,0ms) backwards}
 @keyframes rv-rise{from{opacity:0; transform:translateY(16px)}}
 
@@ -965,8 +978,9 @@ main{overflow-x:clip}
     <p data-i18n="sk.sub">Grouped by area, from my jobs, projects and certificates.</p>
   </div>
   <div class="jars">
-    <article class="jar wide">
+    <article class="jar wide" style="--c:#E84D93">
       <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
         <div><h3 data-i18n="sk.1">AI and machine learning</h3><p data-i18n="sk.1d">Building and evaluating LLM applications</p></div>
         <span class="jar-count">9</span>
       </header>
@@ -983,8 +997,9 @@ main{overflow-x:clip}
       </ul>
     </article>
 
-    <article class="jar">
+    <article class="jar" style="--c:#12A483">
       <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
         <div><h3 data-i18n="sk.2">MLOps and AI operations</h3><p data-i18n="sk.2d">Serving models and keeping them healthy</p></div>
         <span class="jar-count">6</span>
       </header>
@@ -998,8 +1013,9 @@ main{overflow-x:clip}
       </ul>
     </article>
 
-    <article class="jar">
+    <article class="jar" style="--c:#F07B1E">
       <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
         <div><h3 data-i18n="sk.3">Data and ML tools</h3><p data-i18n="sk.3d">Cleaning data and training models</p></div>
         <span class="jar-count">8</span>
       </header>
@@ -1015,8 +1031,9 @@ main{overflow-x:clip}
       </ul>
     </article>
 
-    <article class="jar wide">
+    <article class="jar wide" style="--c:#2E7BF0">
       <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
         <div><h3 data-i18n="sk.4">Programming</h3><p data-i18n="sk.4d">Languages and tools I write software with</p></div>
         <span class="jar-count">11</span>
       </header>
@@ -1035,8 +1052,9 @@ main{overflow-x:clip}
       </ul>
     </article>
 
-    <article class="jar wide">
+    <article class="jar wide" style="--c:#E0A800">
       <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
         <div><h3 data-i18n="sk.5">Robotics and embedded</h3><p data-i18n="sk.5d">From microcontrollers to mapping</p></div>
         <span class="jar-count">5</span>
       </header>
@@ -1049,8 +1067,9 @@ main{overflow-x:clip}
       </ul>
     </article>
 
-    <article class="jar">
+    <article class="jar" style="--c:#E5484D">
       <header class="jar-head">
+        <span class="swirl" aria-hidden="true"></span>
         <div><h3 data-i18n="sk.6">Languages</h3><p data-i18n="sk.6d">Languages I work in</p></div>
         <span class="jar-count">3</span>
       </header>
@@ -1385,21 +1404,23 @@ main{overflow-x:clip}
 (function(){
   var root=document.documentElement; window.__rv=1;
   if(!root.classList.contains('rv-ready')) return;
-  var SEL='.hero-copy > *, .hero-art, .sec-head > *, .jr-filter, .tl-item, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .grid-3 .item, .contact';
-  var GROUPS='.hero-copy, .sec-head, .tl, .grid-2, .moments, .awards, .jars, .grid-3';
+  var SEL='.hero-copy > *, .hero-art, .sec-head > *, .jr-filter, .tl-item, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .candy, .grid-3 .item, .contact';
+  var GROUPS='.hero-copy, .sec-head, .tl, .grid-2, .moments, .awards, .jars, .candies, .grid-3';
   var els=[].slice.call(document.querySelectorAll(SEL));
   function show(el){ el.classList.add('rv-in'); }
   window.addEventListener('beforeprint', function(){ els.forEach(show); });
   var io=new IntersectionObserver(function(entries){
     var batch=entries.filter(function(e){ return e.isIntersecting; }).map(function(e){ return e.target; });
     batch.sort(function(a,b){ return (a.compareDocumentPosition(b) & 4) ? -1 : 1; });
-    var seen=new Map();
+    var seen=new Map(), inBatch=new Set(batch);
     batch.forEach(function(el){
       io.unobserve(el);
       var g=el.parentElement.closest(GROUPS) || el.parentElement, n=seen.get(g) || 0;
       seen.set(g, n+1);
-      var d=Math.min(n*80, 400) + (el.matches('.hero-art') ? 120 : 0);
-      el.style.setProperty('--rv-d', d+'ms'); show(el);
+      var step=g.matches('.candies') ? 40 : 80;
+      var d=Math.min(n*step, 400) + (el.matches('.hero-art') ? 120 : 0);
+      for(var a=el.parentElement; a; a=a.parentElement){ if(inBatch.has(a)){ d+=(a._rvd||0)+160; break; } }
+      el._rvd=d; el.style.setProperty('--rv-d', d+'ms'); show(el);
     });
   },{ rootMargin:'0px 0px -8% 0px' });
   els.forEach(function(el){ io.observe(el); });
