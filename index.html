@@ -28,6 +28,7 @@
 <script>
 (function(){
   var d=document.documentElement; d.className+=' js';
+  if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)){ d.className+=' rv-ready'; setTimeout(function(){ if(!window.__rv) d.classList.remove('rv-ready'); },4000); }
   function loaded(e){ var t=e.target; if(t && t.tagName==='IMG') t.classList.add('loaded'); }
   document.addEventListener('load', loaded, true); document.addEventListener('error', loaded, true);
   document.addEventListener('DOMContentLoaded', function(){ [].forEach.call(document.images, function(i){ if(i.complete) i.classList.add('loaded'); }); });
@@ -235,7 +236,7 @@ h1{font-size:clamp(4rem,10.5vw,7.25rem); line-height:.9; letter-spacing:-.025em}
 .tl-item{display:grid; grid-template-columns:var(--dw) 32px minmax(0,1fr); column-gap:var(--gap); padding-bottom:20px; position:relative}
 .tl-item:last-child{padding-bottom:0}
 .tl-item[hidden]{display:none}
-.tl-item.pop{animation:tl-fade .2s ease-out both}
+.tl .tl-item.pop{animation:tl-fade .2s ease-out both}
 @keyframes tl-fade{from{opacity:0}}
 .tl-date{display:grid; gap:8px; justify-items:end; align-content:start; padding-top:20px; text-align:right; font-family:var(--f-sans); font-size:.75rem; color:var(--ink-3); font-variant-numeric:tabular-nums; line-height:1.3333}
 .tl-dur{display:inline-flex; align-items:center; height:24px; padding:0 8px; border-radius:var(--r-full); font-size:.75rem; line-height:1.3333; background:var(--surface-2); color:var(--ink-2); border:1px solid var(--line)}
@@ -509,7 +510,13 @@ footer{padding-block:32px 96px; font-family:var(--f-sans); font-size:.75rem; col
 /* the robot hangs outside the photo; nothing may cause sideways scrolling */
 main{overflow-x:clip}
 
+/* scroll reveal: each section and card fades and rises into place once, as it comes into view */
+.rv-ready :is(.hero-copy > *, .hero-art, .sec-head > *, .jr-filter, .tl-item, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .grid-3 .item, .contact):not(.rv-in){opacity:0}
+.rv-ready .rv-in{animation:rv-rise .6s cubic-bezier(.2,.7,.2,1) var(--rv-d,0ms) backwards}
+@keyframes rv-rise{from{opacity:0; transform:translateY(16px)}}
+
 @media print{
+  .rv-ready *{opacity:1 !important; animation:none !important}
   .nav,.cta,.contact-actions,#theme,.lang,.cf-arrow,.cf-dots{display:none !important}
   body{background:#fff}
   section{padding-block:28px 0}
@@ -1359,6 +1366,31 @@ main{overflow-x:clip}
   new IntersectionObserver(function(es){ es.forEach(function(e){ visible=e.isIntersecting; if(visible) play(); else v.pause(); }); }, { threshold:.35 }).observe(v);
   v.closest('.vid').addEventListener('click', function(){ v.pause(); });
   if(d) d.addEventListener('close', play);
+})();
+</script>
+<script>
+/* Scroll reveal: whatever comes into view together is revealed in page order, one item after another within a group */
+(function(){
+  var root=document.documentElement; window.__rv=1;
+  if(!root.classList.contains('rv-ready')) return;
+  var SEL='.hero-copy > *, .hero-art, .sec-head > *, .jr-filter, .tl-item, .project, .moment, .award, .cf, .cf-caption, .cf-dots, .jar, .grid-3 .item, .contact';
+  var GROUPS='.hero-copy, .sec-head, .tl, .grid-2, .moments, .awards, .jars, .grid-3';
+  var els=[].slice.call(document.querySelectorAll(SEL));
+  function show(el){ el.classList.add('rv-in'); }
+  window.addEventListener('beforeprint', function(){ els.forEach(show); });
+  var io=new IntersectionObserver(function(entries){
+    var batch=entries.filter(function(e){ return e.isIntersecting; }).map(function(e){ return e.target; });
+    batch.sort(function(a,b){ return (a.compareDocumentPosition(b) & 4) ? -1 : 1; });
+    var seen=new Map();
+    batch.forEach(function(el){
+      io.unobserve(el);
+      var g=el.parentElement.closest(GROUPS) || el.parentElement, n=seen.get(g) || 0;
+      seen.set(g, n+1);
+      var d=Math.min(n*80, 400) + (el.matches('.hero-art') ? 120 : 0);
+      el.style.setProperty('--rv-d', d+'ms'); show(el);
+    });
+  },{ rootMargin:'0px 0px -8% 0px' });
+  els.forEach(function(el){ io.observe(el); });
 })();
 </script>
 <script>
