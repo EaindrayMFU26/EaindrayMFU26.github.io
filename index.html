@@ -204,10 +204,46 @@ h1{font-size:clamp(4rem,10.5vw,7.25rem); line-height:.9; letter-spacing:-.025em}
 .name-wrap{display:grid; gap:8px}
 .hello{font-family:var(--f-serif); font-style:italic; font-size:1.75rem; line-height:1.1429; color:var(--accent-ink)}
 
-/* hero: portrait */
-.hero-art{position:relative; justify-self:end; width:min(100%, 360px)}
-.portrait{position:relative; margin:0; aspect-ratio:4/5; border-radius:var(--r); overflow:hidden; border:1px solid var(--line); background:var(--surface-2)}
-.portrait img{display:block; width:100%; height:100%; object-fit:cover; object-position:50% 20%}
+/* hero: a comic panel that glitches like a misregistered print: the colour channels split, slices jump,
+   a negative frame flashes. Choppy on purpose (steps); a burst every 5s, constant while pointed at. */
+.hero-art{position:relative; justify-self:end; width:min(100%, 360px); --g-pink:#FF2E88; --g-cyan:#12C8E0}
+.panel{position:relative; margin:0; aspect-ratio:4/5; border:3px solid #0B1120; background:#000; overflow:hidden; isolation:isolate;
+  box-shadow:-8px -8px 0 var(--g-cyan), 8px 8px 0 var(--g-pink); animation:g-shake 5s steps(1) infinite}
+.panel img{position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; object-position:50% 22%}
+.g-r{filter:url(#ch-r); mix-blend-mode:screen; transform:translateX(-3px); animation:g-r 5s steps(1) infinite}
+.g-gb{filter:url(#ch-gb); mix-blend-mode:screen; transform:translateX(3px); animation:g-gb 5s steps(1) infinite}
+.panel .g-slice{opacity:0; animation:g-slice 5s steps(1) infinite}
+.panel .g-s2{animation-name:g-slice-2}
+.g-dots{position:absolute; inset:0; z-index:1; pointer-events:none; mix-blend-mode:multiply;
+  background:radial-gradient(circle, rgba(11,17,32,.2) 0 1px, transparent 1.4px) 0 0/5px 5px}
+.g-dots::after{content:""; position:absolute; inset:0; opacity:.6; background:radial-gradient(circle, var(--g-pink) 0 1.8px, transparent 2.2px) 0 0/8px 8px;
+  -webkit-mask-image:linear-gradient(215deg, #000 0, transparent 42%); mask-image:linear-gradient(215deg, #000 0, transparent 42%)}
+.g-caption{position:absolute; left:12px; top:12px; z-index:2; max-width:calc(100% - 24px); padding:4px 8px; background:#FFE14D; color:#0B1120; border:2px solid #0B1120;
+  font:700 .75rem/1.3333 var(--f-sans); letter-spacing:.04em; text-transform:uppercase}
+.g-defs{position:absolute; width:0; height:0; overflow:hidden}
+.hero-art:hover :is(.panel, .g-r, .g-gb, .g-slice){animation-duration:1s}
+@keyframes g-shake{0%, 84%, 97%, 100%{transform:none; filter:none} 86%{transform:translate(2px,-2px)} 89%{transform:translate(-3px,1px); filter:invert(1) hue-rotate(180deg)}
+  90%{filter:none} 92%{transform:translate(1px,2px)} 94%{transform:translate(-2px,0)}}
+@keyframes g-r{0%, 84%, 97%, 100%{transform:translateX(-3px)} 86%{transform:translate(-12px,2px)} 88%{transform:translate(6px,-2px)} 90%{transform:translateX(-16px)}
+  92%{transform:translate(-4px,1px)} 94%{transform:translateX(-9px)}}
+@keyframes g-gb{0%, 84%, 97%, 100%{transform:translateX(3px)} 86%{transform:translate(10px,-2px)} 88%{transform:translate(-5px,2px)} 90%{transform:translateX(14px)}
+  92%{transform:translate(4px,-1px)} 94%{transform:translateX(8px)}}
+@keyframes g-slice{0%, 84%, 96%, 100%{opacity:0} 85%{opacity:1; clip-path:inset(18% 0 66% 0); transform:translateX(-16px)} 87%{clip-path:inset(56% 0 30% 0); transform:translateX(12px)}
+  89%{clip-path:inset(34% 0 54% 0); transform:translateX(-24px)} 91%{clip-path:inset(72% 0 14% 0); transform:translateX(18px)} 93%{clip-path:inset(6% 0 84% 0); transform:translateX(-10px)}}
+@keyframes g-slice-2{0%, 85%, 97%, 100%{opacity:0} 86%{opacity:1; clip-path:inset(44% 0 40% 0); transform:translateX(20px)} 88%{clip-path:inset(12% 0 76% 0); transform:translateX(-14px)}
+  90%{clip-path:inset(64% 0 22% 0); transform:translateX(10px)} 92%{clip-path:inset(26% 0 62% 0); transform:translateX(-20px)} 95%{clip-path:inset(82% 0 6% 0); transform:translateX(14px)}}
+/* the name: pink and cyan copies slip out from behind it during the same bursts */
+.g-name{position:relative}
+.g-name > span:first-child{position:relative; z-index:1; display:inline-block; animation:g-name 5s steps(1) infinite}
+.g-name-a, .g-name-b{position:absolute; left:0; top:0; white-space:nowrap; opacity:0; pointer-events:none}
+.g-name-a{color:var(--g-pink, #FF2E88); animation:g-name-a 5s steps(1) infinite}
+.g-name-b{color:var(--g-cyan, #12C8E0); animation:g-name-b 5s steps(1) infinite}
+.hero-copy{--g-pink:#FF2E88; --g-cyan:#12C8E0}
+@keyframes g-name{0%, 84%, 97%, 100%{transform:none} 87%{transform:translateX(2px)} 90%{transform:translateX(-3px)} 93%{transform:translateX(1px)}}
+@keyframes g-name-a{0%, 84%, 97%, 100%{opacity:0} 85%{opacity:1; transform:translate(-6px,1px); clip-path:inset(0 0 52% 0)} 88%{transform:translate(4px,-1px); clip-path:inset(40% 0 20% 0)}
+  91%{transform:translate(-4px,0); clip-path:inset(10% 0 60% 0)} 94%{transform:translate(3px,1px); clip-path:inset(62% 0 0 0)}}
+@keyframes g-name-b{0%, 84%, 97%, 100%{opacity:0} 86%{opacity:1; transform:translate(6px,-1px); clip-path:inset(48% 0 0 0)} 89%{transform:translate(-4px,1px); clip-path:inset(15% 0 50% 0)}
+  92%{transform:translate(4px,0); clip-path:inset(55% 0 12% 0)} 95%{transform:translate(-3px,-1px); clip-path:inset(0 0 70% 0)}}
 .bot{position:absolute; left:-40px; bottom:-28px; width:88px; height:auto; animation:bot-float 4.8s ease-in-out infinite}
 /* the robot floats, blinks and waves now and then; it waves straight away when you point at the photo, and its eyes follow the pointer */
 @keyframes bot-float{0%, 100%{transform:translateY(0)} 50%{transform:translateY(-6px)}}
@@ -498,9 +534,9 @@ h1{font-size:clamp(4rem,10.5vw,7.25rem); line-height:.9; letter-spacing:-.025em}
 footer{padding-block:32px 96px; font-family:var(--f-sans); font-size:.75rem; color:var(--ink-3); display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between; line-height:1.3333}
 
 /* loading: images fade in once loaded, with a quiet placeholder until then; the video player shows a spinner */
-.js :is(.portrait, .vid, .moment-img, .project-media, .cf-card, .lb-frame, .ph-media) > img{transition:opacity .3s ease}
-.js :is(.portrait, .vid, .moment-img, .project-media, .cf-card, .lb-frame, .ph-media) > img:not(.loaded){opacity:0}
-.js :is(.portrait, .moment-img, .project-media, .cf-card, .lb-frame, .ph-media):has(> img:not(.loaded))::after{content:""; position:absolute; inset:0; pointer-events:none;
+.js :is(.panel, .vid, .moment-img, .project-media, .cf-card, .lb-frame, .ph-media) > img{transition:opacity .3s ease}
+.js :is(.panel, .vid, .moment-img, .project-media, .cf-card, .lb-frame, .ph-media) > img:not(.loaded){opacity:0}
+.js :is(.panel, .moment-img, .project-media, .cf-card, .lb-frame, .ph-media):has(> img:not(.loaded))::after{content:""; position:absolute; inset:0; pointer-events:none;
   background:linear-gradient(100deg, transparent 30%, color-mix(in srgb, var(--surface) 70%, transparent) 50%, transparent 70%) var(--surface-2); background-size:200% 100%; animation:skel 1.4s ease-in-out infinite}
 @keyframes skel{from{background-position:120% 0} to{background-position:-20% 0}}
 .spinner{display:block; width:32px; height:32px; border-radius:50%; border:3px solid rgba(255,255,255,.25); border-top-color:#fff; animation:spin .8s linear infinite}
@@ -587,7 +623,7 @@ main{overflow-x:clip}
       <span class="status"><i aria-hidden="true"></i><span data-i18n="hero.status">Open to AI engineering internships</span></span>
       <div class="name-wrap">
         <p class="hello"><span data-i18n="hero.hello">Hi, I’m</span></p>
-        <h1 id="name">Eaindray</h1>
+        <h1 id="name" class="g-name"><span>Eaindray</span><span class="g-name-a" aria-hidden="true">Eaindray</span><span class="g-name-b" aria-hidden="true">Eaindray</span></h1>
       </div>
       <p class="role"><b class="typer" data-roles="AI Engineer Intern|Robotics Software Engineer|Full-Stack Engineer|Software Engineer|MLOps Engineer|Embedded Systems Engineer" aria-hidden="true"><span class="typer-text">AI Engineer Intern</span><span class="typer-caret"></span></b><span class="sr-only" id="role-sr">AI Engineer Intern</span><span data-i18n="hero.focus">Generative AI applications · Testing · AI operations</span></p>
       <p class="lead" data-i18n="hero.lead">Software Engineering student at Mae Fah Luang University. At MFU Medical Center Hospital I deployed, tested and maintained the LLM behind <strong>CareMind</strong>, a generative AI application that drafts nursing notes with source citations.</p>
@@ -610,9 +646,18 @@ main{overflow-x:clip}
     </div>
 
     <div class="hero-art">
-      <figure class="portrait">
-        <img src="media/eaindray-photo.webp" alt="Photo of Eaindray" aria-label="Photo of Eaindray" data-i18n-aria="hero.avatar" width="596" height="894" decoding="async" fetchpriority="high">
+      <figure class="panel" role="img" aria-label="Cartoon portrait of Eaindray" data-i18n-aria="hero.avatar">
+        <img class="g-r" src="media/eaindray-cartoon.webp" alt="" width="688" height="1032" decoding="async" fetchpriority="high">
+        <img class="g-gb" src="media/eaindray-cartoon.webp" alt="" width="688" height="1032" decoding="async">
+        <img class="g-slice" src="media/eaindray-cartoon.webp" alt="" width="688" height="1032" decoding="async">
+        <img class="g-slice g-s2" src="media/eaindray-cartoon.webp" alt="" width="688" height="1032" decoding="async">
+        <span class="g-dots" aria-hidden="true"></span>
+        <span class="g-caption" data-i18n="hero.caption">Meanwhile, in Chiang Rai…</span>
       </figure>
+      <svg class="g-defs" width="0" height="0" aria-hidden="true" focusable="false">
+        <filter id="ch-r" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"/></filter>
+        <filter id="ch-gb" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/></filter>
+      </svg>
       <svg class="bot" viewBox="0 0 120 140" aria-hidden="true">
         <defs>
           <linearGradient id="bot-shell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDE7E3"/></linearGradient>
@@ -1198,7 +1243,7 @@ main{overflow-x:clip}
   });
 })();
 </script>
-<script src="i18n.js?v=1795591294"></script>
+<script src="i18n.js?v=1795660634"></script>
 <script>
 /* Certificate coverflow + viewer */
 (function(){
